@@ -1,0 +1,126 @@
+@startuml
+entity "users" {
+    + id [PK]
+    ==
+    - name:string
+    - email:string
+    - password_digest:string
+    - birth_date:date
+    - in_date:date
+    - out_plan_date:date
+    - out_actual_date:date
+    - image:text
+    - room:text
+    - admin:boolean
+}
+entity "routines" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    - title:string
+    - content:string
+    - when:date
+}
+entity "assign_routines" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    + routine_id [FK]
+}
+entity "events" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    - title:string
+    - content:string
+    - from_date:date
+    - to_date:date
+    - status:enum
+}
+entity "follow_events" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    + event_id [FK]
+}
+entity "event_comments" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    + event_id [FK]
+    - comment:string
+}
+entity "event_categories" {
+    + id [PK]
+    ==
+    - label:string
+}
+entity "payments" {
+    + id
+    ==
+    + payment_month [PK]
+    ==
+    + user_id [FK]
+    - amount:integer
+    - payment_status:boolean
+}
+entity "issues" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    - title:string
+    - body:string
+}
+entity "user_issues" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    + issue_id [FK]
+}
+entity "issue_comments" {
+    + id [PK]
+    ==
+    + user_id [FK]
+    + issue_id [FK]
+    - comment:string
+}
+entity "issue_categories" {
+    + id [PK]
+    ==
+    + issue_id [FK]
+    - label:string
+}
+entity "conversations" {
+    + id [PK]
+    ==
+    + sender_id [FK]
+    + recipient_id [FK]
+}
+entity "messages" {
+    + id [PK]
+    ==
+    + conversation_id [FK]
+    + user_id [FK]
+    - body:string
+}
+users --o{ routines
+users --o{ assign_routines
+routines --o{ assign_routines
+users --o{ events
+users --o{ follow_events
+events --o{ follow_events
+events --o{ event_categories
+users --o{ event_comments
+events --o{ event_comments
+users --o{ payments
+users --o{ issues
+users --o{ user_issues
+issues --o{ user_issues
+users --o{ issue_comments
+issues --o{ issue_comments
+issues --o{ issue_categories
+conversations --o{ users
+conversations --o{ users
+users --o{ messages
+conversations --o{ messages
+@enduml

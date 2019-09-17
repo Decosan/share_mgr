@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- バージョン情報
+```
+  ruby '2.6.3'
+  rails '5.2.3'
+```
+- カタログ設計
 
-Things you may want to cover:
+```
+アプリ名：Share House MGR
+使用対象者：シェアハウスの居住者と管理者
+概要：共同生活のタスク管理、住居人同士の情報共有、住居人と管理者の情報共有
+```
+</font>
 
-* Ruby version
+- 機能一覧
+> 共用タスク（ゴミ出し、トイレ掃除）の管理、受け渡し。
+>
+> 住居者の情報管理（管理ページ）
+>
+> 住居者間で情報交換（イベント、不用品処理などの告知）
+>
+> 住居者同士でのチャット機能　(住居者と管理者間もあり)
+>
+> クレームや意見、もしくは有益な情報を出し合う掲示板機能
+>
+> 家賃の支払状況を管理
+- テーブル定義書
+```
+https://docs.google.com/spreadsheets/d/11PXA5D0pJ9EgMtqj48jwEDBydq4D9mkJsZQqyQHt2tw/edit?pli=1#gid=1386872612
+```
+- ER図
+```
+"Alt + D" でプレビューを表示する
+./public/my_app_er.pu
+```
+- 画面遷移図 / ワイヤーフレーム
+```
+https://cacoo.com/diagrams/jEdhpG7IXykGASNR/064D2
+```
 
-* System dependencies
+- 使用予定Gem
+```
+ログイン管理機能
+- device
+- cancancan
+- rails_admin
 
-* Configuration
+OAuth機能
+- omniauth
+- omniauth-google-oauth2
 
-* Database creation
+Password管理
+- bcrypt
 
-* Database initialization
+ページネーション
+- kaminari
 
-* How to run the test suite
+カレンダー機能
+- simple_calendar
 
-* Services (job queues, cache servers, search engines, etc.)
+ラベル分析
+- chartkick
 
-* Deployment instructions
+検索機能
+- ransak
 
-* ...
