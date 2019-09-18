@@ -28,16 +28,15 @@
 > 家賃の支払状況を管理
 - テーブル定義書
 ```
-https://docs.google.com/spreadsheets/d/11PXA5D0pJ9EgMtqj48jwEDBydq4D9mkJsZQqyQHt2tw/edit?pli=1#gid=1386872612
+https://docs.google.com/spreadsheets/d/1Z0g9SOsKzN-r_mBpIHOfev7w4_VR5sGU/edit#gid=212823087
 ```
-- ER図
-```
-"Alt + D" でプレビューを表示する
-./public/my_app_er.pu
-```
-- 画面遷移図 / ワイヤーフレーム
+- ER図 / 画面遷移図 / ワイヤーフレーム
 ```
 https://cacoo.com/diagrams/jEdhpG7IXykGASNR/064D2
+
+もしくはローカル環境にて、下記ファイルを"Alt + D" でプレビューを表示する
+./public/my_app_er.pu
+
 ```
 
 - 使用予定Gem
