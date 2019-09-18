@@ -53,7 +53,8 @@ entity "event_comments" {
 entity "event_categories" {
     + id [PK]
     ==
-    - label:string
+    + event_id [FK]
+    + label_id [FK]
 }
 entity "payments" {
     + id
@@ -88,7 +89,7 @@ entity "issue_categories" {
     + id [PK]
     ==
     + issue_id [FK]
-    - label:string
+    + label_id [FK]
 }
 entity "conversations" {
     + id [PK]
@@ -101,6 +102,11 @@ entity "messages" {
     ==
     + conversation_id [FK]
     + user_id [FK]
+    - body:string
+}
+entity "labels" {
+    + id [PK]
+    ==
     - body:string
 }
 users --o{ routines
@@ -123,4 +129,6 @@ conversations --o{ users
 conversations --o{ users
 users --o{ messages
 conversations --o{ messages
+labels --o{ event_categories
+labels --o{ issue_categories
 @enduml

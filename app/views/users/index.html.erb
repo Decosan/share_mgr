@@ -1,0 +1,14 @@
+<h1>Users Index</h1>
+<ul class="media-list">
+  <% @users.each do |user| %>
+    <li class="media">
+      <h4 class="media-left">
+        ICON
+      </h4>
+      <div class="media-body">
+        <h4 class="media-heading">Name:<%= user.name %></h4>
+         Registered: <%= user.created_at.strftime('%Y/%m/%d') %> 
+      </div>
+    </li>
+  <% end %>  
+</ul>

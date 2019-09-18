@@ -28,7 +28,7 @@
 > 家賃の支払状況を管理
 - テーブル定義書
 ```
-https://docs.google.com/spreadsheets/d/1Z0g9SOsKzN-r_mBpIHOfev7w4_VR5sGU/edit#gid=212823087
+https://docs.google.com/spreadsheets/d/1Z0g9SOsKzN-r_mBpIHOfev7w4_VR5sGU/edit#gid=1333122057
 ```
 - ER図 / 画面遷移図 / ワイヤーフレーム
 ```
