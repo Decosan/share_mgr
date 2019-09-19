@@ -1,0 +1,2 @@
+class PersonalDatumController < ApplicationController
+end
