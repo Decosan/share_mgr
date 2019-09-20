@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :toppages, only:[:index]
   resources :users
   resources :personnels, only:[:new, :create, :edit, :update, :show]
+  resources :events
 end

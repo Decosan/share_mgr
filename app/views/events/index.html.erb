@@ -1,0 +1,18 @@
+<h1><span class='glyphicon glyphicon-check'></span> イベント一覧</h1>
+<ul class="media-list">
+  <% @events.each do |event| %>
+    <li class="media">
+      <h4 class="media-left">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+      <% end %>
+      </h4>
+      <div class="media-body">
+        <h4 class="media-heading">タイトル:<%= event.title %></h4>
+         <span class='glyphicon glyphicon-hand-right'></span> <%= event.content %>
+      </div>
+    </li>
+  <% end %>  
+</ul>
+<%= paginate @events %>
+
