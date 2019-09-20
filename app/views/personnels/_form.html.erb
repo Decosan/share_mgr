@@ -1,0 +1,51 @@
+<%= form_with(model: personnel,local: true)do |f| %>
+  <%= render 'layouts/error_messages',model: f.object %>
+  <div class='form'>
+    <%= f.label :last_name,'姓（せい）' %>
+    <%= f.text_field :last_name, class:'form-control' %>
+  </div>
+
+  <div class='form'>
+    <%= f.label :first_name,'名（めい）' %>
+    <%= f.text_field :first_name, class:'form-control' %>
+  </div>
+
+  <div class='form'>
+    <%= f.label :room,'性別' %>
+    <%= f.select :gender, Personnel.genders.keys, {}, class: "select-default" %>
+  </div>
+
+  <div class='form'>
+    <%= f.label :room,'部屋番号' %>
+    <%= f.select :room, Personnel.rooms.keys, {}, class: "select-default" %>
+  </div>
+
+  <div class="form">
+    <%= f.label :birth_date, '誕生日' %>
+    <%= f.date_select(
+        :birth_date,
+        start_year: 1930,
+        end_year: (Time.now.year - 18),
+        default: Date.new(1989, 1, 1)) %>
+  </div>
+  
+  <div class="form">
+    <%= f.label :in_date, '入居日' %>
+    <%= f.date_select(
+        :in_date,
+        start_year: Time.now.year,
+        end_year: (Time.now.year + 2)) %>
+  </div>
+
+  <div class="form">
+    <%= f.label :out_plan_date, '退去予定日' %>
+    <%= f.date_select(
+        :out_plan_date,
+        start_year: Time.now.year,
+        end_year: (Time.now.year + 2)) %>
+  </div>
+
+
+  <%= f.submit '登録',class:'btn btn-primary btn-block' %>
+
+<% end %>

@@ -1,27 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show,:edit,:update]
-
+  before_action :set_user, only:[:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @users = User.all
   end
 
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      flash[:success] ='ユーザー登録に成功しました'
-      redirect_to user_path(@user)
-    else
-      flash[:danger] ='登録できませんでした'
-      render 'new'
-    end
-  end
-
   def show
+    @personnel = @user.personnel
   end
 
   def edit
@@ -35,11 +21,17 @@ class UsersController < ApplicationController
     elsif params[:user][:name]
       @user.update(user_params)
       flash[:success] ='ユーザー情報の編集に成功しました'
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user.id)
     else
       flash[:danger] ='編集できませんでした'
       render 'edit'
     end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:danger] ='ユーザーを削除しました'
+    redirect_to new_user_session_path
   end
 
   private

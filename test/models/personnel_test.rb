@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PersonalDatumTest < ActiveSupport::TestCase
+class PersonnelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

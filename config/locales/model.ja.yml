@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      blog: "ブログ"
+      user: "ユーザー"
+    attributes:
+      personnel:
+        first_name: "名（めい）"
+        last_name: "姓（せい）"
+        room: "部屋番号"
+        in_date: "入居日"
+        out_plan_date: "退去予定日"
+        out_actual_date: "実際の退去日"
+        birth_date: "誕生日"  
+      user:
+        name: "ID名"
+        email: "メールアドレス"
+        admin: "管理者権限"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"

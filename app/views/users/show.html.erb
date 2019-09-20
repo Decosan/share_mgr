@@ -2,6 +2,8 @@
 
 <div class='row'>
   <div class='col-xs-4'>
+    <%= link_to '編集',edit_user_path(@user.id),class:'btn btn-warning btn-lg' %>
+    <%= link_to '削除',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg' %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <% if @user.avatar.attached? %>
@@ -13,14 +15,27 @@
         <% end %>
       </div>
       <div class="panel-body">
-        NAME: <%= @user.name %>
+        User ID: <%= @user.name %>
       </div>
       <div class="panel-footer">
-        EMAIL: <%= @user.email %>
+        Email: <%= @user.email %>
       </div>
     </div>
   </div>
   <div class='col-xs-8'>
-
+    <h4>姓（せい）</h4>
+    <p><%= @personnel.last_name %></p>
+    <h4>名（めい）</h4>
+    <p><%= @personnel.first_name %></p>
+    <h4>性別</h4>
+    <p><%= @personnel.gender %></p>
+    <h4>部屋番号</h4>
+    <p><%= @personnel.room %></p>
+    <h4>誕生日</h4>
+    <p><%= @personnel.birth_date %></p>
+    <h4>入居日</h4>
+    <p><%= @personnel.in_date %></p>
+    <h4>退去予定日</h4>
+    <p><%= @personnel.out_plan_date %></p>
   </div>
 </div>
