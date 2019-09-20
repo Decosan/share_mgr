@@ -1,10 +1,23 @@
 <% if user_signed_in? %>
   <h1>トップページ</h1>
-  <%= link_to 'イベント・告知・不用品処理など' %>
-  <%= link_to '共同生活タスク' %>
-  <%= link_to 'チャット・質問Box' %>
-  <%= link_to '掲示板（ご意見・お役立ち情報など）' %>
-  <%= link_to '家賃の管理' %>
+
+  <div class='toppage_btns'>
+    <div id ='event_btn'>
+      <%= link_to 'イベント・告知・不用品処理など' %>
+    </div>
+    <div id ='routine_btn'>
+      <%= link_to '共同生活タスク' %>
+    </div>
+    <div id ='chat_btn'>
+      <%= link_to 'チャット・質問Box' %>
+    </div>
+    <div id ='issue_btn'>
+      <%= link_to '掲示板（ご意見・お役立ち情報など）' %>
+    </div>
+    <div id ='payment_btn'>
+      <%= link_to '家賃の管理' %>
+    </div>
+  </div>  
 <% else %>
   <header class='header'>
   </header>

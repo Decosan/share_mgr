@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'users#index'
-  
+  resources :toppages, only:[:index]
   resources :users
   resources :personnels, only:[:new, :create, :edit, :update, :show]
 end
