@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
@@ -19,4 +20,6 @@ Rails.application.routes.draw do
   resources :users
   resources :personnels, only:[:new, :create, :edit, :update, :show]
   resources :events
+  resources :event_labels, only:[:create, :destroy]
+  resources :labels, only:[:new, :create]
 end

@@ -1,41 +1,64 @@
-<h1>User Profile</h1>
-
-<div class='row'>
-  <div class='col-xs-4'>
-    <%= link_to '編集',edit_user_path(@user.id),class:'btn btn-warning btn-lg' %>
-    <%= link_to '削除',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg' %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
-        <% end %>
-        <%= form_with model: @user, local: true  do |f| %>
-          <%= f.file_field :avatar %>
-          <%= f.submit '画像を表示' %>
-        <% end %>
-      </div>
-      <div class="panel-body">
-        User ID: <%= @user.name %>
-      </div>
-      <div class="panel-footer">
-        Email: <%= @user.email %>
+<% if current_user.id == @user.id %>
+  <h1>User Profile</h1>
+  <div class='row'>
+    <div class='col-xs-4'>
+      <%= link_to '編集',edit_user_path(@user.id),class:'btn btn-warning btn-lg' %>
+      <%= link_to '削除',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg' %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
+          <% end %>
+          <%= form_with model: @user, local: true  do |f| %>
+            <%= f.file_field :avatar %>
+            <%= f.submit '画像を表示' %>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          User ID: <%= @user.name %>
+        </div>
+        <div class="panel-footer">
+          Email: <%= @user.email %>
+        </div>
       </div>
     </div>
+    <div class='col-xs-8'>
+      <h4>姓（せい）</h4>
+      <p><%= @personnel.last_name %></p>
+      <h4>名（めい）</h4>
+      <p><%= @personnel.first_name %></p>
+      <h4>性別</h4>
+      <p><%= @personnel.gender %></p>
+      <h4>部屋番号</h4>
+      <p><%= @personnel.room %></p>
+      <h4>誕生日</h4>
+      <p><%= @personnel.birth_date %></p>
+      <h4>入居日</h4>
+      <p><%= @personnel.in_date %></p>
+      <h4>退去予定日</h4>
+      <p><%= @personnel.out_plan_date %></p>
+    </div>
   </div>
-  <div class='col-xs-8'>
-    <h4>姓（せい）</h4>
-    <p><%= @personnel.last_name %></p>
-    <h4>名（めい）</h4>
-    <p><%= @personnel.first_name %></p>
-    <h4>性別</h4>
-    <p><%= @personnel.gender %></p>
-    <h4>部屋番号</h4>
-    <p><%= @personnel.room %></p>
-    <h4>誕生日</h4>
-    <p><%= @personnel.birth_date %></p>
-    <h4>入居日</h4>
-    <p><%= @personnel.in_date %></p>
-    <h4>退去予定日</h4>
-    <p><%= @personnel.out_plan_date %></p>
-  </div>
-</div>
+<% else %>
+  <h1><span class='glyphicon glyphicon-check'></span> <%= @user.name %>'s イベント一覧</h1>
+  <ul class="media-list">
+    <% @events.each do |event| %>
+      <li class="media">
+        <h4 class="media-left">
+        <% if event.user.avatar.attached? %>
+          <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+        <% end %>
+        <%= event.user.name %>
+        </h4>
+        <div class="media-body">
+          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./events/<%= event.id %>'>  <%= event.title.truncate(10) %></a></h4>
+            <%= event.content.truncate(20) %>
+          <div>
+            <strong>Start:</strong> <%= event.start_date %> 〜　
+          </div>
+        </div>
+      </li>
+    <% end %>  
+  </ul>
+  <%= paginate @events %>
+<% end %>  

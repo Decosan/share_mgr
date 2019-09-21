@@ -1,15 +1,49 @@
-<h1><span class='glyphicon glyphicon-check'></span> イベント一覧</h1>
+<h1><span class='glyphicon glyphicon-check'></span> イベント一覧
+  <%= link_to '日付順ソート', events_path(start_date: "true"),class:'btn btn-primary btn-lg' %>
+  <%= link_to 'ソート解除', events_path,class:'btn btn-danger btn-lg' %>
+</h1>
+
+<div class='flex' style='padding: 10px;'>
+  <div>
+    <%= form_with(scope: :event, url: events_path, method: :get, local: true)do |f| %>
+      <%= f.label :title,"イベント検索" %>
+      <%= f.text_field :title %>
+      <%= f.hidden_field :search, value: 'true' %>
+      <%= f.submit '検索する' %>
+    <% end %>
+  </div>
+
+  <div class="btn-group" style='margin-left: 15px;'>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      ユーザー検索
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+    <% @users.each do |user| %>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="/users/<%= user.id %>"><%= user.name %></a></li>
+    <% end %>  
+    </ul>
+  </div>
+</div>
+
 <ul class="media-list">
   <% @events.each do |event| %>
     <li class="media">
       <h4 class="media-left">
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+      <% if event.user.avatar.attached? %>
+        <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+      <% else %>
+        <span class="label label-danger">No Image</span>  
       <% end %>
+      <%= event.user.name %>
       </h4>
       <div class="media-body">
-        <h4 class="media-heading">タイトル:<%= event.title %></h4>
-         <span class='glyphicon glyphicon-hand-right'></span> <%= event.content %>
+        <p><%= event.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>投稿</p>
+        <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./events/<%= event.id %>'>  <%= event.title.truncate(10) %></a></h4>
+          <%= event.content.truncate(20) %>
+         <div>
+          <strong>Start:</strong> <%= event.start_date %> 〜　
+         </div>
       </div>
     </li>
   <% end %>  

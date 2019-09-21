@@ -1,2 +1,17 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="jumbotron">
+  <div>
+    <p style='display: inline;'><a class="btn btn-primary btn-lg" href="/events" role="button">一覧へ戻る</a></p>
+    <div style='display: inline;'>
+      <%= link_to '編集する', edit_event_path(@event), class:'btn btn-warning btn-lg' %>
+    </div>
+  <div>  
+	<h1><%= @event.title %></h1>
+  <p><%= @event.content %></p>
+  <p>Date: <%= @event.start_date %></p>
+  <% if @event.images.attached? %>
+    <% @event.images.each do |image| %>
+      <%= image_tag image %> <br>
+    <% end %>
+  <% end %>
+  
+</div>

@@ -1,0 +1,40 @@
+<%= form_with(model: event,local: true)do |f| %>
+  
+  <div class='form'>
+    <%= f.label :title,'タイトル' %>
+    <%= f.text_field :title, class:'form-control' %>
+  </div>
+
+  <div class='form'>
+    <%= f.label :content,'内容' %>
+    <%= f.text_field :content, class:'form-control' %>
+  </div>
+
+  <div class="form">
+    <%= f.label :start_date, '開始' %>
+    <%= f.date_select(
+        :start_date,
+        start_year: Time.now.year,
+        end_year: (Time.now.year + 2)) %>
+  </div>
+
+  <div>
+    <% if @event.images.attached? %>
+      <p>削除するファイルをチェック</p>
+      <ul>
+        <% @event.images.each do |image| %>
+          <li>
+            <%= f.check_box :destroy_images, { multiple: true, checked: false, include_hidden: false }, image[:id] %>
+            <label><%= image.filename %></label>
+          </li>
+        <% end %> 
+      </ul>
+		<% end %>
+	</div>
+  
+  <%= f.file_field :images, multiple: true %>
+  
+
+  <%= f.submit '登録する',class:'btn btn-primary btn-block' %>
+
+<% end %>

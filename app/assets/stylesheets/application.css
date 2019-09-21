@@ -15,6 +15,14 @@
  *= require_self
  */
 
+.flex{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+
 .toppage_btns {
   display: flex;
   flex-direction: row;
@@ -204,4 +212,11 @@
   position: absolute;
   color: white;
   text-decoration: none;
+}
+
+h4.media-left {
+  min-width: 100px;
+  min-height: 100px;
+  vertical-align: middle;
+  text-align: center;
 }

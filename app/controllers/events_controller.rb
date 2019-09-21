@@ -1,10 +1,20 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only:[:show, :edit, :update, :destroy]
+  before_action :delete_picture, only:[:update]
 
 
   def index
-    @events = Event.all.page(params[:page])
+    @users = User.all 
+    if params[:event] && params[:event][:search]
+      @events = Event.where("title LIKE ?", "%#{ params[:event][:title] }%").page(params[:page])
+    else
+      if params[:start_date] == "true"
+        @events = Event.order(start_date: :ASC).page(params[:page])
+      else
+        @events = Event.order('created_at DESC').page(params[:page])
+      end
+    end
   end
 
   def new
@@ -46,8 +56,19 @@ class EventsController < ApplicationController
 
   private
 
+  def delete_picture
+    if images = params[:event][:destroy_images]
+      images.each do |img| 
+        @event.images.find(img).destroy
+      end
+      redirect_back(fallback_location: root_path)
+    else
+
+    end
+  end
+
   def event_params
-    params.require(:event).permit(:title,:content,:start_date,:end_date,:user_id)
+    params.require(:event).permit(:title,:content,:start_date,:user_id, images: [], label_ids: [])
   end
 
   def set_event

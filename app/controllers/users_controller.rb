@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @personnel = @user.personnel
+    if @user.id == current_user.id
+      @personnel = @user.personnel
+    else  
+      @events = Event.where(user_id: @user.id).order('created_at DESC').page(params[:page])
+    end
   end
 
   def edit
