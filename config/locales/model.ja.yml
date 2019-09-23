@@ -1,16 +1,21 @@
 ja:
   activerecord:
     models:
-      blog: "ブログ"
+      event: "イベント"
       user: "ユーザー"
     attributes:
+      event:
+        title: "タイトル"
+        content: "内容"
+        start_date: "日付"
+      comment:
+        content: "コメント"
       personnel:
         first_name: "名（めい）"
         last_name: "姓（せい）"
         room: "部屋番号"
         in_date: "入居日"
         out_plan_date: "退去予定日"
-        out_actual_date: "実際の退去日"
         birth_date: "誕生日"  
       user:
         name: "ID名"

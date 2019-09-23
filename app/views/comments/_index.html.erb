@@ -1,0 +1,13 @@
+<ul>
+  <% comments.each do |comment| %>
+    <% if comment.id.present? %>
+      <li class='arrow_box'>
+        <p><%= comment.content %>  by <%= comment.user.name %>...
+          <% if comment.user.id == current_user.id %>
+            <%= link_to '', event_comment_path(@event, comment.id),method: :delete, data: {confirm: "削除しますか？"}, class:'btn btn-danger btn-xs glyphicon glyphicon-trash' %>
+          <% end %>  
+        </p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

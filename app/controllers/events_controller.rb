@@ -2,12 +2,20 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only:[:show, :edit, :update, :destroy]
   before_action :delete_picture, only:[:update]
+  before_action :correct_user, only:[:edit, :update, :destroy]
+  after_action :read, only:[:show]
 
 
   def index
-    @users = User.all 
+    @users = User.all
     if params[:event] && params[:event][:search]
-      @events = Event.where("title LIKE ?", "%#{ params[:event][:title] }%").page(params[:page])
+      if params[:event][:title] == "" && params[:event][:label_ids] == ""
+        redirect_to events_path
+      elsif params[:event][:title].present?
+        @events = Event.where("title LIKE ?", "%#{ params[:event][:title] }%").page(params[:page])
+      elsif params[:event][:label_ids].present?
+        @events = Event.joins(:event_labels).where('event_labels.label_id = ?', params[:event][:label_ids]).page(params[:page])
+      end
     else
       if params[:start_date] == "true"
         @events = Event.order(start_date: :ASC).page(params[:page])
@@ -24,6 +32,9 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
+      unless @event.user_events.find_by(user_id: current_user.id).present?
+        current_user.user_events.create(event_id: @event.id, accesstime: Time.current)
+      end
       flash[:success] ='新規イベントを作成しました'
       redirect_to events_path
     else
@@ -33,6 +44,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    @comments = @event.comments
+    @comment = @event.comments.build
   end
 
   def edit
@@ -56,6 +69,15 @@ class EventsController < ApplicationController
 
   private
 
+  def read
+    unless current_user.user_events.pluck(:event_id).include?(@event.id)
+      current_user.user_events.create(event_id: @event.id, accesstime: Time.current)
+    else
+      @event.user_events.find_by(user_id: current_user.id).update(accesstime: Time.current)
+    end  
+  end
+
+
   def delete_picture
     if images = params[:event][:destroy_images]
       images.each do |img| 
@@ -63,7 +85,6 @@ class EventsController < ApplicationController
       end
       redirect_back(fallback_location: root_path)
     else
-
     end
   end
 
@@ -73,5 +94,11 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def correct_user
+    unless @event.user.id == current_user.id
+      redirect_to root_path
+    end
   end
 end

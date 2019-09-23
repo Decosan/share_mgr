@@ -1,4 +1,5 @@
 <%= form_with(model: event,local: true)do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
   
   <div class='form'>
     <%= f.label :title,'タイトル' %>
@@ -16,6 +17,16 @@
         :start_date,
         start_year: Time.now.year,
         end_year: (Time.now.year + 2)) %>
+  </div>
+
+  <div>
+    <%= f.label :label, "Category check" %>
+    <div>
+      <% Label.all.each do |label| %>
+      <%= f.check_box :label_ids, { multiple: true, checked: @event.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
+      <label><%= label.title %></label>
+      <% end %>
+    </div>  
   </div>
 
   <div>

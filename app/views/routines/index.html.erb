@@ -1,0 +1,14 @@
+<h1>共用タスク一覧</h1>
+<ul class="media-list">
+  <% @routines.each do |routine| %>
+    <li class="media">
+      <h4 class="media-left">
+      <span class='glyphicon glyphicon-refresh'></span>
+      </h4>
+      <div class="media-body">
+        <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./routines/<%= routine.id %>'>  <%= routine.title %></a></h4>
+        内容: <%= routine.content %>  Condition: <%= routine.condition %>
+      </div>
+    </li>
+  <% end %>  
+</ul>

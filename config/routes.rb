@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :toppages, only:[:index]
   resources :users
   resources :personnels, only:[:new, :create, :edit, :update, :show]
-  resources :events
-  resources :event_labels, only:[:create, :destroy]
-  resources :labels, only:[:new, :create]
+  resources :events do
+    resources :comments
+  end
+  resources :routines, only:[:index, :show]
+  resources :assignments, only:[:new, :create, :edit, :update, :destroy]
 end

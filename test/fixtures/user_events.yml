@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  event: one
+  accesstime: 2019-09-22 19:23:17
+
+two:
+  user: two
+  event: two
+  accesstime: 2019-09-22 19:23:17
