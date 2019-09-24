@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap.min
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
+
 
 body {
   font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -275,4 +277,18 @@ h4.media-left {
 
 .arrow_box p {
   margin-top: 15px;
+}
+
+.margin {
+  margin: 20px 0px 20px 0px;
+}
+
+.grid_header {
+  display: grid;
+  grid-template-columns: 250px 450px 100px;
+}
+
+.grid_media {
+  display: grid;
+  grid-template-columns: 80px 450px 100px 100px;
 }

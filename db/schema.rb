@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_09_23_084313) do
   create_table "assignments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "routine_id"
-    t.date "day_until"
+    t.date "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["routine_id"], name: "index_assignments_on_routine_id"

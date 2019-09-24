@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :comments
   end
-  resources :routines, only:[:index, :show]
-  resources :assignments, only:[:new, :create, :edit, :update, :destroy]
+  resources :routines do
+    resources :assignments
+  end
 end

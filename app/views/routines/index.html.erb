@@ -5,10 +5,18 @@
       <h4 class="media-left">
       <span class='glyphicon glyphicon-refresh'></span>
       </h4>
-      <div class="media-body">
-        <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./routines/<%= routine.id %>'>  <%= routine.title %></a></h4>
-        内容: <%= routine.content %>  Condition: <%= routine.condition %>
-      </div>
+      <div class='flex'>
+        <div class="media-body">
+          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./routines/<%= routine.id %>'>  <%= routine.title %></a></h4>
+          内容: <%= routine.content %>  Condition: <%= routine.condition %>
+        </div>
+
+        <div>
+          <p class='margin'><a class="btn btn-info btn-block" href="/routines/<%= routine.id %>" role="button">アサインページへ</a></p>
+        </div>
+        <div>
+          <p class='margin'><a class="btn btn-warning btn-block" href="#" role="button">イシューページへ</a></p>
+        </div>
     </li>
   <% end %>  
 </ul>
