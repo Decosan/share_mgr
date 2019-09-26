@@ -22,6 +22,13 @@ class AssignmentsController < ApplicationController
   end
 
   def update
+    if @assignment.update(assignment_params)
+      flash[:success] ="変更しました"
+      redirect_to routine_path(@assignment.routine_id)
+    else
+      flash[:danger] ="変更出来ませんでした"
+      render 'edit'
+    end
   end
 
   def destroy

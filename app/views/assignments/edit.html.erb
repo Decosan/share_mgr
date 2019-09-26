@@ -1,4 +1,5 @@
-<%= form_with(model: assignment,url: routine_assignments_path,local: true)do |f| %>
+<h1>アサイン変更</h1>
+<%= form_with(model: @assignment, url: routine_assignment_path, local: true)do |f| %>
 
   <div class='form'>
     <%= f.label :user_id,'担当者' %>
@@ -14,7 +15,7 @@
   </div>
 
   <div>
-    <%= f.hidden_field :routine_id, value: assignment.routine_id %>
+    <%= f.hidden_field :routine_id, value: @assignment.routine_id %>
   </div>
 
   <%= f.submit '登録',class:'btn btn-primary btn-block' %>

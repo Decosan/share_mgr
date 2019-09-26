@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show, :edit, :update, :destroy]
+  before_action :set_user, only:[:show, :edit, :update, :destroy, :payments]
   before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
 
   def index
@@ -36,6 +36,15 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:danger] ='ユーザーを削除しました'
     redirect_to new_user_session_path
+  end
+
+  def payments
+    @personnel = @user.personnel
+    if current_user.admin.present?
+      @payments = Payment.all
+    else
+      @payments = current_user.payments
+    end
   end
 
   private

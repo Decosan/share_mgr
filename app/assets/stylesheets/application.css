@@ -290,5 +290,5 @@ h4.media-left {
 
 .grid_media {
   display: grid;
-  grid-template-columns: 80px 450px 100px 100px;
+  grid-template-columns: 80px 750px 150px 150px;
 }

@@ -1,22 +1,27 @@
 <h1>共用タスク一覧</h1>
 <ul class="media-list">
   <% @routines.each do |routine| %>
-    <li class="media">
+    <li class="media grid_media">
       <h4 class="media-left">
-      <span class='glyphicon glyphicon-refresh'></span>
+        <% if routine.assignments.pluck(:user_id).include?(current_user.id) && current_user.assignments.pluck(:start_time).any?{|i| i.between?(Date.today,Date.today+6)} %>
+          <span class='glyphicon glyphicon-bell' style="color: #ee7800;"></span>
+        <% else %>
+          <span class='glyphicon glyphicon-refresh'></span>
+        <% end %>  
       </h4>
-      <div class='flex'>
-        <div class="media-body">
-          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./routines/<%= routine.id %>'>  <%= routine.title %></a></h4>
-          内容: <%= routine.content %>  Condition: <%= routine.condition %>
-        </div>
+      
+      <div class="media-body">
+        <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./routines/<%= routine.id %>'>  <%= routine.title %></a></h4>
+        <div>内容: <%= routine.content %></div>
+        <div>Condition: <%= routine.condition %></div>
+      </div>
 
-        <div>
-          <p class='margin'><a class="btn btn-info btn-block" href="/routines/<%= routine.id %>" role="button">アサインページへ</a></p>
-        </div>
-        <div>
-          <p class='margin'><a class="btn btn-warning btn-block" href="#" role="button">イシューページへ</a></p>
-        </div>
+      <div>
+        <p class='margin'><a class="btn btn-info btn-md" href="/routines/<%= routine.id %>" role="button">アサインページへ</a></p>
+      </div>
+      <div>
+        <p class='margin'><a class="btn btn-warning btn-md" href="#" role="button">イシューページへ</a></p>
+      </div>
     </li>
   <% end %>  
 </ul>

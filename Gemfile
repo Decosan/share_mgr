@@ -42,6 +42,7 @@ group :development do
   gem 'pry-doc' # extend pry document support
   gem 'rubocop'
   gem 'rails_best_practices'
+  gem 'letter_opener_web'
 end
 
 group :test do

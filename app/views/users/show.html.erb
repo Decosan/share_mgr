@@ -2,7 +2,7 @@
   <h1>User Profile</h1>
   <div class='row'>
     <div class='col-xs-4'>
-      <%= link_to '編集',edit_user_path(@user.id),class:'btn btn-warning btn-lg' %>
+      <%= link_to '',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
       <%= link_to '',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -23,6 +23,11 @@
       </div>
     </div>
     <div class='col-xs-8'>
+      <ul class="nav nav-pills">
+        <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
+        <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
+        <li role="presentation"><a href="#">メニューＢ</a></li>
+      </ul>
       <h4>姓（せい）</h4>
       <p><%= @personnel.last_name %></p>
       <h4>名（めい）</h4>

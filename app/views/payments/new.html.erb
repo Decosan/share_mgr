@@ -1,0 +1,19 @@
+<h1>入金後画面</h1>
+<%= form_with(model: @payment, local: true)do |f| %>
+
+  <div class='form'>
+    <%= f.label :amount,'性別' %>
+    <%= f.select :amount, Payment.amounts.keys, {}, class: "select-default" %>
+  </div>
+
+  <div class="form">
+    <%= f.label :month, '入金日' %>
+    <%= f.date_select(
+        :month,
+        start_year: Time.now.year,
+        end_year: (Time.now.year + 2)) %>
+  </div>
+
+  <%= f.submit '登録',class:'btn btn-primary btn-block' %>
+
+<% end %>

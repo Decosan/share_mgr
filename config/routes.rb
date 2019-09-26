@@ -17,7 +17,13 @@ Rails.application.routes.draw do
 
   root to: 'users#index'
   resources :toppages, only:[:index]
-  resources :users
+  resources :users do
+    member do
+      get :payments
+    end
+  end
+
+  resources :payments
   resources :personnels, only:[:new, :create, :edit, :update, :show]
   resources :events do
     resources :comments
