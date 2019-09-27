@@ -1,0 +1,13 @@
+<% unless @payment.month.month.to_i == 12 %>
+  <h1><%= @payment.month.month.to_i + 1 %>月分の入金を以下の通り確認致しました。</h1>
+<% else %> 
+  <h1>1月分の入金を以下の通り確認致しました。</h1>
+<% end %>  
+
+
+<h4>お名前: <%= @payment.user.name %> / 部屋番号: <%= @payment.user.personnel.room %></h4>
+<p>(Email:<%= @payment.user.email %>)</p>
+
+
+<h4><%= @payment.month %>日のお振込　<%= @payment.amount %>円を確認致しました。</h4>
+<h4>今後とも、よろしくお願い致します。</h4>

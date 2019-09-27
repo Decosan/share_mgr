@@ -1,7 +1,13 @@
-<h1>お問い合わせが完了しました！</h1>
+<% unless @payment.month.month.to_i == 12 %>
+  <h1><%= @payment.month.month.to_i + 1 %>月分の入金が完了しました！</h1>
+<% else %> 
+  <h1>1月分の入金が完了しました！</h1>
+<% end %>  
 
-<h4>name: <%= @user.name %></h4>
 
-<h4>お問い合わせ内容の確認</h4>
+<h4>住居者名: <%= @payment.user.name %> / 部屋番号: <%= @payment.user.personnel.room %></h4>
+<p>(Email:<%= @payment.user.email %>)</p>
 
-<p>content: <%= @user.email %></p>
+
+<h4>金額: <%= @payment.amount %>円を</h4>
+<h4><%= @payment.month %>日に振り込みました。</h4>

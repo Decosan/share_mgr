@@ -35,15 +35,15 @@ body {
   justify-content: space-between;
 }
 
-#event_btn {
+.event_btn {
   position: relative;
+  /* z-index: 1; */
   width: 200px;
   height: 200px;
   margin-top: 230px;
   background: #4169e1;
   border-radius: 50%;
   box-shadow: 0px 8px 0px #191970;
-  color: white;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
@@ -57,167 +57,59 @@ body {
   justify-content: center; /* 横方向中央揃え */
 }
 
-#event_btn:hover {
-  opacity: 0.9;
+.event_btn:hover {
+  filter:alpha(opacity=70);/* IE 6,7*/
+  -ms-filter: "alpha(opacity=70)";/* IE 8,9 */
+  -moz-opacity:0.7;/* FF , Netscape */
+  -khtml-opacity: 0.7;/* Safari 1.x */
+  opacity:0.7;
+  zoom:1;/*IE*/
 }
 
-#event_btn:active {
+.event_btn:active {
   box-shadow: 0px 4px 0px #191970;
   margin-top: 234px;
 }
 
-#event_btn a {
+.event_btn a {
   position: absolute;
   color: white;
+  line-height: 200px;
   text-decoration: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* text-indent:-999px; */
+  /* z-index: 2; */
 }
 
-#routine_btn {
-  position: relative;
-  width: 200px;
-  height: 200px;
+.upper_btn {
   margin-top: 30px;
-  background: #ff6347;
-  border-radius: 50%;
-  box-shadow: 0px 8px 0px #ff4500;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
 }
 
-#routine_btn:hover {
-  opacity: 0.9;
-}
-
-#routine_btn:active {
-  box-shadow: 0px 4px 0px #ff4500;
+.upper_btn:active {
   margin-top: 34px;
 }
 
-#routine_btn a {
-  position: absolute;
-  color: white;
-  text-decoration: none;
+.red_btn {
+  background: #b94047;
+  box-shadow: 0px 8px 0px #640125;
 }
 
-#chat_btn {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin-top: 230px;
-  background: #00ff7f;
-  border-radius: 50%;
-  box-shadow: 0px 8px 0px #2f4f4f;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
+.orange_btn {
+  background: #ec6800;
+  box-shadow: 0px 8px 0px #640125;
 }
 
-#chat_btn:hover {
-  opacity: 0.9;
+.sky_btn {
+  background: #00a1e9;
+  box-shadow: 0px 8px 0px #0073a8;
 }
 
-#chat_btn:active {
-  box-shadow: 0px 4px 0px #2f4f4f;
-  margin-top: 234px;
-}
-
-#chat_btn a {
-  position: absolute;
-  color: white;
-  text-decoration: none;
-}
-
-#issue_btn {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin-top: 30px;
-  background: #ffa500;
-  border-radius: 50%;
-  box-shadow: 0px 8px 0px #8b4513;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
-}
-
-#issue_btn:hover {
-  opacity: 0.9;
-}
-
-#issue_btn:active {
-  box-shadow: 0px 4px 0px #8b4513;
-  margin-top: 34px;
-}
-
-#issue_btn a {
-  position: absolute;
-  color: white;
-  text-decoration: none;
-}
-
-#payment_btn {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin-top: 230px;
-  background: #a1a46d;
-  border-radius: 50%;
-  box-shadow: 0px 8px 0px #6a5d21;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
-}
-
-#payment_btn:hover {
-  opacity: 0.9;
-}
-
-#payment_btn:active {
-  box-shadow: 0px 4px 0px #6a5d21;
-  margin-top: 234px;
-}
-
-#payment_btn a {
-  position: absolute;
-  color: white;
-  text-decoration: none;
+.green_btn {
+  background: #9cbb1c;
+  box-shadow: 0px 8px 0px #5f6527;
 }
 
 h4.media-left {
@@ -291,4 +183,18 @@ h4.media-left {
 .grid_media {
   display: grid;
   grid-template-columns: 80px 750px 150px 150px;
+}
+
+.grid_media2 {
+  display: grid;
+  grid-template-columns: 80px 350px 150px;
+}
+
+.grid_media3 {
+  display: grid;
+  grid-template-columns: 150px 150px;
+}
+
+.margin_top {
+  margin-top: 15px;
 }

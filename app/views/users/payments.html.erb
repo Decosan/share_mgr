@@ -29,17 +29,32 @@
     </ul>
     <ul class="media-list">
       <% @payments.each do |payment| %>
-        <li class="media">
+        <li class="media grid_media2">
           <h4 class="media-left">
+          <% unless payment.month.month.to_i == 12 %>
             <%= payment.month.month.to_i + 1 %>月分
+          <% else %> 
+            1月分
+          <% end %>   
           </h4>
           <div class="media-body">
             <h4 class="media-heading"><%= payment.month %>支払い完了</h4>
-            金額：<%= payment.amount %>
-            管理者：<%= payment.confirm %>
+            <strong>金額：<%= payment.amount %></storng>
+          </div>
+          <div>
+            <% if current_user.admin.present? %>
+              <% if payment.confirm == "未確認" %>
+                <%= link_to '入金 Confirm', payment_path(payment.id),method: :patch, data: {confirm: "確認済みとしてメールを送りますか？"}, class:'btn btn-danger btn-md' %>
+              <% else %>
+                <h3><span class="label label-success glyphicon glyphicon-thumbs-up"> 入金確認済み</span></h3>
+              <% end %>
+            <% elsif !current_user.admin.present? && payment.confirm == "確認済み" %>
+              <h3><span class="label label-success glyphicon glyphicon-thumbs-up"> 入金確認済み</span></h3>
+            <% end %>  
           </div>
         </li>
       <% end %>  
     </ul>
+    <%= paginate @payments %>
   </div>
 </div>

@@ -11,5 +11,6 @@ class User < ApplicationRecord
   has_many :routines, through: :assignments, source: :routine
   has_many :assignments, dependent: :destroy
   has_many :payments, dependent: :destroy
+  has_many :issues, dependent: :destroy
   validates :name, presence: true, length: {maximum: 30}
 end

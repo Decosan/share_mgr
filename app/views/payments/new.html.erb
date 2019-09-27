@@ -1,8 +1,8 @@
 <h1>入金後画面</h1>
-<%= form_with(model: @payment, local: true)do |f| %>
+<%= form_with(model: @payment, local: true, url: confirm_payments_path)do |f| %>
 
   <div class='form'>
-    <%= f.label :amount,'性別' %>
+    <%= f.label :amount,'金額' %>
     <%= f.select :amount, Payment.amounts.keys, {}, class: "select-default" %>
   </div>
 
