@@ -1,23 +1,12 @@
 <h2> 支払いを確定しますか？</h2>
-<%= form_with(model: @payment, local: true, url: payments_path)do |f| %>
-
-  <div class='form'>
-    <%= f.label :amount,'金額' %>
-    <%= f.select :amount, Payment.amounts.keys, {}, class: "select-default" %>
-  </div>
-
-  <div class="form">
-    <%= f.label :month, '決済日' %>
-    <%= f.date_select(
-        :month,
-        start_year: Time.now.year,
-        end_year: (Time.now.year + 2)) %>
-  </div>
-
-  <%= f.submit '登録',class:'btn btn-primary btn-block' %>
-
-<% end %>
-
+<p>
+  <% unless @card_payments.month.month.to_i == 12 %>
+    <%= @card_payments.month.month.to_i + 1 %>月分
+  <% else %> 
+    1月分
+  <% end %>   
+</p>
+<p><%= @card_payments.amount %>円</p>
 </br>
 <h3>支払い方法</h3>
 <% if @default_card_information.blank? %>

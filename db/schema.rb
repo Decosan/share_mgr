@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_015927) do
     t.bigint "user_id"
     t.integer "amount", default: 0, null: false
     t.integer "confirm", default: 0, null: false
+    t.integer "method", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_payments_on_user_id"

@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-
+  
   def contact_mail(user,payment)
     @user = user
     @payment = payment
