@@ -4,8 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'devise'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'payjp'
+gem "jquery-rails"
 
 gem 'rails', '~> 5.2.3'
 
@@ -45,6 +45,7 @@ group :development do
   gem 'rubocop'
   gem 'rails_best_practices'
   gem 'letter_opener_web'
+  gem 'dotenv-rails'
 end
 
 group :test do
