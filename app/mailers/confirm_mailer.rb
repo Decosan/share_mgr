@@ -1,5 +1,5 @@
 class ConfirmMailer < ApplicationMailer
-
+  
   def confirm_mail(user,payment)
     @user = user
     @payment = payment

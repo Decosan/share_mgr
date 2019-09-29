@@ -1,4 +1,4 @@
-class Payment < ApplicationRecord
+class CardPayment < ApplicationRecord
   belongs_to :user
   enum amount: {
     "30,000": 0,
@@ -13,9 +13,5 @@ class Payment < ApplicationRecord
   enum confirm: {
     "未確認": 0,
     "確認済み": 1,
-  }
-  enum method: {
-    "クレジット払い": 0,
-    "銀行振り込み": 1,
   }
 end

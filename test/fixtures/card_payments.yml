@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month: 2019-09-29
+  amount: 1
+  confirm: 1
+  user: one
+
+two:
+  month: 2019-09-29
+  amount: 1
+  confirm: 1
+  user: two

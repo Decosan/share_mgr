@@ -27,6 +27,8 @@
       <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
       <li role="presentation"><a href="#">メニューＢ</a></li>
     </ul>
+    <%= link_to "家賃をクレジットカードで決済する",card_index_path, class:'btn btn-success btn-block margin_top margin_bottom' %>
+    <%= link_to "銀行振り込みは、ここから事後報告",new_payment_path, class:'btn btn-info btn-block margin_top margin_bottom' %>
     <ul class="media-list">
       <% @payments.each do |payment| %>
         <li class="media grid_media2">
@@ -39,7 +41,7 @@
           </h4>
           <div class="media-body">
             <h4 class="media-heading"><%= payment.month %>支払い完了</h4>
-            <strong>金額：<%= payment.amount %></storng>
+            <strong>金額：<%= payment.amount %>円 | <%= payment.method %></storng>
           </div>
           <div>
             <% if current_user.admin.present? %>

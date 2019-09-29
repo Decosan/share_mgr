@@ -5,7 +5,8 @@ class CreatePayments < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.integer :amount, default: 0, null: false
       t.integer :confirm, default: 0, null: false
-
+      t.integer :method, default: 0, null: false
+      
       t.timestamps
     end
   end

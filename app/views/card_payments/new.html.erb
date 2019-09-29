@@ -1,0 +1,19 @@
+<h1>選択して下さい。</h1>
+<%= form_with(model: @card_payment, local: true)do |f| %>
+
+  <div class='form'>
+    <%= f.label :amount,'金額' %>
+    <%= f.select :amount, CardPayment.amounts.keys, {}, class: "select-default" %>
+  </div>
+
+  <div class="form">
+    <%= f.label :month, '入金日' %>
+    <%= f.date_select(
+        :month,
+        start_year: Time.now.year,
+        end_year: (Time.now.year + 2)) %>
+  </div>
+
+  <%= f.submit '登録',class:'btn btn-primary btn-block' %>
+
+<% end %>
