@@ -202,3 +202,14 @@ h4.media-left {
 .margin_bottom {
   margin-bottom: 15px;
 }
+
+.parent_chat_box {
+  padding: 8px;
+}
+
+.chat_box {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  background: #fce2c4;
+}
