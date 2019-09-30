@@ -1,14 +1,27 @@
 <h1>Users Index</h1>
 <ul class="media-list">
   <% @users.each do |user| %>
-    <li class="media">
-      <h4 class="media-left">
-        ICON
-      </h4>
-      <div class="media-body">
-        <h4 class="media-heading">Name:<%= user.name %></h4>
-         Registered: <%= user.created_at.strftime('%Y/%m/%d') %> 
-      </div>
-    </li>
+    <% if user.id != current_user.id %>
+      <li class="media">
+          <h4 class="media-left">
+            <% if user.avatar.attached? %>
+            <%= image_tag user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+          <% else %>
+            <span class="label label-info">No Image</span>  
+          <% end %>
+          <%= user.name %>
+          </h4>
+          <div class="media-body">
+            <h4 class="media-heading">Name:<%= user.name %> (<%= user.personnel.room %>号室)</h4>
+            Registered: <%= user.created_at.strftime('%Y/%m/%d') %> 
+            
+              <div class="item">
+                <%= link_to 'イベントを見る', user %> | 
+                <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+              </div>
+              
+          </div>
+      </li>
+    <% end %>
   <% end %>  
 </ul>
