@@ -17,7 +17,8 @@ class IssuesController < ApplicationController
       redirect_to issues_path
     else
       flash[:danger] ="失敗しました"
-      render 'new'
+      @issues = Issue.all.order('created_at DESC').page(params[:page])
+      render 'index'
     end
   end
 

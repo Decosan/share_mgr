@@ -1,5 +1,6 @@
 <h1><span class="glyphicon glyphicon-knight"></span> 掲示板</h1>
 <%= form_with(model: @issue,local: true)do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
   <div class='form'>
     <%= f.text_area :body, class:'form-control',rows: 5, placeholder:'入力してください' %>
   </div>
