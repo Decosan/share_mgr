@@ -1,0 +1,55 @@
+<h1><span class="glyphicon glyphicon-knight"></span> 掲示板</h1>
+<%= form_with(model: @issue,local: true)do |f| %>
+  <div class='form'>
+    <%= f.text_area :body, class:'form-control',rows: 5, placeholder:'入力してください' %>
+  </div>
+  
+  <div  class='margin_top'>
+    <h4><%= f.label :label, "タグ選択 (複数選択可)",class:"label label-default" %></h4>
+    <div class='border'>
+      <% Label.all.each do |label| %>
+      <%= f.check_box :label_ids, { multiple: true, checked: @issue.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
+      <label><%= label.title %></label>
+      <% end %>
+    </div>  
+  </div>
+
+  <div class='margin_top margin_bottom'>
+    <h4><%= f.label :photo, '画像選択オプション', class:"label label-default" %></h4>
+    <%= f.file_field :photo %>
+  </div>
+
+  <%= f.submit '投稿する',class:'btn btn-primary btn-block' %>
+<% end %>
+<ul class="media-list margin_top">
+  <% @issues.each do |issue| %>
+    <li class="media">
+      <h4 class="media-left">
+        <% if issue.user.photo.attached? %>
+          <%= image_tag issue.user.photo.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+        <% else %>
+          <span class="label label-info">No Image</span>  
+        <% end %>
+        <%= issue.user.name %>
+      </h4>
+      <div class="media-body border">
+        <h4 class="media-heading">
+          <ul class='category_list'>
+            <% issue.issue_labels.joins(:label).pluck(:title).each_with_index do |label,idx| %>
+              <li style= 'padding-left: 8px;'><span class='badge'><%= idx + 1 %> : <%= label %></span></li>
+            <% end %>
+          </ul>
+        </h4>
+            <%= issue.body %>  
+      </div>
+      <div class = "far_right">
+        <%= link_to '削除', issue_path(issue.id),method: :delete, class:'btn btn-danger btn-xs',data: {confirm: "削除しますか？"} %>
+      </div>  
+      <div class='keep_right'>
+        <% if issue.photo.attached? %>
+          <%= image_tag issue.photo.variant(resize: "500x400") %>
+        <% end %>
+      </div>  
+    </li>
+  <% end %>  
+</ul>

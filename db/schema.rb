@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_100656) do
+ActiveRecord::Schema.define(version: 2019_10_01_035704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,23 @@ ActiveRecord::Schema.define(version: 2019_09_29_100656) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "issue_labels", force: :cascade do |t|
+    t.bigint "issue_id"
+    t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issue_id"], name: "index_issue_labels_on_issue_id"
+    t.index ["label_id"], name: "index_issue_labels_on_label_id"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.string "body"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_issues_on_user_id"
+  end
+
   create_table "labels", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -187,6 +204,9 @@ ActiveRecord::Schema.define(version: 2019_09_29_100656) do
   add_foreign_key "event_labels", "events"
   add_foreign_key "event_labels", "labels"
   add_foreign_key "events", "users"
+  add_foreign_key "issue_labels", "issues"
+  add_foreign_key "issue_labels", "labels"
+  add_foreign_key "issues", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "payments", "users"
