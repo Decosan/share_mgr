@@ -53,4 +53,5 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
+  resources :issues, only:[:index, :new, :create, :destroy]
 end

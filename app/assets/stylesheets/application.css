@@ -213,3 +213,32 @@ h4.media-left {
   border-radius: 4px;
   background: #fce2c4;
 }
+
+.padding15_blue {
+  padding: 15px;
+  color: blue;
+}
+
+.border {
+  border: solid 1px gray;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.keep_right {
+  max-width: 50%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.category_list {
+  padding: 0; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: row; 
+  list-style: none;
+}
+
+.far_right {
+  float: right;
+}

@@ -3,6 +3,9 @@ ja:
     models:
       event: "イベント"
       user: "ユーザー"
+      comment: "コメント"
+      personnel: "個人情報"
+      issue: "投稿"
     attributes:
       event:
         title: "タイトル"
@@ -25,3 +28,5 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      issue:
+        body: "投稿内容"  

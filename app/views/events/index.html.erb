@@ -61,7 +61,7 @@
                 <% end %>  
               </div>  
           </div>  
-            <ul style='padding: 0; margin: 0; display: flex; flex-direction: row; list-style: none;'>
+            <ul class='category_list'>
               <strong>カテゴリー</strong> 
               <% event.event_labels.joins(:label).pluck(:title).each_with_index do |label,idx| %>
                 <li style= 'padding-left: 8px;'><%= idx + 1 %> : <%= label %></li>
