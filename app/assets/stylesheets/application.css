@@ -195,12 +195,21 @@ h4.media-left {
   grid-template-columns: 150px 150px;
 }
 
+.grid_media4 {
+  display: grid;
+  grid-template-columns: 100px 350px 150px;
+}
+
 .margin_top {
   margin-top: 15px;
 }
 
 .margin_bottom {
   margin-bottom: 15px;
+}
+
+.margin_left {
+  margin-left: 15px;
 }
 
 .parent_chat_box {
@@ -241,4 +250,8 @@ h4.media-left {
 
 .far_right {
   float: right;
+}
+
+.inline {
+  display: inline;
 }

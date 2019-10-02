@@ -2,12 +2,12 @@
 <ul class="media-list">
   <% @users.each do |user| %>
     <% if user.id != current_user.id %>
-      <li class="media">
+      <li class="media grid_media4">
           <h4 class="media-left">
             <% if user.avatar.attached? %>
             <%= image_tag user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
           <% else %>
-            <span class="label label-info">No Image</span>  
+            <span class="label label-info">No Image</span>
           <% end %>
           <%= user.name %>
           </h4>
@@ -21,13 +21,21 @@
               </div>
               
           </div>
-          <% if current_user.admin? %>
-            <% if User.where(admin: true).pluck(:user_id).include?(user.id) %>
-              <%= button_to '管理者権限を与える', users_path, params: {admin: 'true'}, method: :post %>
-            <% else %>
-              <%= button_to '管理者権限を剥奪', users_path, params: {no_admin: 'true'}, method: :post %>
-            <% end %>  
-          <% end %>
+          <div>
+            <% if current_user.admin? %>
+              <% unless @users.where(admin: true).pluck(:id).include?(user.id) %>
+                <%= form_with(scope: :user, url:user_path(user.id), method: :patch, local: true)do |f| %>
+                  <%= f.hidden_field :admin, value: true %>
+                  <%= f.submit '管理者権限を与える',class:'btn btn-success btn-md' %>
+                <% end %>  
+              <% else %>
+                <%= form_with(scope: :user, url:user_path(user.id), method: :patch, local: true)do |f| %>
+                  <%= f.hidden_field :no_admin, value: true %>
+                  <%= f.submit '管理者権限を剥奪',class:'btn btn-danger btn-md' %>
+                <% end %> 
+              <% end %>  
+            <% end %>
+          </div>  
       </li>
     <% end %>
   <% end %>  

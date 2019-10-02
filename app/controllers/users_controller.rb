@@ -26,11 +26,11 @@ class UsersController < ApplicationController
       @user.update(user_params)
       flash[:success] ='ユーザー情報の編集に成功しました'
       redirect_to user_path(current_user.id)
-    elsif params[:admin]
-      @user.update(admin: true)
+    elsif params[:user][:admin] == 'true'
+      @user.update_attribute(:admin, "true")
       redirect_back(fallback_location: root_path)
-    elsif params[:no_admin]
-      @user.update(admin: false)
+    elsif params[:user][:no_admin] == 'true'
+      @user.update_attribute(:admin, "false")
       redirect_back(fallback_location: root_path)     
     else
       flash[:danger] ='編集できませんでした'

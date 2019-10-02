@@ -2,6 +2,9 @@ class IssuesController < ApplicationController
   def index
     @issue = Issue.new
     @issues = Issue.all.order('created_at DESC').page(params[:page])
+    if params[:issue] && params[:issue][:search]
+      @issues = Issue.joins(:issue_labels).where('issue_labels.label_id = ?', params[:issue][:label_ids]).page(params[:page])  
+    end  
   end
 
   def new
