@@ -6,6 +6,8 @@ ruby '2.6.3'
 gem 'devise'
 gem 'payjp'
 gem "jquery-rails"
+gem 'rails_admin'
+gem 'cancan'
 
 gem 'rails', '~> 5.2.3'
 

@@ -28,45 +28,48 @@
         <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
         <li role="presentation"><a href="#">メニューＢ</a></li>
       </ul>
+      <% unless @user.admin? %>
+        <div class="grid_media3 margin_top">
+          <h4><strong>姓（せい）: </strong></h4>
+          <h4><%= @personnel.last_name %></h4>
+        </div>
+
+        <div class="grid_media3 margin_top">
+          <h4><strong>名（めい）: </strong></h4>
+          <h4><%= @personnel.first_name %></h4>
+        </div>
+
+        <div class="grid_media3 margin_top">
+          <h4><strong>性別: </strong></h4>
+          <h4><%= @personnel.gender %></h4>
+        </div>
+
+        <div class="grid_media3 margin_top">
+          <h4><strong>部屋番号: </strong></h4>
+          <h4><%= @personnel.room %></h4>
+        </div>
+
+        <div class="grid_media3 margin_top">
+          <h4><strong>誕生日: </strong></h4>
+          <h4><%= @personnel.birth_date %></h4>
+        </div>
+
+        <div class="grid_media3 margin_top">
+          <h4><strong>入居日: </strong></h4>
+          <h4><%= @personnel.in_date %></h4>
+        </div>
+
+        <div class="grid_media3 margin_top">
+          <h4><strong>退去予定日: </strong></h4>
+          <h4><%= @personnel.out_plan_date %></h4>
+        </div>
       
-      <div class="grid_media3 margin_top">
-        <h4><strong>姓（せい）: </strong></h4>
-        <h4><%= @personnel.last_name %></h4>
-      </div>
-
-      <div class="grid_media3 margin_top">
-        <h4><strong>名（めい）: </strong></h4>
-        <h4><%= @personnel.first_name %></h4>
-      </div>
-
-      <div class="grid_media3 margin_top">
-        <h4><strong>性別: </strong></h4>
-        <h4><%= @personnel.gender %></h4>
-      </div>
-
-      <div class="grid_media3 margin_top">
-        <h4><strong>部屋番号: </strong></h4>
-        <h4><%= @personnel.room %></h4>
-      </div>
-
-      <div class="grid_media3 margin_top">
-        <h4><strong>誕生日: </strong></h4>
-        <h4><%= @personnel.birth_date %></h4>
-      </div>
-
-      <div class="grid_media3 margin_top">
-        <h4><strong>入居日: </strong></h4>
-        <h4><%= @personnel.in_date %></h4>
-      </div>
-
-      <div class="grid_media3 margin_top">
-        <h4><strong>退去予定日: </strong></h4>
-        <h4><%= @personnel.out_plan_date %></h4>
-      </div>
-      
-      <div class='margin_top'>
-        <%= link_to "プロファイルを変更する",edit_personnel_path(@personnel),class:'btn btn-success btn-lg' %>
-      </div>
+        <div class='margin_top'>
+          <%= link_to "プロファイルを変更する",edit_personnel_path(@personnel),class:'btn btn-success btn-lg' %>
+        </div>
+      <% else %>
+        <h2>管理者： <%= @user.name %><h2>
+      <% end %>  
     </div>
   </div>
 <% else %>
