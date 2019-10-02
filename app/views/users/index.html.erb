@@ -21,6 +21,13 @@
               </div>
               
           </div>
+          <% if current_user.admin? %>
+            <% if User.where(admin: true).pluck(:user_id).include?(user.id) %>
+              <%= button_to '管理者権限を与える', users_path, params: {admin: 'true'}, method: :post %>
+            <% else %>
+              <%= button_to '管理者権限を剥奪', users_path, params: {no_admin: 'true'}, method: :post %>
+            <% end %>  
+          <% end %>
       </li>
     <% end %>
   <% end %>  
