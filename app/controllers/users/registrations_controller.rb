@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless current_user.admin.present?
      new_personnel_path
     else
-      users_path
+      user_path(current_user)
     end
   end
 

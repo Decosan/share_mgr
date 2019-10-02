@@ -12,7 +12,7 @@
           <%= user.name %>
           </h4>
           <div class="media-body">
-            <h4 class="media-heading">Name:<%= user.name %> (<%= user.personnel.room %>号室)</h4>
+            <h4 class="media-heading">Name:<%= user.name %> (<% unless user.personnel.blank? %><%= user.personnel.room %>号室<% else %>管理者<% end %>)</h4>
             Registered: <%= user.created_at.strftime('%Y/%m/%d') %> 
             
               <div class="item">
