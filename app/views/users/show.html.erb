@@ -1,5 +1,5 @@
 <% if current_user.id == @user.id %>
-  <h1>User Profile</h1>
+  <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
   <div class='row'>
     <div class='col-xs-4'>
       <%= link_to '',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
