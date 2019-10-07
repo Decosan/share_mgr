@@ -11,16 +11,21 @@
     <%= f.text_field :content, class:'form-control' %>
   </div>
 
-  <div class="form">
-    <%= f.label :start_date, '開始' %>
-    <%= f.date_select(
-        :start_date,
-        start_year: Time.now.year,
-        end_year: (Time.now.year + 2)) %>
+  <div class='margin_top'>
+    <div class="form inline">
+      <%= f.label :start_date %>
+      <%= f.date_select(
+          :start_date,
+          start_year: Time.now.year,
+          end_year: (Time.now.year + 2)) %>
+    </div>
+    <p class='inline'>
+    <strong>〜まで開催</strong>
+    </p>
   </div>
 
-  <div>
-    <%= f.label :label, "Category check" %>
+  <div class='margin_top'>
+    <%= f.label :label, "タグ選択:" %>
     <div>
       <% Label.all.each do |label| %>
       <%= f.check_box :label_ids, { multiple: true, checked: @event.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>

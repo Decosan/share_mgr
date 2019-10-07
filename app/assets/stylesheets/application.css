@@ -223,9 +223,16 @@ h4.media-left {
   background: #fce2c4;
 }
 
-.padding15_blue {
+.padding15 {
   padding: 15px;
+}
+
+.blue {
   color: blue;
+}
+
+.zero_margin {
+  margin: 0;
 }
 
 .border {
@@ -254,4 +261,8 @@ h4.media-left {
 
 .inline {
   display: inline;
+}
+
+.padding_top20 {
+  padding-top: 20px;
 }

@@ -21,13 +21,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/toppages">トップページ</a>
+          <% if user_signed_in? %>
+            <a class="navbar-brand" href="/toppages">トップページ</a>
+          <% else %>
+            <h4 class = 'padding15 zero_margin'>Share MGR</h4>
+          <% end %>
         </div>
         
         <div class="collapse navbar-collapse" id="navbarEexample1">
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
-              <li class='padding15_blue'>ようこそ、<%= current_user.name %>さん。</li>
+              <li class='padding15 blue'>ようこそ、<%= current_user.name %>さん。</li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>

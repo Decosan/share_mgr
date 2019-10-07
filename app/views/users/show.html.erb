@@ -2,8 +2,8 @@
   <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
   <div class='row'>
     <div class='col-xs-4'>
-      <%= link_to '',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
-      <%= link_to '',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
+      <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
+      <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <% if @user.avatar.attached? %>
@@ -75,51 +75,55 @@
 <% else %>
   <h1 style='margin-bottom: 30px;'><span class='glyphicon glyphicon-check'></span> <%= @user.name %>'s イベント一覧</h1>
   <%= link_to 'ユーザー検索解除', events_path, class:'btn btn-success btn-block' %>
-  <ul class="media-list" style="margin-top: 30px;">
-    <% @events.each do |event| %>
-      <li class="media">
-        <h4 class="media-left">
-        <% if event.user.avatar.attached? %>
-          <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
-        <% else %>
-          <span class="label label-info">No Image</span>  
-        <% end %>
-        <%= event.user.name %>
-        </h4>
-        <div class="media-body">
-          
-          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./events/<%= event.id %>'>  <%= event.title.truncate(15) %></a></h4>
-            <%= event.content.truncate(30) %>
-          <div style="overflow: hidden;">
-                <p id='event_index_date'><strong>Until:</strong> 〜<%= event.start_date %>まで</p>
-                <div>
-                  <% if event.start_date < Date.today %>
-                    <h1><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h1>
-                  <% end %>  
-                </div>  
-            </div>  
-              <ul style='padding: 0; margin: 0; display: flex; flex-direction: row; list-style: none;'>
-                <strong>カテゴリー</strong> 
-                <% event.event_labels.joins(:label).pluck(:title).each_with_index do |label,idx| %>
-                  <li style= 'padding-left: 8px;'><%= idx + 1 %> : <%= label %></li>
-                <% end %>
-              </ul>
-              <p>
-                <%= event.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>投稿  <span class="badge">コメント数<%= event.comments.count %>ケ</span>
-                <% if current_user.user_events.pluck(:event_id).include?(event.id) %>
-                  <% if event.comments.present? %>
-                    <% if event.comments[-1].created_at > current_user.user_events.where(event_id: event.id)[0].accesstime %>
-                      <span class="badge" style="color: #82cddd;">未読コメント有</span>
-                    <% end %>
+  <% if @events.any? %>
+    <ul class="media-list" style="margin-top: 30px;">
+      <% @events.each do |event| %>
+        <li class="media">
+          <h4 class="media-left">
+          <% if event.user.avatar.attached? %>
+            <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+          <% else %>
+            <span class="label label-info">No Image</span>  
+          <% end %>
+            <div class='margin_top'><%= event.user.name %></div>
+          </h4>
+          <div class="media-body">
+            
+            <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='/events/<%= event.id %>'>  <%= event.title.truncate(15) %></a></h4>
+              <%= event.content.truncate(30) %>
+            <div style="overflow: hidden;">
+                  <p id='event_index_date'><strong>Until:</strong> 〜<%= event.start_date %>まで</p>
+                  <div>
+                    <% if event.start_date < Date.today %>
+                      <h1><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h1>
+                    <% end %>  
+                  </div>  
+              </div>  
+                <ul style='padding: 0; margin: 0; display: flex; flex-direction: row; list-style: none;'>
+                  <strong>カテゴリー</strong> 
+                  <% event.event_labels.joins(:label).pluck(:title).each_with_index do |label,idx| %>
+                    <li style= 'padding-left: 8px;'><%= idx + 1 %> : <%= label %></li>
                   <% end %>
+                </ul>
+                <p>
+                  <%= event.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>投稿  <span class="badge">コメント数<%= event.comments.count %>ケ</span>
+                  <% if current_user.user_events.pluck(:event_id).include?(event.id) %>
+                    <% if event.comments.present? %>
+                      <% if event.comments[-1].created_at > current_user.user_events.where(event_id: event.id)[0].accesstime %>
+                        <span class="badge" style="color: #82cddd;">未読コメント有</span>
+                      <% end %>
+                    <% end %>
 
-                <% else %>
-                  <span class="badge glyphicon glyphicon-bell" style="color: #fff799;"> NEW</span>
-                <% end %>    
-              </p>   
-        </div>
-      </li>
-    <% end %>  
-  </ul>
-<%= paginate @events %>
+                  <% else %>
+                    <span class="badge glyphicon glyphicon-bell" style="color: #fff799;"> NEW</span>
+                  <% end %>    
+                </p>   
+          </div>
+        </li>
+      <% end %>  
+    </ul>
+    <%= paginate @events %>
+  <% else %>
+    <h2><span class="glyphicon glyphicon-search"></span> No Event...</h2>
+  <% end %>  
 <% end %>  

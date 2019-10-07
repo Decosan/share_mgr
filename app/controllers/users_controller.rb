@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only:[:show, :edit, :update, :destroy, :payments]
   before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
+  before_action :return_personnel_new
 
   def index
     @users = User.all
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
       flash[:success] ='プロファイル画像を編集しました'
       redirect_back(fallback_location: root_path)   
     elsif params[:user][:name]
-      @user.update(user_params)
+      @user.update params.require(:user).permit(:name,:email)
       flash[:success] ='ユーザー情報の編集に成功しました'
       redirect_to user_path(current_user.id)
     elsif params[:user][:admin] == 'true'

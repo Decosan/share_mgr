@@ -1,5 +1,6 @@
 <h1><span class='glyphicon glyphicon-check'></span> イベント一覧
-  <%= link_to '日付順ソート', events_path(start_date: "true"),class:'btn btn-primary btn-lg' %>
+  <%= link_to 'マイイベント', events_path(my_event: "true"),class:'btn btn-info btn-lg' %>
+  <%= link_to '終了期日で並び替え', events_path(start_date: "true"),class:'btn btn-primary btn-lg' %>
   <%= link_to '解除', events_path,class:'btn btn-danger btn-lg' %>
 </h1>
 
@@ -29,7 +30,9 @@
     </button>
     <ul class="dropdown-menu" role="menu">
     <% @users.each do |user| %>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="/users/<%= user.id %>"><%= user.name %></a></li>
+      <% unless user.id == current_user.id %>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="/users/<%= user.id %>"><%= user.name %></a></li>
+      <% end %>  
     <% end %>  
     </ul>
   </div>
@@ -47,7 +50,7 @@
       <% else %>
         <span class="label label-info">No Image</span>  
       <% end %>
-      <%= event.user.name %>
+        <div class='margin_top'><%= event.user.name %></div>
       </h4>
       <div class="media-body">
         
