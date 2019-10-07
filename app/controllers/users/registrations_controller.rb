@@ -6,14 +6,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
   
   def my_page
- 
   end
  
   protected
  
   def after_sign_up_path_for(resource)
     unless current_user.admin.present?
-     new_personnel_path
+      new_personnel_path
     else
       user_path(current_user)
     end

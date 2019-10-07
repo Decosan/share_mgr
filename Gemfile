@@ -30,6 +30,8 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.8'
+  gem "factory_bot_rails"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -51,8 +53,8 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0'
+  
 end
 
 

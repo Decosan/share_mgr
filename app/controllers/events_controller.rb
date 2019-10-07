@@ -19,6 +19,8 @@ class EventsController < ApplicationController
     else
       if params[:start_date] == "true"
         @events = Event.order(start_date: :ASC).page(params[:page])
+      elsif params[:my_event] == "true"
+        @events = current_user.events.order(start_date: :ASC).page(params[:page])
       else
         @events = Event.order('created_at DESC').page(params[:page])
       end

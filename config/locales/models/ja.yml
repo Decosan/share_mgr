@@ -21,7 +21,7 @@ ja:
         out_plan_date: "退去予定日"
         birth_date: "誕生日"  
       user:
-        name: "ID名"
+        name: "ユーザーID"
         email: "メールアドレス"
         admin: "管理者権限"
         current_password: "現在のパスワード"
