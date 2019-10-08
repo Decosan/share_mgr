@@ -17,26 +17,28 @@
 
 <ul class="media-list">
   <% @assignments.where(routine_id: @routine.id).each do |assignment| %>
-    <li class="media grid_media">
-      <h4 class="media-left">
-        <span class='glyphicon glyphicon-refresh'></span>
-      </h4>
-      
-      <div class="media-body">
-        <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span> アサイン: <%= assignment.user.name %> (<%= assignment.user.personnel.room %>号室)</h4>
-        Date: <%= assignment.start_time %>
-        <% if assignment.start_time + 6 < Date.today %>
-          <h4><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h4>
-        <% elsif assignment.start_time <= Date.today && assignment.start_time + 6 >= Date.today %>
-          <h4><span class="label label-success" style="margin-right: 200px;">担当中です</span></h4>
-        <% end %>  
-      </div>
-      <div>
-        <a class="btn btn-warning btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/edit" role="button">変更する</a>
-      </div>
-      <div>
-        <a class="btn btn-danger btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>" role="button" data-method="delete">取り消す</a>
-      </div>
-    </li>
+    <% unless assignment.start_time < Date.today - 15 %>
+      <li class="media grid_media">
+        <h4 class="media-left">
+          <span class='glyphicon glyphicon-refresh'></span>
+        </h4>
+        
+        <div class="media-body">
+          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span> アサイン: <%= assignment.user.name %> (<%= assignment.user.personnel.room %>号室)</h4>
+          Date: <%= assignment.start_time %>
+          <% if assignment.start_time + 6 < Date.today %>
+            <h4><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h4>
+          <% elsif assignment.start_time <= Date.today && assignment.start_time + 6 >= Date.today %>
+            <h4><span class="label label-success" style="margin-right: 200px;">担当中です</span></h4>
+          <% end %>  
+        </div>
+        <div>
+          <a class="btn btn-warning btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/edit" role="button">変更する</a>
+        </div>
+        <div>
+          <a class="btn btn-danger btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>" role="button" data-method="delete">取り消す</a>
+        </div>
+      </li>
+    <% end %>  
   <% end %>  
 </ul>
