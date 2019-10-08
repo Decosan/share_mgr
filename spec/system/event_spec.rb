@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "Event", type: :system do
+RSpec.describe "Event", type: :system, focus: true do
 
   describe 'Event登録' do
     context '正常系' do
 
       before do
 
-        user = FactoryBot.create(:user)
+        @user = FactoryBot.create(:user)
         visit new_user_session_path
-        fill_in "メールアドレス", with: "TEST1@example.com"
+        fill_in "メールアドレス", with: @user.email
         fill_in "パスワード", with: "123456"
         click_on 'Log in'
         fill_in "姓（せい）", with: "たこ"
@@ -56,7 +56,8 @@ RSpec.describe "Event", type: :system do
         fill_in "タイトル", with: "不用品処理します"
         fill_in "内容", with: "扇風機処分します"
         click_on '登録する'
-        click_on '日付順ソート'
+        click_on '終了期日で並び替え'
+        sleep 1
         list_0 = page.all(".media-body")[0]
         list_2 = page.all(".media-body")[2]
         expect(list_0).to have_content event1.title
@@ -112,7 +113,8 @@ RSpec.describe "Event", type: :system do
       end
 
       it 'イベントのユーザー検索できること' do
-        event1 = FactoryBot.create(:event, start_date: Date.today - 1)
+        user = FactoryBot.create(:user)
+        event1 = FactoryBot.create(:event, start_date: Date.today - 1, user_id: user.id)
         event2 = FactoryBot.create(:event, start_date: Date.today + 1)
         user1 = FactoryBot.create(:user)
         click_on 'ログアウト'
@@ -129,7 +131,7 @@ RSpec.describe "Event", type: :system do
         fill_in "内容", with: "扇風機処分します"
         click_on '登録する'
         click_on '選択して下さい'
-        option=find("ul.dropdown-menu > li", text: "TEST_NAME2")
+        option=find("ul.dropdown-menu > li", text: user.name)
         option.click
         expect(page).to have_content event1.title
         expect(page).not_to have_content event2.title
@@ -161,7 +163,7 @@ RSpec.describe "Event", type: :system do
         comment2 = FactoryBot.create(:comment, content: 'そうなの？', user_id: user.id, event_id: event1.id)
         click_on 'トップページ'
         click_on 'イベント・不用品処理'
-        click_link 'TEST_EVENT1'
+        click_link event1.title
         expect(page).to have_content "参加します！！"
         expect(page).to have_content "そうなの？"
       end
@@ -193,37 +195,37 @@ RSpec.describe "Event", type: :system do
       end
 
       it '既出イベントに未読コメントがあれば、イベント一覧画面に未読ありと表示されること' do
-        user = FactoryBot.create(:user)
+        user1 = FactoryBot.create(:user)
         event1 = FactoryBot.create(:event, start_date: Date.today - 1)
         event2 = FactoryBot.create(:event, start_date: Date.today + 1)
-        comment1 = FactoryBot.create(:comment, user_id: user.id, event_id: event1.id)
-        comment2 = FactoryBot.create(:comment, content: 'そうなの？', user_id: user.id, event_id: event1.id)
+        comment1 = FactoryBot.create(:comment, user_id: user1.id, event_id: event1.id)
+        comment2 = FactoryBot.create(:comment, content: 'そうなの？', user_id: user1.id, event_id: event1.id)
+      
         click_on 'トップページ'
         click_on 'イベント・不用品処理'
-        click_link 'TEST_EVENT1'
+        click_link event1.title
         fill_in "コメント欄", with: 'さくら散る'
         click_on 'コメントする'
         click_on 'ログアウト'
-
-        fill_in "メールアドレス", with: user.email
-        fill_in "パスワード", with: user.password
+        
+        fill_in "メールアドレス", with: user1.email
+        fill_in "パスワード", with: user1.password
         click_on 'Log in'
         fill_in "姓（せい）", with: "いか"
         fill_in "名（めい）", with: "五右衛門"
         click_on '登録'
         click_on 'トップページ'
         click_on 'イベント・不用品処理'
-        click_link 'TEST_EVENT1'
+        click_link event1.title
         fill_in "コメント欄", with: 'さくら泣く'
         click_on 'コメントする'
+
         click_on 'ログアウト'
-        
-        fill_in "メールアドレス", with: "TEST1@example.com"
-        fill_in "パスワード", with: "123456"
+        fill_in "メールアドレス", with: @user.email
+        fill_in "パスワード", with: @user.password
         click_on 'Log in'
         click_on 'トップページ'
         click_on 'イベント・不用品処理'
-        sleep 5
         list_0 = page.all(".media-body")[1]
         expect(list_0).to have_content '未読コメント有'
       end
