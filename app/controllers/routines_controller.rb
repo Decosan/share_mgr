@@ -7,7 +7,7 @@ class RoutinesController < ApplicationController
   end
 
   def show
-    @assignments = Assignment.all
+    @assignments = Assignment.all.order('start_time ASC')
   end
 
   private
