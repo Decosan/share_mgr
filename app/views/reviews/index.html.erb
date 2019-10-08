@@ -1,0 +1,47 @@
+<% if @reviews.present? %>
+  <% @reviews.each do |review| %>
+    <div class="row reviews">
+      <div class="col-md-2 reviews-user">
+        <%= link_to review.user do %>
+          <% if review.user.avatar.attached? %>
+            <%= image_tag review.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+          <% else %>
+            <span class="label label-info">No Image</span>  
+          <% end %>
+        <% end %>
+        
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class=" reviews-content">
+          <p><%= review.created_at %></p>
+          <h4 class="mb-3">評価：<%= review.rate %>点</h4>
+
+          <!--星評価-->
+         <div id="star-rate-<%= review.id %>"></div>
+          <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+          </script>  
+        <!--/星評価-->
+
+          <p><%= review.content %></p>
+          
+        </div>
+      </div>
+      
+      <div class="col-md-12 edit-button">
+        <% if current_user == review.user %>
+          <%= link_to '口コミを編集', edit_review_path(review), method: :get, class:'btn btn-default' %>
+          <%= link_to '口コミを削除', review, method: :delete, class:'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

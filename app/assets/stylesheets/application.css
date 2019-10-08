@@ -15,7 +15,12 @@
  *= require_tree .
  *= require_self
  */
+ 
+/* app/assets/stylesheets/application.css */
 
+/*
+ *= require raty-js/lib/jquery.raty.css
+ */
 
 body {
   font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;

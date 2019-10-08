@@ -55,4 +55,5 @@ Rails.application.routes.draw do
     resources :messages
   end
   resources :issues, only:[:index, :new, :create, :destroy]
+  resources :reviews, only:[:index, :edit, :update, :new, :create, :destroy]
 end
