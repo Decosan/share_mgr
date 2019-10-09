@@ -16,6 +16,11 @@
  *= require_self
  */
 
+/* app/assets/stylesheets/application.css */
+
+/*
+ *= require raty-js/lib/jquery.raty.css
+ */
 
 body {
   font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -200,6 +205,16 @@ h4.media-left {
   grid-template-columns: 100px 350px 150px;
 }
 
+.grid_media5 {
+  display: grid;
+  grid-template-columns: 80px 700px 100px 100px 100px;
+}
+
+.grid_media6 {
+  display: grid;
+  grid-template-columns: 580px 430px;
+}
+
 .margin_top {
   margin-top: 15px;
 }
@@ -270,4 +285,8 @@ h4.media-left {
 
 .padding_top20 {
   padding-top: 20px;
+}
+
+.padding_top10 {
+  padding-top: 10px;
 }

@@ -1,6 +1,9 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only:[:edit, :update, :destroy]
+  before_action :set_assignment, only:[:show, :edit, :update, :destroy]
 
+  def show
+    @reviews = @assignment.reviews.order('created_at DESC')
+  end
 
   def new
     @assignment = Assignment.new

@@ -33,7 +33,9 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :routines do
-    resources :assignments
+    resources :assignments do
+    resources :reviews
+    end
   end
 
   resources :card, only: [:new, :show] do
@@ -55,4 +57,5 @@ Rails.application.routes.draw do
     resources :messages
   end
   resources :issues, only:[:index, :new, :create, :destroy]
+  
 end
