@@ -1,8 +1,8 @@
 <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
 <div class='row'>
   <div class='col-xs-4'>
-    <%= link_to '',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
-    <%= link_to '',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
+    <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
+    <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <% if @user.avatar.attached? %>
@@ -25,7 +25,7 @@
     <ul class="nav nav-pills">
       <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
       <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
-      <li role="presentation"><a href="#">メニューＢ</a></li>
+      <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
     </ul>
     <%= link_to "家賃をクレジットカードで決済する",card_index_path, class:'btn btn-success btn-block margin_top margin_bottom' %>
     <%= link_to "銀行振り込みは、ここから事後報告",new_payment_path, class:'btn btn-info btn-block margin_top margin_bottom' %>

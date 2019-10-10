@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :review do
-    content { "MyString" }
-    rate { 1.5 }
-    user { nil }
+    sequence(:content) { |n| "Excellent#{n}"}
+    rate { 4.5 }
+    user
   end
 end

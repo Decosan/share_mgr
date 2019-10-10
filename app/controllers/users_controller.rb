@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show, :edit, :update, :destroy, :payments]
+  before_action :set_user, only:[:show, :edit, :update, :destroy, :payments, :mytasks]
   before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
   before_action :return_personnel_new
 
@@ -52,6 +52,10 @@ class UsersController < ApplicationController
     else
       @payments = current_user.payments.order('created_at DESC').page(params[:page])
     end
+  end
+
+  def mytasks
+    @assignments = current_user.assignments.order('start_time ASC').page(params[:page])
   end
 
   private
