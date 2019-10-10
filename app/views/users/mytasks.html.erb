@@ -1,0 +1,58 @@
+<h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
+<div class='row'>
+  <div class='col-xs-4'>
+    <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
+    <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
+        <% end %>
+        <%= form_with model: @user, local: true  do |f| %>
+          <%= f.file_field :avatar %>
+          <%= f.submit '画像を表示' %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        User ID: <%= @user.name %>
+      </div>
+      <div class="panel-footer">
+        Email: <%= @user.email %>
+      </div>
+    </div>
+  </div>
+  <div class='col-xs-8'>
+    <ul class="nav nav-pills">
+      <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
+      <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
+      <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
+    </ul>
+    <ul class="media-list margin_top">
+      <% @assignments.each do |assignment| %>
+          <li class="media">
+            <h4 class="media-left">
+              <span class='glyphicon glyphicon-trash'></span>
+            </h4>
+            
+            <div class="media-body">
+              <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span> <%= assignment.routine.title %>
+                <% if assignment.reviews.any? %>
+                  <a href = '/routines/<%= assignment.routine_id %>/assignments/<%= assignment.id %>'><span class = 'badge'><%= assignment.reviews.count %>ケの評価 / 平均:<%= (assignment.reviews.pluck(:rate).sum / assignment.reviews.count).round(1) %> 点</span></a>
+                <% else %>
+                  <span class = 'badge'>まだ評価はありません</span>  
+                <% end %>
+              </h4>
+              Date: <%= assignment.start_time %> 〜
+              <% if assignment.start_time + 6 < Date.today %>
+                <h4><span class="label label-danger">終了しました</span></h4>
+              <% elsif assignment.start_time <= Date.today && assignment.start_time + 6 >= Date.today %>
+                <h4><span class="label label-success">担当中です</span></h4>
+              <% end %>  
+            </div>
+  
+          </li>  
+      <% end %>  
+    </ul>
+    <%= paginate @assignments %>
+  </div>
+</div>

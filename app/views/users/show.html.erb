@@ -26,7 +26,7 @@
       <ul class="nav nav-pills">
         <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
         <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
-        <li role="presentation"><a href="#">メニューＢ</a></li>
+        <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
       </ul>
       <% unless @user.admin? %>
         <div class="grid_media3 margin_top">

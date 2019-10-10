@@ -22,6 +22,15 @@
       </div>
 
       <div>
+        <% routine.assignments.each do |assign| %>
+          <% if (Date.today-6..Date.today).include? assign.start_time %>
+            <h4><span class = 'glyphicon glyphicon-user'></span> 今週の担当者：<%= assign.user.name %>さん</h4>
+          <% end %>  
+        <% end %>
+        <% unless  routine.assignments.pluck(:start_time).any? { |m| (Date.today-6..Date.today).include? m} %>
+          <h4>誰もアサインされていません</h4>
+        <% end %>
+      
         <p class='margin'><a class="btn btn-info btn-md" href="/routines/<%= routine.id %>" role="button">アサインページへ</a></p>
       </div>
 

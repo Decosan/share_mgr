@@ -9,15 +9,12 @@
   <% @reviews.each do |review| %>
     <div class="row reviews">
       <div class="col-md-2 reviews-user">
-        <%= link_to review.user do %>
-          <% if review.user.avatar.attached? %>
-            <%= image_tag review.user.avatar.variant(resize: "70x100"), style:'border-radius: 20%;' %>
-          <% else %>
-            <span class="label label-info">No Image</span>  
-          <% end %>
-          <%= review.user.name %>
+        <% if review.user.avatar.attached? %>
+          <%= image_tag review.user.avatar.variant(resize: "70x100"), style:'border-radius: 20%;' %>
+        <% else %>
+          <span class="label label-info">No Image</span>  
         <% end %>
-        
+        <%= review.user.name %>   
       </div>
       <div class="col-md-6 mb-3">
         <div class=" reviews-content">

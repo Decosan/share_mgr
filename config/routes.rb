@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :payments
+      get :mytasks
     end
   end
 

@@ -9,4 +9,5 @@ class Routine < ApplicationRecord
     "週２(月、木)/１週間": 3,
     "週２(火、金)/１週間": 4,
   }
+  
 end
