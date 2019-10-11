@@ -290,3 +290,7 @@ h4.media-left {
 .padding_top10 {
   padding-top: 10px;
 }
+
+.vertical_bottom {
+  vertical-align: bottom;
+}

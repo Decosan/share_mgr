@@ -58,14 +58,14 @@ RSpec.describe "Payment", type: :system do
   end
 
   context 'クレジットカード決済' do
-    it 'クレジットカード決済ができること' do
+    fit 'クレジットカード決済ができること' do
       click_link 'クレジットカードで決済する'
       fill_in "card_number", with: "5555555555554444"
       select '12', from: 'exp_month'
       select '22', from: 'exp_year'
       fill_in "cvc", with: "123"
       sleep 1
-      click_on 'Add'
+      click_on 'token_submit'
       sleep 2
       page.driver.browser.switch_to.alert.accept
       click_link '支払い画面へ'
