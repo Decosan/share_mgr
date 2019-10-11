@@ -1,6 +1,7 @@
+<h1>クレジットカード登録画面</h1>
 <%= form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
   <label>Card No</label>
-  <%= text_field_tag "number", "", class: "number", placeholder: " permit small alphabet and numbers" ,maxlength: "16", type: "text", id: "card_number" %>
+  <%= text_field_tag "number", "", class: "number", placeholder: "カード番号を入力" ,maxlength: "16", type: "text", id: "card_number" %>
   <br/>
   <label>expired at</label>
   <select id="exp_month" name="exp_month" type="text">
