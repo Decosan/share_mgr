@@ -1,4 +1,4 @@
-<h1>入金後画面</h1>
+<h1>お支払い済み画面</h1>
 <h4>入力後に管理者へご入金報告メールが送られます。</h4>
 <%= form_with(model: @payment, local: true, url: confirm_payments_path)do |f| %>
 
@@ -15,9 +15,17 @@
         end_year: (Time.now.year + 2)) %>
   </div>
 
-  <div class='form'>
-    <%= f.label :method,'金額' %>
-    <%= f.select :method, Payment.methods.keys, {}, class: "select-default" %>
+  <div class="form">
+  <%= f.label :method,'支払い方法' %>
+   
+    <div class="radio-inline">
+      <%= f.radio_button :method, :クレジット払い %>
+      <%= f.label :クレジット払い, class: "method_label" %>
+    </div>
+    <div class="radio-inline">
+      <%= f.radio_button :method, :銀行振り込み %>
+      <%= f.label :銀行振り込み, class: "method_label" %>
+    </div>
   </div>
 
   <%= f.submit '登録',class:'btn btn-primary btn-block' %>
