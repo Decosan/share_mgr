@@ -3,8 +3,7 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
   end
 
-  # after_action :update_accesstime, only:[:index]
-    
+  before_action :update_last_accesstime, only:[:index]
   
   def index
     @messages = @conversation.messages
@@ -38,9 +37,11 @@ class MessagesController < ApplicationController
 
   private
 
-  def update_accesstime
+  def update_last_accesstime
     @conversation = Conversation.find(params[:conversation_id])
-    @conversation.update!(accesstime: Time.current)
+    @conversation.last_accesstime = @conversation.accesstime
+    @conversation.accesstime = DateTime.now
+    @conversation.save!
   end
 
   def message_params

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Payment", type: :system do
+RSpec.describe "Payment", type: :system, focus: true do
   
   let(:user) { FactoryBot.create(:user) }
   let(:user_admin) { FactoryBot.create(:user, admin: true) }
@@ -19,7 +19,7 @@ RSpec.describe "Payment", type: :system do
     click_on 'トップページ'
     click_on '家賃の管理'
     click_link '管理者に振り込みの報告を行う'
-    find("input[name='payment[method]'][id='payment_method_銀行振り込み']").set(true)
+    find("input[name='payment[payment_method]'][id='payment_payment_method_銀行振り込み']").set(true)
     click_on '登録'
     click_on '送信'
   end
@@ -58,7 +58,7 @@ RSpec.describe "Payment", type: :system do
   end
 
   context 'クレジットカード決済' do
-    fit 'クレジットカード決済ができること' do
+    xit 'クレジットカード決済ができること' do
       click_link 'クレジットカードで決済する'
       fill_in "card_number", with: "5555555555554444"
       select '12', from: 'exp_month'

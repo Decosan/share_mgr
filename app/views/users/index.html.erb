@@ -1,4 +1,9 @@
-<h1><span class="glyphicon glyphicon-home"></span> Users Index</h1>
+<div>
+  <h1 class = 'inline'><span class="glyphicon glyphicon-home"></span> Users Index</h1>
+  <% if current_user.admin? %>
+  <a class = "btn btn-primary btn-lg margin_bottom margin_left" href="/admin" role="button">管理者ページへ</a>
+  <% end %>  
+</div>
 <ul class="media-list margin_top">
   <% @users.each do |user| %>
     <% if user.id != current_user.id %>
@@ -15,7 +20,7 @@
             <h4 class="media-heading">Name:<%= user.name %> (<% unless user.personnel.blank? %><%= user.personnel.room %>号室<% else %>管理者<% end %>)
               <% @conversations.where("(sender_id = ?) OR (recipient_id = ?)", user.id,user.id).each do |conversation| %>
                 <% if conversation.messages.any? && conversation.messages[-1].user_id !=  current_user.id %>
-                  <% if conversation.messages[-1].created_at > conversation.accesstime %> 
+                  <% if conversation.messages[-1].created_at > conversation.last_accesstime %> 
                     <span class="badge">未読メッセージ有</span>
                   <% end %>
                 <% end %>  
@@ -25,7 +30,7 @@
             
               <div class="item">
                 <%= link_to 'イベントを見る', user %> | 
-                <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+                <%= link_to 'チャットルームへ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
               </div>
               
           </div>

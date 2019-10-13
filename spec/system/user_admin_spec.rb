@@ -3,12 +3,15 @@ require 'rails_helper'
 RSpec.describe "Admin", type: :system do
   
   let(:user) { FactoryBot.create(:user) }
+  let(:personnel) { FactoryBot.create(:personnel, user_id: user.id) }
   let(:admin_user) { FactoryBot.create(:user, admin: true) }
   let(:payment) { FactoryBot.create(:payment, user_id: user.id) }
 
   before do
     user
+    personnel
     admin_user
+    payment
     
     visit new_user_session_path
     fill_in "メールアドレス", with: admin_user.email
@@ -34,17 +37,17 @@ RSpec.describe "Admin", type: :system do
       expect(page).to have_selector 'h2', text: '管理者：'
     end
 
-    fit '管理者ユーザーは他の全てのユーザーの振り込み報告書を閲覧でき、それらに対し入金確認済みのメールを返信できること' do
-      click_on 'トップページ'
-      click_on '家賃の管理'
-      sleep 2
-      click_on '入金 Confirm'
-      sleep 2
-      expect(page).to have_content "入金確認ずみ"
+    fit '管理者ユーザーは管理ページで全テーブルのCRUD処理が可能なこと' do
+      click_on '管理者ページへ'
+      expect(page).to have_selector 'h1', text: 'サイト管理'
     end
 
-    it '管理者ユーザーは管理ページで全テーブルのCRUD処理が可能なこと' do
-
+    fit '管理者ユーザー以外は管理ページへ遷移できないこと' do
+      click_on 'ログアウト'
+      fill_in "メールアドレス", with: user.email
+      fill_in "パスワード", with: user.password
+      click_on 'Log in'
+      expect(page).not_to have_content '管理者ページへ'
     end
   end
 end

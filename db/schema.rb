@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_043318) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "accesstime", default: -> { "now()" }
+    t.datetime "last_accesstime", default: -> { "now()" }
     t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
     t.index ["sender_id", "recipient_id"], name: "index_conversations_on_sender_id_and_recipient_id", unique: true
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
