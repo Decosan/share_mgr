@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_action :return_personnel_new
 
   def index
-    @users = User.all
+    @users = User.all.order('created_at DESC')
+    @conversations = Conversation.where("(sender_id = ?) OR (recipient_id = ?)", current_user.id,current_user.id)
   end
 
   def show

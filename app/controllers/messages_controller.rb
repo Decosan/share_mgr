@@ -3,6 +3,9 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
   end
 
+  # after_action :update_accesstime, only:[:index]
+    
+  
   def index
     @messages = @conversation.messages
 
@@ -34,6 +37,11 @@ class MessagesController < ApplicationController
   end
 
   private
+
+  def update_accesstime
+    @conversation = Conversation.find(params[:conversation_id])
+    @conversation.update!(accesstime: Time.current)
+  end
 
   def message_params
     params.require(:message).permit(:body, :user_id)
