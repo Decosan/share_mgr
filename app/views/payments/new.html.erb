@@ -16,14 +16,14 @@
   </div>
 
   <div class="form">
-  <%= f.label :method,'支払い方法' %>
+  <%= f.label :payment_method,'支払い方法' %>
    
     <div class="radio-inline">
-      <%= f.radio_button :method, :クレジット払い %>
+      <%= f.radio_button :payment_method, :クレジット払い %>
       <%= f.label :クレジット払い, class: "method_label" %>
     </div>
     <div class="radio-inline">
-      <%= f.radio_button :method, :銀行振り込み %>
+      <%= f.radio_button :payment_method, :銀行振り込み %>
       <%= f.label :銀行振り込み, class: "method_label" %>
     </div>
   </div>

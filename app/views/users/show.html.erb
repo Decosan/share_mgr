@@ -28,7 +28,7 @@
         <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
         <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
       </ul>
-      <% unless @user.admin? %>
+      <% unless @user.admin? && !@user.personnel.present? %>
         <div class="grid_media3 margin_top">
           <h4><strong>姓（せい）: </strong></h4>
           <h4><%= @personnel.last_name %></h4>
