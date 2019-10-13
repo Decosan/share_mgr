@@ -41,7 +41,7 @@
           </h4>
           <div class="media-body">
             <h4 class="media-heading"><%= payment.month %>支払い完了</h4>
-            <strong>金額：<%= payment.amount %>円 | <%= payment.method %></storng>
+            <strong>金額：<%= payment.amount %>円 | <%= payment.payment_method %></storng>
           </div>
           <div>
             <% if current_user.admin.present? %>
