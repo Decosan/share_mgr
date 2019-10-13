@@ -35,7 +35,7 @@
                         <i class="right triangle icon"></i>
                         <%= message.body %> 
                         <% if message.user == current_user %>
-                        <span class="badge"><%= message.read ? '既読' : '未読' %></span>
+                        <span class="badge"><%= message.read ? '' : '未読' %></span>
                         <% end %>  
                       </div>
                     </div>

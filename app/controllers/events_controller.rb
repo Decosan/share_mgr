@@ -79,7 +79,6 @@ class EventsController < ApplicationController
     end  
   end
 
-
   def delete_picture
     if images = params[:event][:destroy_images]
       images.each do |img| 
