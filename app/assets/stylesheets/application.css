@@ -80,6 +80,10 @@ body.dance {
   background-image: url('dance.jpg');
 }
 
+body.zen {
+  background-image: url('zen.jpg');
+}
+
 body.issue_index {
   background-color: #595857;
   color: #dcdddd;
@@ -118,6 +122,16 @@ body.issue_index {
 
 .container.signup {
   width: 350px;
+}
+
+.container.event.review {
+  background-color: #595857;
+  color: #dcdddd;
+  padding: 30px;
+}
+
+.container.event.review.bozu {
+  margin-top: 100px;
 }
 
 body.user_index {
