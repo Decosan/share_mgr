@@ -1,55 +1,57 @@
-<div>
-  <h1 class = 'inline'><span class="glyphicon glyphicon-home"></span> Users Index</h1>
-  <% if current_user.admin? %>
-  <a class = "btn btn-primary btn-lg margin_bottom margin_left" href="/admin" role="button">管理者ページへ</a>
-  <% end %>  
-</div>
-<ul class="media-list margin_top">
-  <% @users.each do |user| %>
-    <% if user.id != current_user.id %>
-      <li class="media grid_media4">
-          <h4 class="media-left">
-            <% if user.avatar.attached? %>
-            <%= image_tag user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
-          <% else %>
-            <span class="label label-info">No Image</span>
-          <% end %>
-          <%= user.name %>
-          </h4>
-          <div class="media-body">
-            <h4 class="media-heading">Name:<%= user.name %> (<% unless user.personnel.blank? %><%= user.personnel.room %>号室<% else %>管理者<% end %>)
-              <% @conversations.where("(sender_id = ?) OR (recipient_id = ?)", user.id,user.id).each do |conversation| %>
-                <% if conversation.messages.any? && conversation.messages[-1].user_id !=  current_user.id %>
-                  <% if conversation.messages[-1].created_at > conversation.last_accesstime %> 
-                    <span class="badge">未読メッセージ有</span>
-                  <% end %>
-                <% end %>  
-              <% end %>  
-            </h4>
-            Registered: <%= user.created_at.strftime('%Y/%m/%d') %> 
-            
-              <div class="item">
-                <%= link_to 'イベントを見る', user %> | 
-                <%= link_to 'チャットルームへ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
-              </div>
-              
-          </div>
-          <div>
-            <% if current_user.admin? %>
-              <% unless @users.where(admin: true).pluck(:id).include?(user.id) %>
-                <%= form_with(scope: :user, url:user_path(user.id), method: :patch, local: true)do |f| %>
-                  <%= f.hidden_field :admin, value: true %>
-                  <%= f.submit '管理者権限を与える',class:'btn btn-success btn-md' %>
-                <% end %>  
-              <% else %>
-                <%= form_with(scope: :user, url:user_path(user.id), method: :patch, local: true)do |f| %>
-                  <%= f.hidden_field :no_admin, value: true %>
-                  <%= f.submit '管理者権限を剥奪',class:'btn btn-danger btn-md' %>
-                <% end %> 
-              <% end %>  
+<body class = 'setting user_index'>
+  <div>
+    <h1 class = 'inline'><span class="glyphicon glyphicon-home"></span> Users Index</h1>
+    <% if current_user.admin? %>
+    <a class = "btn btn-primary btn-lg margin_bottom margin_left" href="/admin" role="button">管理者ページへ</a>
+    <% end %>  
+  </div>
+  <ul class="media-list margin_top">
+    <% @users.each do |user| %>
+      <% if user.id != current_user.id %>
+        <li class="media grid_media4">
+            <h4 class="media-left">
+              <% if user.avatar.attached? %>
+              <%= image_tag user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+            <% else %>
+              <span class="label label-info">No Image</span>
             <% end %>
-          </div>  
-      </li>
-    <% end %>
-  <% end %>  
-</ul>
+            <%= user.name %>
+            </h4>
+            <div class="media-body">
+              <h4 class="media-heading">Name:<%= user.name %> (<% unless user.personnel.blank? %><%= user.personnel.room %>号室<% else %>管理者<% end %>)
+                <% @conversations.where("(sender_id = ?) OR (recipient_id = ?)", user.id,user.id).each do |conversation| %>
+                  <% if conversation.messages.any? && conversation.messages[-1].user_id !=  current_user.id %>
+                    <% if conversation.messages[-1].created_at > conversation.last_accesstime %> 
+                      <span class="badge">未読メッセージ有</span>
+                    <% end %>
+                  <% end %>  
+                <% end %>  
+              </h4>
+              Registered: <%= user.created_at.strftime('%Y/%m/%d') %> 
+              
+                <div class="item">
+                  <%= link_to 'イベントを見る', user %> | 
+                  <%= link_to 'チャットルームへ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+                </div>
+                
+            </div>
+            <div>
+              <% if current_user.admin? %>
+                <% unless @users.where(admin: true).pluck(:id).include?(user.id) %>
+                  <%= form_with(scope: :user, url:user_path(user.id), method: :patch, local: true)do |f| %>
+                    <%= f.hidden_field :admin, value: true %>
+                    <%= f.submit '管理者権限を与える',class:'btn btn-success btn-md' %>
+                  <% end %>  
+                <% else %>
+                  <%= form_with(scope: :user, url:user_path(user.id), method: :patch, local: true)do |f| %>
+                    <%= f.hidden_field :no_admin, value: true %>
+                    <%= f.submit '管理者権限を剥奪',class:'btn btn-danger btn-md' %>
+                  <% end %> 
+                <% end %>  
+              <% end %>
+            </div>  
+        </li>
+      <% end %>
+    <% end %>  
+  </ul>
+</body>  

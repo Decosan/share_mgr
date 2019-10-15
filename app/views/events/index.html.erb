@@ -1,91 +1,92 @@
-<h1><span class='glyphicon glyphicon-check'></span> イベント一覧
-  <%= link_to 'マイイベント', events_path(my_event: "true"),class:'btn btn-info btn-lg' %>
-  <%= link_to '終了期日で並び替え', events_path(start_date: "true"),class:'btn btn-primary btn-lg' %>
-  <%= link_to '解除', events_path,class:'btn btn-danger btn-lg' %>
-</h1>
+<body class = 'event_index'>
+  <h1><span class='glyphicon glyphicon-check'></span> イベント一覧
+    <%= link_to 'マイイベント', events_path(my_event: "true"),class:'btn btn-info btn-lg' %>
+    <%= link_to '終了期日で並び替え', events_path(start_date: "true"),class:'btn btn-primary btn-lg' %>
+    <%= link_to '解除', events_path,class:'btn btn-danger btn-lg' %>
+  </h1>
 
-<div style='padding: 10px;'>
-  <div>
-    <%= form_with(scope: :event, url: events_path, method: :get, local: true)do |f| %>
-      <div style="display: inline;">
-        <%= f.label :title,"タイトル検索" %>
-        <%= f.text_field :title,placeholder:'入力して下さい' %>
-      </div>  
+  <div style='padding: 10px;'>
+    <div>
+      <%= form_with(scope: :event, url: events_path, method: :get, local: true)do |f| %>
+        <div style="display: inline;">
+          <%= f.label :title,"タイトル検索" %>
+          <%= f.text_field :title,placeholder:'入力して下さい' %>
+        </div>  
 
-      <div style="display: inline;">
-        <%= f.label :category_search,"カテゴリー検索" %>
-        <%= f.collection_select :label_ids,Label.all, :id, :title,{include_blank: '選択して下さい'} %>
-      </div>
+        <div style="display: inline;">
+          <%= f.label :category_search,"カテゴリー検索" %>
+          <%= f.collection_select :label_ids,Label.all, :id, :title,{include_blank: '選択して下さい'} %>
+        </div>
 
-      <%= f.hidden_field :search, value: 'true' %>
-      <%= f.submit '検索する' %>
-    <% end %>
-  </div>
-
-  <div class="btn-group flex" style='padding: 10px 0px 10px 0px'>
-    <p style="padding: 8px 4px 0px 0px;"><strong>ユーザー検索</strong></p>
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-      選択して下さい
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-    <% @users.each do |user| %>
-      <% unless user.id == current_user.id %>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="/users/<%= user.id %>"><%= user.name %></a></li>
-      <% end %>  
-    <% end %>  
-    </ul>
-  </div>
-
-</div>
-
-<div class='block-button'><%= link_to '新規イベント作成', new_event_path,class:'btn btn-primary btn-block' %></div>
-
-<ul class="media-list">
-  <% @events.each do |event| %>
-    <li class="media">
-      <h4 class="media-left">
-      <% if event.user.avatar.attached? %>
-        <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
-      <% else %>
-        <span class="label label-info">No Image</span>  
+        <%= f.hidden_field :search, value: 'true' %>
+        <%= f.submit '検索する' %>
       <% end %>
-        <div class='margin_top'><%= event.user.name %></div>
-      </h4>
-      <div class="media-body">
-        
-        <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./events/<%= event.id %>'>  <%= event.title.truncate(15) %></a></h4>
-          <%= event.content.truncate(30) %>
-         <div style="overflow: hidden;">
-              <p id='event_index_date'><strong>Until:</strong> 〜<%= event.start_date %>まで</p>
-              <div>
-                <% if event.start_date < Date.today %>
-                  <h1><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h1>
-                <% end %>  
-              </div>  
-          </div>  
-            <ul class='category_list'>
-              <strong>カテゴリー</strong> 
-              <% event.event_labels.joins(:label).pluck(:title).each_with_index do |label,idx| %>
-                <li style= 'padding-left: 8px;'><%= idx + 1 %> : <%= label %></li>
-              <% end %>
-            </ul>
-            <p>
-              <%= event.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>投稿  <span class="badge">コメント数<%= event.comments.count %>ケ</span>
-              <% if current_user.user_events.pluck(:event_id).include?(event.id) %>
-                <% if event.comments.present? %>
-                  <% if event.comments[-1].created_at > current_user.user_events.where(event_id: event.id)[0].accesstime %>
-                    <span class="badge" style="color: #82cddd;">未読コメント有</span>
-                  <% end %>
+    </div>
+
+    <div class="btn-group flex" style='padding: 10px 0px 10px 0px'>
+      <p style="padding: 8px 4px 0px 0px;"><strong>ユーザー検索</strong></p>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        選択して下さい
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <% @users.each do |user| %>
+        <% unless user.id == current_user.id %>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="/users/<%= user.id %>"><%= user.name %></a></li>
+        <% end %>  
+      <% end %>  
+      </ul>
+    </div>
+
+  </div>
+
+  <div class='block-button'><%= link_to '新規イベント作成', new_event_path,class:'btn btn-primary btn-block' %></div>
+
+  <ul class="media-list">
+    <% @events.each do |event| %>
+      <li class="media">
+        <h4 class="media-left">
+        <% if event.user.avatar.attached? %>
+          <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+        <% else %>
+          <span class="label label-info">No Image</span>  
+        <% end %>
+          <div class='margin_top'><%= event.user.name %></div>
+        </h4>
+        <div class="media-body">
+          
+          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span><a href='./events/<%= event.id %>'>  <%= event.title.truncate(15) %></a></h4>
+            <%= event.content.truncate(30) %>
+          <div style="overflow: hidden;">
+                <p id='event_index_date'><strong>Until:</strong> 〜<%= event.start_date %>まで</p>
+                <div>
+                  <% if event.start_date < Date.today %>
+                    <h1><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h1>
+                  <% end %>  
+                </div>  
+            </div>  
+              <ul class='category_list'>
+                <strong>カテゴリー</strong> 
+                <% event.event_labels.joins(:label).pluck(:title).each_with_index do |label,idx| %>
+                  <li style= 'padding-left: 8px;'><%= idx + 1 %> : <%= label %></li>
                 <% end %>
+              </ul>
+              <p>
+                <%= event.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>投稿  <span class="badge">コメント数<%= event.comments.count %>ケ</span>
+                <% if current_user.user_events.pluck(:event_id).include?(event.id) %>
+                  <% if event.comments.present? %>
+                    <% if event.comments[-1].created_at > current_user.user_events.where(event_id: event.id)[0].accesstime %>
+                      <span class="badge" style="color: #82cddd;">未読コメント有</span>
+                    <% end %>
+                  <% end %>
 
-              <% else %>
-                <span class="badge glyphicon glyphicon-bell" style="color: #fff799;"> NEW</span>
-              <% end %>    
-            </p>   
-      </div>
-    </li>
-  <% end %>  
-</ul>
-<%= paginate @events %>
-
+                <% else %>
+                  <span class="badge glyphicon glyphicon-bell" style="color: #fff799;"> NEW</span>
+                <% end %>    
+              </p>   
+        </div>
+      </li>
+    <% end %>  
+  </ul>
+  <%= paginate @events %>
+</body>

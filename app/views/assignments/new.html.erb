@@ -1,23 +1,25 @@
-<h1>タスクアサイン</h1>
-<%= form_with(model: @assignment, url: routine_assignments_path, local: true)do |f| %>
+<div class = 'container assignment' >
+  <h1>タスクアサイン</h1>
+  <%= form_with(model: @assignment, url: routine_assignments_path, local: true)do |f| %>
 
-  <div class='form'>
-    <%= f.label :user_id,'担当者:',class:'margin_right' %>
-    <%= f.select :user_id, User.where(admin: false).map { |user| [user.name, user.id] } %>
-  </div>
+    <div class='form'>
+      <%= f.label :user_id,'担当者:',class:'margin_right' %>
+      <%= f.select :user_id, User.where(admin: false).map { |user| [user.name, user.id] } %>
+    </div>
 
-  <div class="form">
-    <%= f.label :start_time, 'タスク開始日(月曜日指定):' %>
-    <%= f.date_select(
-        :start_time,
-        start_year: Time.now.year,
-        end_year: (Time.now.year + 2)) %>
-  </div>
+    <div class="form">
+      <%= f.label :start_time, 'タスク開始日(月曜日指定):' %>
+      <%= f.date_select(
+          :start_time,
+          start_year: Time.now.year,
+          end_year: (Time.now.year + 2)) %>
+    </div>
 
-  <div>
-    <%= f.hidden_field :routine_id, value: @assignment.routine_id %>
-  </div>
+    <div>
+      <%= f.hidden_field :routine_id, value: @assignment.routine_id %>
+    </div>
 
-  <%= f.submit '登録',class:'btn btn-default btn-block' %>
+    <%= f.submit '登録',class:'btn btn-default btn-block' %>
 
-<% end %>
+  <% end %>
+</div>  
