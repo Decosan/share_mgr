@@ -1,64 +1,68 @@
-<h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
-<div class='row'>
-  <div class='col-xs-4'>
-    <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
-    <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
-        <% end %>
-        <%= form_with model: @user, local: true  do |f| %>
-          <%= f.file_field :avatar %>
-          <%= f.submit '画像を表示' %>
-        <% end %>
+<body class = 'dance'>
+  <div class = 'container event mypage'>
+    <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
+    <div class='row'>
+      <div class='col-xs-4'>
+        <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
+        <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
+            <% end %>
+            <%= form_with model: @user, local: true  do |f| %>
+              <%= f.file_field :avatar %>
+              <%= f.submit '画像を表示' %>
+            <% end %>
+          </div>
+          <div class="panel-body">
+            User ID: <%= @user.name %>
+          </div>
+          <div class="panel-footer">
+            Email: <%= @user.email %>
+          </div>
+        </div>
       </div>
-      <div class="panel-body">
-        User ID: <%= @user.name %>
-      </div>
-      <div class="panel-footer">
-        Email: <%= @user.email %>
+      <div class='col-xs-8'>
+        <ul class="nav nav-pills">
+          <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
+          <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
+          <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
+        </ul>
+        <% if current_user.personnel.present? %>
+          <%= link_to "クレジットカードで決済する",card_index_path, class:'btn btn-success btn-block margin_top margin_bottom' %>
+          <%= link_to "管理者に振り込みの報告を行う",new_payment_path, class:'btn btn-info btn-block margin_top margin_bottom' %>
+        <% end %>  
+        <ul class="media-list">
+          <% @payments.each do |payment| %>
+            <li class="media grid_media2">
+              <h4 class="media-left">
+              <% unless payment.month.month.to_i == 12 %>
+                <%= payment.month.month.to_i + 1 %>月分
+              <% else %> 
+                1月分
+              <% end %>   
+              </h4>
+              <div class="media-body">
+                <h4 class="media-heading"><%= payment.month %>支払い完了</h4>
+                <strong>金額：<%= payment.amount %>円 | <%= payment.payment_method %></storng>
+              </div>
+              <div>
+                <% if current_user.admin.present? %>
+                  <% if payment.confirm == "未確認" %>
+                    <%= link_to '入金 Confirm', payment_path(payment.id),method: :patch, data: {confirm: "確認済みとしてメールを送りますか？"}, class:'btn btn-danger btn-md' %>
+                  <% else %>
+                    <h3><span class="label label-success glyphicon glyphicon-thumbs-up"> 入金確認済み</span></h3>
+                  <% end %>
+                <% elsif !current_user.admin.present? && payment.confirm == "確認済み" %>
+                  <h3><span class="label label-success glyphicon glyphicon-thumbs-up"> 入金確認済み</span></h3>
+                <% end %>  
+              </div>
+            </li>
+          <% end %>  
+        </ul>
+        <%= paginate @payments %>
       </div>
     </div>
-  </div>
-  <div class='col-xs-8'>
-    <ul class="nav nav-pills">
-      <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
-      <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
-      <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
-    </ul>
-    <% if current_user.personnel.present? %>
-      <%= link_to "クレジットカードで決済する",card_index_path, class:'btn btn-success btn-block margin_top margin_bottom' %>
-      <%= link_to "管理者に振り込みの報告を行う",new_payment_path, class:'btn btn-info btn-block margin_top margin_bottom' %>
-    <% end %>  
-    <ul class="media-list">
-      <% @payments.each do |payment| %>
-        <li class="media grid_media2">
-          <h4 class="media-left">
-          <% unless payment.month.month.to_i == 12 %>
-            <%= payment.month.month.to_i + 1 %>月分
-          <% else %> 
-            1月分
-          <% end %>   
-          </h4>
-          <div class="media-body">
-            <h4 class="media-heading"><%= payment.month %>支払い完了</h4>
-            <strong>金額：<%= payment.amount %>円 | <%= payment.payment_method %></storng>
-          </div>
-          <div>
-            <% if current_user.admin.present? %>
-              <% if payment.confirm == "未確認" %>
-                <%= link_to '入金 Confirm', payment_path(payment.id),method: :patch, data: {confirm: "確認済みとしてメールを送りますか？"}, class:'btn btn-danger btn-md' %>
-              <% else %>
-                <h3><span class="label label-success glyphicon glyphicon-thumbs-up"> 入金確認済み</span></h3>
-              <% end %>
-            <% elsif !current_user.admin.present? && payment.confirm == "確認済み" %>
-              <h3><span class="label label-success glyphicon glyphicon-thumbs-up"> 入金確認済み</span></h3>
-            <% end %>  
-          </div>
-        </li>
-      <% end %>  
-    </ul>
-    <%= paginate @payments %>
-  </div>
-</div>
+  </div>  
+</body>  

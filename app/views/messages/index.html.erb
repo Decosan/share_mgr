@@ -1,65 +1,69 @@
-<div class = 'margin_bottom'>
-  <h1 class= 'inline vertical_bottom'><span class="glyphicon glyphicon-user"></span> チャットルーム with <%= @conversation.sender.name %></h1>
-  <div class= 'inline margin_left'><%= link_to '一覧へ戻る', users_path, class:'btn btn-primary btn-lg' %></div>
-</div>
+<body class = 'beer'>
+  <div class = 'container event routine chat'>
+    <div class = 'margin_bottom'>
+      <h1 class= 'inline vertical_bottom'><span class="glyphicon glyphicon-user"></span> チャットルーム with <%= @conversation.sender.name %></h1>
+      <div class= 'inline margin_left'><%= link_to '一覧へ戻る', users_path, class:'btn btn-primary btn-lg' %></div>
+    </div>
 
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
-<% end %>
-
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body.present? %>
-      <ul class="media-list parent_chat_box">
-        <li class="media">
-
-          <h4 class="media-left">
-            <% if message.user.avatar.attached? %>
-              <%= image_tag message.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
-            <% else %>
-              <span class="label label-info">No Image</span>  
-            <% end %>
-            <%= message.user.name %>
-          </h4>
-        
-          <div class="media-body chat_box">
-
-            <div class="item">
-              <div class="content">
-
-                <h4 class="media-heading">
-                  <div class="header">
-
-                    <div class="list">
-                      <div class="item">
-                        <i class="right triangle icon"></i>
-                        <%= message.body %> 
-                        <% if message.user == current_user %>
-                        <span class="badge"><%= message.read ? '' : '未読' %></span>
-                        <% end %>  
-                      </div>
-                    </div>
-                  
-                  </div>
-                </h4>
-
-                <%= message.message_time %>
-              </div>
-            </div>
-
-          </div>
-        </li>
-      </ul>
+    <% if @over_ten %>
+      <%= link_to '以前のメッセージ', '?m=all' %>
     <% end %>
-  <% end %>
-</div>
 
-<%= form_with(model: [@conversation, @message]) do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "メッセージを送る" %>
-  </div>
-<% end %>
+    <div class="ui segment">
+      <% @messages.each do |message| %>
+        <% if message.body.present? %>
+          <ul class="media-list parent_chat_box">
+            <li class="media">
+
+              <h4 class="media-left">
+                <% if message.user.avatar.attached? %>
+                  <%= image_tag message.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+                <% else %>
+                  <span class="label label-info">No Image</span>  
+                <% end %>
+                <%= message.user.name %>
+              </h4>
+            
+              <div class="media-body chat_box">
+
+                <div class="item">
+                  <div class="content">
+
+                    <h4 class="media-heading">
+                      <div class="header">
+
+                        <div class="list">
+                          <div class="item">
+                            <i class="right triangle icon"></i>
+                            <%= message.body %> 
+                            <% if message.user == current_user %>
+                            <span class="badge"><%= message.read ? '' : '未読' %></span>
+                            <% end %>  
+                          </div>
+                        </div>
+                      
+                      </div>
+                    </h4>
+
+                    <%= message.message_time %>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= form_with(model: [@conversation, @message]) do |f| %>
+      <div class="field">
+        <%= f.text_area :body, class: "form-control", placeholder: 'メッセージを入力して下さい' %>
+      </div>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+      <div>
+        <%= f.submit "メッセージを送る",class:'btn btn-default btn-sm' %>
+      </div>
+    <% end %>
+  </div>  
+</body> 
