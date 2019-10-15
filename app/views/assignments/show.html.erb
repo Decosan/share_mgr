@@ -1,54 +1,58 @@
-<div class = 'grid_media6 margin_bottom'>
-  <h1><span class = 'glyphicon glyphicon-star-empty margin_bottom'></span> <%= @assignment.user.name %>さんの<%= @assignment.routine.title %>の評価</h1>
-  <h3 class = 'padding_top10'>(期間: <%= @assignment.start_time %> 〜 <%= @assignment.start_time + 6 %>)</h3>
-</div>  
+<body class = 'zen'>
+  <div class = 'container event review'>
+    <div class = 'grid_media6 margin_bottom'>
+      <h1><span class = 'glyphicon glyphicon-star-empty margin_bottom'></span> <%= @assignment.user.name %>さんの<%= @assignment.routine.title %>の評価</h1>
+      <h3 class = 'padding_top10'>(期間: <%= @assignment.start_time %> 〜 <%= @assignment.start_time + 6 %>)</h3>
+    </div>  
 
-<a class="btn btn-primary btn-block margin_bottom" href="/routines/<%= @assignment.routine.id %>" role="button">戻る</a>
+    <a class="btn btn-primary btn-block margin_bottom" href="/routines/<%= @assignment.routine.id %>" role="button">戻る</a>
 
-<% if @reviews.any? %>
-  <% @reviews.each do |review| %>
-    <div class="row reviews">
-      <div class="col-md-2 reviews-user">
-        <% if review.user.avatar.attached? %>
-          <%= image_tag review.user.avatar.variant(resize: "70x100"), style:'border-radius: 20%;' %>
-        <% else %>
-          <span class="label label-info">No Image</span>  
-        <% end %>
-        <%= review.user.name %>   
-      </div>
-      <div class="col-md-6 mb-3">
-        <div class=" reviews-content">
-          <p><%= review.created_at.strftime("%m/%d/%y at %l:%M %p") %></p>
-          <h4 class="mb-3">評価：<%= review.rate %>点</h4>
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div class="row reviews">
+          <div class="col-md-2 reviews-user">
+            <% if review.user.avatar.attached? %>
+              <%= image_tag review.user.avatar.variant(resize: "70x100"), style:'border-radius: 20%;' %>
+            <% else %>
+              <span class="label label-info">No Image</span>  
+            <% end %>
+            <%= review.user.name %>   
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class=" reviews-content">
+              <p><%= review.created_at.strftime("%m/%d/%y at %l:%M %p") %></p>
+              <h4 class="mb-3">評価：<%= review.rate %>点</h4>
 
-          <!--星評価-->
-          <div id="star-rate-<%= review.id %>"></div>
-          <script>
-          $('#star-rate-<%= review.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= review.rate %>,
-          });
-          </script>  
-        <!--/星評価-->
+              <!--星評価-->
+              <div id="star-rate-<%= review.id %>"></div>
+              <script>
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= review.rate %>,
+              });
+              </script>  
+            <!--/星評価-->
 
-          <p><%= review.content %></p>
+              <p><%= review.content %></p>
+              
+            </div>
+          </div>
           
+          <div class="col-md-12 edit-button">
+            <% if current_user == review.user %>
+              <a class = "btn btn-warning btn-xs" href="/routines/<%= @assignment.routine.id %>/assignments/<%= @assignment.id %>/reviews/<%= review.id %>/edit" role="button">評価を編集</a>
+              <a data-confirm="Are you sure?" class = "btn btn-danger btn-xs" href="/routines/<%= @assignment.routine.id %>/assignments/<%= @assignment.id %>/reviews/<%= review.id %>" role="button" data-method="delete">評価を削除</a>
+            <% end %>
+          </div>
         </div>
-      </div>
-      
-      <div class="col-md-12 edit-button">
-        <% if current_user == review.user %>
-          <a class = "btn btn-warning btn-xs" href="/routines/<%= @assignment.routine.id %>/assignments/<%= @assignment.id %>/reviews/<%= review.id %>/edit" role="button">評価を編集</a>
-          <a data-confirm="Are you sure?" class = "btn btn-danger btn-xs" href="/routines/<%= @assignment.routine.id %>/assignments/<%= @assignment.id %>/reviews/<%= review.id %>" role="button" data-method="delete">評価を削除</a>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <h2>まだ評価はありません。</h2>
-<% end %>  
+      <% end %>
+    <% else %>
+      <h2>まだ評価はありません。</h2>
+    <% end %>
+  </div>    
+</body>

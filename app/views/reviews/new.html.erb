@@ -1,44 +1,48 @@
-<h1><span class = 'glyphicon glyphicon-star-empty margin_bottom'></span> タスク評価ページ</h1>
-<%= form_with(model: @review, url: routine_assignment_reviews_path, local: true) do |f| %>
+<body class = 'zen'>
+  <div class = 'container event review bozu'>
+    <h1><span class = 'glyphicon glyphicon-star-empty margin_bottom'></span> タスク評価ページ</h1>
+    <%= form_with(model: @review, url: routine_assignment_reviews_path, local: true) do |f| %>
 
 
-  <!-- 評価 -->
-  <div class="form-group row" id="star">
-    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :rate, id: :review_star %>
-  </div>
+      <!-- 評価 -->
+      <div class="form-group row" id="star">
+        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
 
-  <!-- 評価javascript -->
-  <script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'review[rate]',
-    half: true,
-  });
-  </script>  
+      <!-- 評価javascript -->
+      <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[rate]',
+        half: true,
+      });
+      </script>  
 
-  <!-- 口コミ -->
-  <div class="form-group row">
-    <%= f.label :content, 'コメント', class:'col-md-3 col-form-label' %>
-    <div class="col-md-9">
-      <%= f.text_area :content, class: "form-control", rows: "5",
-        placeholder:'星のみで投稿できます。
-まずは投稿してみましょう！投稿してから編集もできますよ！' %>
-    </div>
-  </div>
+      <!-- 口コミ -->
+      <div class="form-group row">
+        <%= f.label :content, 'コメント', class:'col-md-3 col-form-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :content, class: "form-control", rows: "5",
+            placeholder:'星のみで投稿できます。
+    まずは投稿してみましょう！投稿してから編集もできますよ！' %>
+        </div>
+      </div>
 
-  <div>
-    <%= f.hidden_field :assignment, value: @assignment.id %>
-  </div>
+      <div>
+        <%= f.hidden_field :assignment, value: @assignment.id %>
+      </div>
 
-  <!-- 確認ボタン -->
-  <div class="form-group row justify-content-end">
-    <div class="col-md-9">
-      <%= f.submit '投稿する', class:"btn btn-success" %>
-    </div>
-  </div>
+      <!-- 確認ボタン -->
+      <div class="form-group row justify-content-end">
+        <div class="col-md-9">
+          <%= f.submit '投稿する', class:"btn btn-success" %>
+        </div>
+      </div>
 
-<% end %>
+    <% end %>
+  </div>    
+</body>
