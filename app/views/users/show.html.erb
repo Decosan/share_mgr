@@ -1,77 +1,81 @@
 <% if current_user.id == @user.id %>
-  <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
-  <div class='row'>
-    <div class='col-xs-4'>
-      <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
-      <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
-          <% end %>
-          <%= form_with model: @user, local: true  do |f| %>
-            <%= f.file_field :avatar %>
-            <%= f.submit '画像を表示' %>
-          <% end %>
+  <body class = 'dance'>
+    <div class = 'container event mypage'>
+      <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
+      <div class='row'>
+        <div class='col-xs-4'>
+          <%= link_to ' Edit ',edit_user_path(@user.id),class:'btn btn-warning btn-lg glyphicon glyphicon-edit' %>
+          <%= link_to ' Dele ',user_path(@user.id),method: :delete, data: {confirm: "ユーザーアカウントを削除しますか？"}, class:'btn btn-danger btn-lg glyphicon glyphicon-trash' %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar.variant(resize: "400x250"), style:'border-radius: 5%;' %>
+              <% end %>
+              <%= form_with model: @user, local: true  do |f| %>
+                <%= f.file_field :avatar %>
+                <%= f.submit '画像を表示' %>
+              <% end %>
+            </div>
+            <div class="panel-body">
+              User ID: <%= @user.name %>
+            </div>
+            <div class="panel-footer">
+              Email: <%= @user.email %>
+            </div>
+          </div>
         </div>
-        <div class="panel-body">
-          User ID: <%= @user.name %>
-        </div>
-        <div class="panel-footer">
-          Email: <%= @user.email %>
+        <div class='col-xs-8'>
+          <ul class="nav nav-pills">
+            <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
+            <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
+            <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
+          </ul>
+          <% unless @user.admin? && !@user.personnel.present? %>
+            <div class="grid_media3 margin_top">
+              <h4><strong>姓（せい）: </strong></h4>
+              <h4><%= @personnel.last_name %></h4>
+            </div>
+
+            <div class="grid_media3 margin_top">
+              <h4><strong>名（めい）: </strong></h4>
+              <h4><%= @personnel.first_name %></h4>
+            </div>
+
+            <div class="grid_media3 margin_top">
+              <h4><strong>性別: </strong></h4>
+              <h4><%= @personnel.gender %></h4>
+            </div>
+
+            <div class="grid_media3 margin_top">
+              <h4><strong>部屋番号: </strong></h4>
+              <h4><%= @personnel.room %></h4>
+            </div>
+
+            <div class="grid_media3 margin_top">
+              <h4><strong>誕生日: </strong></h4>
+              <h4><%= @personnel.birth_date %></h4>
+            </div>
+
+            <div class="grid_media3 margin_top">
+              <h4><strong>入居日: </strong></h4>
+              <h4><%= @personnel.in_date %></h4>
+            </div>
+
+            <div class="grid_media3 margin_top">
+              <h4><strong>退去予定日: </strong></h4>
+              <h4><%= @personnel.out_plan_date %></h4>
+            </div>
+          
+            <div class='margin_top'>
+              <%= link_to "プロファイルを変更する",edit_personnel_path(@personnel),class:'btn btn-success btn-lg' %>
+            </div>
+          <% else %>
+            <h2>管理者： <%= @user.name %><h2>
+          <% end %>  
         </div>
       </div>
-    </div>
-    <div class='col-xs-8'>
-      <ul class="nav nav-pills">
-        <li role="presentation" class='<%= "active" if current_page?(user_path(@user)) %>'><%= link_to user_path(@user) do %>プロファイル<% end %></li>
-        <li role="presentation" class='<%= "active" if current_page?(payments_user_path(@user)) %>'><%= link_to payments_user_path(@user) do %>家賃情報<% end %></li>
-        <li role="presentation" class='<%= "active" if current_page?(mytasks_user_path(@user)) %>'><%= link_to mytasks_user_path(@user) do %>共用タスク<% end %></li>
-      </ul>
-      <% unless @user.admin? && !@user.personnel.present? %>
-        <div class="grid_media3 margin_top">
-          <h4><strong>姓（せい）: </strong></h4>
-          <h4><%= @personnel.last_name %></h4>
-        </div>
-
-        <div class="grid_media3 margin_top">
-          <h4><strong>名（めい）: </strong></h4>
-          <h4><%= @personnel.first_name %></h4>
-        </div>
-
-        <div class="grid_media3 margin_top">
-          <h4><strong>性別: </strong></h4>
-          <h4><%= @personnel.gender %></h4>
-        </div>
-
-        <div class="grid_media3 margin_top">
-          <h4><strong>部屋番号: </strong></h4>
-          <h4><%= @personnel.room %></h4>
-        </div>
-
-        <div class="grid_media3 margin_top">
-          <h4><strong>誕生日: </strong></h4>
-          <h4><%= @personnel.birth_date %></h4>
-        </div>
-
-        <div class="grid_media3 margin_top">
-          <h4><strong>入居日: </strong></h4>
-          <h4><%= @personnel.in_date %></h4>
-        </div>
-
-        <div class="grid_media3 margin_top">
-          <h4><strong>退去予定日: </strong></h4>
-          <h4><%= @personnel.out_plan_date %></h4>
-        </div>
-      
-        <div class='margin_top'>
-          <%= link_to "プロファイルを変更する",edit_personnel_path(@personnel),class:'btn btn-success btn-lg' %>
-        </div>
-      <% else %>
-        <h2>管理者： <%= @user.name %><h2>
-      <% end %>  
-    </div>
-  </div>
+    </div>  
+  </body>  
 <% else %>
   <h1 style='margin-bottom: 30px;'><span class='glyphicon glyphicon-check'></span> <%= @user.name %>'s イベント一覧</h1>
   <%= link_to 'ユーザー検索解除', events_path, class:'btn btn-success btn-block' %>

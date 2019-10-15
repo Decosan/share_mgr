@@ -24,7 +24,123 @@
 
 body {
   font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-} 
+}
+
+body.setting {
+   
+  /* 画像を常に天地左右の中央に配置 */
+  background-position: center center;
+   
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+   
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+   
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
+   
+  /* 背景画像が読み込まれる前に表示される背景のカラー */
+  background-color: #464646;
+}
+
+body.login {
+  background-image: url('ebo-carbon3.jpg');
+}
+
+body.toppage {
+  background-image: url('swim.jpg');
+}
+
+body.event {
+  background-image: url('mountain.jpg');
+}
+
+body.event_index {
+  background-image: url('container.jpg');
+}
+
+body.money {
+  background-image: url('cash.jpg');
+}
+
+body.mickey {
+  background-image: url('mickey.jpg');
+}
+
+body.routine_index {
+  background-image: url('fuck.jpg');
+}
+
+body.beer {
+  background-image: url('beer.jpg');
+}
+
+body.dance {
+  background-image: url('dance.jpg');
+}
+
+body.issue_index {
+  background-color: #595857;
+  color: #dcdddd;
+}
+
+.center_field {
+  width: 1000px;
+  height:300px;
+  padding: 20px;
+  background: #fff;
+  border: solid 1px gray;
+  border-radius: 8px;
+  vertical-align: bottom;
+}
+
+.center_field.center {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.container.event {
+  background: #fff;
+  border: solid 1px gray;
+  border-radius: 8px;
+}
+
+.container.event.routine {
+  padding-top: 60px;
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+.container.event.routine.chat {
+  padding-bottom: 30px;
+}
+
+.container.signup {
+  width: 350px;
+}
+
+body.user_index {
+  background-image: url('space.jpg');
+  color: #fff;
+  text-shadow: 1px 1px 0px gray;
+}
+
+body.center {
+  text-align: center;
+}
+
+.container.font {
+  font-size: 2.5rem;
+}
+
+.container.event.mypage {
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 30px
+}
+
 
 .flex{
   display: -webkit-flex;
@@ -228,7 +344,7 @@ h4.media-left {
 }
 
 .margin_right {
-  margin-right: 128px;
+  margin-right: 120px;
 }
 
 
@@ -266,6 +382,10 @@ h4.media-left {
   padding: 8px;
 }
 
+.border.color {
+  background: #7b7c7d;
+}
+
 .keep_right {
   max-width: 50%;
   margin: 0 auto;
@@ -298,4 +418,58 @@ h4.media-left {
 
 .vertical_bottom {
   vertical-align: bottom;
+}
+
+.shared_links {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.shared_links a:link {
+   color: #17184b; 
+   text-shadow: 0px 1px 0px silver;
+}
+
+.shared_links a:visited {
+   color: #17184b; 
+}
+
+.shared_links a:hover {
+   color: #ff0000; 
+}
+
+.shared_links a:active {
+   color: #ff8000; 
+}
+
+.white {
+  font-size: 5rem;
+  color: #fff;
+  text-shadow: 
+  -1px -1px 0px #5c5c5c, 
+  1px -1px 0px #5c5c5c, 
+  1px 1px 0px #5c5c5c, 
+  -1px 1px 0px #5c5c5c;
+}
+
+.btn-gradient-3d-orange {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #c58668;
+}
+
+.btn-gradient-3d-orange:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+}
+
+.text_center {
+  text-align: center;
 }
