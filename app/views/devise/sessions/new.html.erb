@@ -25,5 +25,17 @@
     <% end %>
 
     <%= render "devise/shared/links" %>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.hidden_field :email, value: 'test1@123.com' %>
+      <%= f.hidden_field :password, value: '123456' %>
+      <%= f.submit 'テストユーザーとしてログイン', class: 'btn btn-warning btn-block margin_top' %>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.hidden_field :email, value: 'admin1@123.com' %>
+      <%= f.hidden_field :password, value: '123456' %>
+      <%= f.submit 'テスト管理者としてログイン', class: 'btn btn-danger btn-block margin_top' %>
+    <% end %>
   </div>
 </body>   
