@@ -1,7 +1,7 @@
 <body class = 'beer'>
   <div class = 'container event routine chat'>
     <div class = 'margin_bottom'>
-      <h1 class= 'inline vertical_bottom'><span class="glyphicon glyphicon-user"></span> チャットルーム with <%= @conversation.sender.name %></h1>
+      <h1 class= 'inline vertical_bottom'><span class="glyphicon glyphicon-user"></span> チャットルーム with <%= @conversation.recipient.name %></h1>
       <div class= 'inline margin_left'><%= link_to '一覧へ戻る', users_path, class:'btn btn-primary btn-lg' %></div>
     </div>
 
