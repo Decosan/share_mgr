@@ -38,13 +38,13 @@
             <h4><span class="label label-success" style="margin-right: 200px;">担当中です</span></h4>
           <% end %>  
         </div>
-        <div>
+        <div class = 'responsive1'>
           <a class="btn btn-success btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/reviews/new" role="button">評価する</a>
         </div>
-        <div>
+        <div class = 'responsive1'>
           <a class="btn btn-warning btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/edit" role="button">変更する</a>
         </div>
-        <div>
+        <div class = 'responsive1'>
           <a data-confirm="Are you sure?" class="btn btn-danger btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>" role="button" data-method="delete">取り消す</a>
         </div>
       </li>
