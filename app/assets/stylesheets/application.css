@@ -343,21 +343,6 @@ h4.media-left {
   grid-template-columns: 580px 430px;
 }
 
-@media (max-width: 1199px){
-  .grid_header {
-    display: inline;
-  }
-  .grid_media5 {
-    display: inline;
-  }
-  .responsive1 {
-    display: inline;
-  }
-  .grid_media6 {
-    display: inline;
-  }
-}
-
 .margin_top {
   margin-top: 15px;
 }
@@ -544,20 +529,6 @@ body.bg {
   0 32px 24px rgba(0,0,0,0.7);
 }
 
-@media screen and (max-width: 600px) {
-  .layer-txt{
-   font-size: 2rem;
-   padding: 4rem 0;
-  }
-}
-
-@media screen and (min-width: 601px) {
-  .layer-txt{
-    font-size: 2.5rem;
-    padding: 8rem 0;
-  }
-}
-
 .works_icon {
   width: 200px;
 }
@@ -591,6 +562,35 @@ body.bg {
 .user_avatar {
   border-radius: 5%;
   max-width: 200px;
+}
+
+@media (max-width: 1199px){
+  .grid_header {
+    display: inline;
+  }
+  .grid_media5 {
+    display: inline;
+  }
+  .responsive1 {
+    display: inline;
+  }
+  .grid_media6 {
+    display: inline;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .layer-txt{
+   font-size: 2rem;
+   padding: 4rem 0;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .layer-txt{
+    font-size: 2.5rem;
+    padding: 8rem 0;
+  }
 }
 
 @media screen and (max-width: 999px) {
