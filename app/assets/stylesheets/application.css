@@ -172,7 +172,6 @@ body.center {
 
 .event_btn {
   position: relative;
-  /* z-index: 1; */
   width: 200px;
   height: 200px;
   margin-top: 230px;
@@ -186,19 +185,19 @@ body.center {
   user-select: none;
   display: -webkit-flex;
   display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
+  -webkit-align-items: center; 
+  align-items: center; 
+  -webkit-justify-content: center; 
+  justify-content: center; 
 }
 
 .event_btn:hover {
-  filter:alpha(opacity=70);/* IE 6,7*/
-  -ms-filter: "alpha(opacity=70)";/* IE 8,9 */
-  -moz-opacity:0.7;/* FF , Netscape */
-  -khtml-opacity: 0.7;/* Safari 1.x */
+  filter:alpha(opacity=70);
+  -ms-filter: "alpha(opacity=70)";
+  -moz-opacity:0.7;
+  -khtml-opacity: 0.7;
   opacity:0.7;
-  zoom:1;/*IE*/
+  zoom:1;
 }
 
 .event_btn:active {
@@ -215,41 +214,6 @@ body.center {
   left: 0;
   width: 100%;
   height: 100%;
-  /* text-indent:-999px; */
-  /* z-index: 2; */
-}
-
-@media (max-width: 991px){
-  .event_btn{
-    width: 120px;
-    height: 120px;
-    font-size: 12px;
-  }
-  .event_btn a {
-    line-height: 120px;
-  }
-}
-
-@media (max-width: 619px){
-  .event_btn{
-    width: 100px;
-    height: 100px;
-    font-size: 6px;
-  }
-  .event_btn a {
-    line-height: 100px;
-  }
-}
-
-@media (max-width: 991px){
-  .event_btn{
-    width: 120px;
-    height: 120px;
-    font-size: 12px;
-  }
-  .event_btn a {
-    line-height: 120px;
-  }
 }
 
 .upper_btn {
@@ -258,6 +222,43 @@ body.center {
 
 .upper_btn:active {
   margin-top: 34px;
+}
+
+@media screen and (max-width: 991px){
+  .event_btn{
+    width: 150px;
+    height: 150px;
+    font-size: 12px;
+  }
+  .event_btn a {
+    line-height: 150px;
+  }
+}
+
+@media screen and (max-width: 619px){
+  .toppage_btns {
+    display: block;
+  }
+  .event_btn{
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    font-size: 18px;
+    display: block;
+    position: relative;
+  }
+  .event_btn a {
+    line-height: 200px;
+  }
+  .event_btn:active {
+    margin-top: 4px;
+  }
+  .upper_btn {
+    margin-top: 0px;
+  }
+  .upper_btn:active {
+    margin-top: 4px;
+  }
 }
 
 .red_btn {
@@ -556,9 +557,7 @@ body.bg {
 
 .top_image {
   width: 50%;
-  /* height: 100%; */
   background: url('taco.jpg') no-repeat 0 0;
-  /* background-size: 100%; */
   border-radius: 12px;
   filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
 }
@@ -588,7 +587,6 @@ body.bg {
   }
 }
 
-/* PC向けの設定 */
 @media screen and (min-width: 601px) {
   .layer-txt{
     font-size: 2.5rem;
@@ -629,4 +627,40 @@ body.bg {
 .user_avatar {
   border-radius: 5%;
   max-width: 200px;
+}
+
+@media screen and (max-width: 999px) {
+  .hot-topic.flex {
+    display: block;
+    width: 100%;
+  }
+  .top_icon {
+    margin: 0 auto;
+    width: 100px;
+  }
+  .top_content{
+    text-align: center;
+    font-size: 2.5rem;
+  }
+  .layer.top_image {
+    height: 770px;
+  }
+  .works_title {
+    margin-top: 230px;
+  }
+  .work-description.flex{
+    display: flex;
+    flex-wrap: wrap;
+	  justify-content: space-between;
+   }
+   .works {
+     margin: 20px;
+   }
+}
+
+@media screen and (max-width: 569px) {
+  .works {
+    margin: 5px auto 20px;
+    /* margin: 20px; */
+  }
 }
