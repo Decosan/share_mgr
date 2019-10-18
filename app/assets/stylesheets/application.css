@@ -90,7 +90,7 @@ body.zen {
 }
 
 .center_field {
-  width: 1000px;
+  margin: 0 auto;
   height:300px;
   padding: 20px;
   background: #fff;
@@ -149,6 +149,7 @@ body.center {
 }
 
 .container.event.mypage {
+  margin: 0 auto;
   padding-top: 30px;
   padding-right: 30px;
   padding-left: 30px;
@@ -222,43 +223,6 @@ body.center {
 
 .upper_btn:active {
   margin-top: 34px;
-}
-
-@media screen and (max-width: 991px){
-  .event_btn{
-    width: 150px;
-    height: 150px;
-    font-size: 12px;
-  }
-  .event_btn a {
-    line-height: 150px;
-  }
-}
-
-@media screen and (max-width: 619px){
-  .toppage_btns {
-    display: block;
-  }
-  .event_btn{
-    margin: 0 auto;
-    width: 200px;
-    height: 200px;
-    font-size: 18px;
-    display: block;
-    position: relative;
-  }
-  .event_btn a {
-    line-height: 200px;
-  }
-  .event_btn:active {
-    margin-top: 4px;
-  }
-  .upper_btn {
-    margin-top: 0px;
-  }
-  .upper_btn:active {
-    margin-top: 4px;
-  }
 }
 
 .red_btn {
@@ -661,6 +625,50 @@ body.bg {
 @media screen and (max-width: 569px) {
   .works {
     margin: 5px auto 20px;
-    /* margin: 20px; */
+  }
+}
+@media screen and (max-width: 729px) {
+  .grid_media {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 991px){
+  .event_btn{
+    width: 150px;
+    height: 150px;
+    font-size: 12px;
+  }
+  .event_btn a {
+    line-height: 150px;
+  }
+  .grid_media2 {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 619px){
+  .toppage_btns {
+    display: block;
+  }
+  .event_btn{
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    font-size: 18px;
+    display: block;
+    position: relative;
+  }
+  .event_btn a {
+    line-height: 200px;
+  }
+  .event_btn:active {
+    margin-top: 4px;
+  }
+  .upper_btn {
+    margin-top: 0px;
+  }
+  .upper_btn:active {
+    margin-top: 4px;
   }
 }
