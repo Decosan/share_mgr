@@ -1,32 +1,37 @@
 <% if user_signed_in? %>
-  <body class = 'toppage'>
-    <h1 class = 'white'>トップページ</h1>
+  <div class = 'toppage'>
+    <div class = 'container'>
+      <h1 class = 'white'>トップページ</h1>
 
-    <div class='toppage_btns'>
-      <div class ='event_btn'>
-        <p><a href="/events" role="button">イベント・不用品処理</a></p>
+      <div class='toppage_btns'>
+        <div class ='event_btn'>
+          <p><a href="/events" role="button">イベント・不用品処理</a></p>
+        </div>
+        <div class ='event_btn upper_btn red_btn'>
+          <p><a href="/routines" role="button">共同生活タスク</a></p>
+        </div>
+        <div class ='event_btn orange_btn'>
+          <p><a href="/users" role="button">チャット・質問Box</a></p>
+        </div>
+        <div class ='event_btn upper_btn sky_btn'>
+          <p><a href="/issues" role="button">掲示板(ご意見・情報)</a></p>
+        </div>
+        <div class ='event_btn green_btn'>
+          <p><a href="/users/<%= current_user.id %>/payments" role="button">家賃の管理</a></p>
+        </div>
       </div>
-      <div class ='event_btn upper_btn red_btn'>
-        <p><a href="/routines" role="button">共同生活タスク</a></p>
-      </div>
-      <div class ='event_btn orange_btn'>
-        <p><a href="/users" role="button">チャット・質問Box</a></p>
-      </div>
-      <div class ='event_btn upper_btn sky_btn'>
-        <p><a href="/issues" role="button">掲示板(ご意見・情報)</a></p>
-      </div>
-      <div class ='event_btn green_btn'>
-        <p><a href="/users/<%= current_user.id %>/payments" role="button">家賃の管理</a></p>
-      </div>
-    </div>
-  </body>  
+    </div>  
+  </div>  
 <% else %>
-  <body class='bg'>
-    <div class='hot-topic flex'>
-      <div class='top_content'>
-        <img class='top_icon' src='assets/fish1.png'>
-        <h3>ようこそ　</br> Share House MGR!</h3> 
-      </div>
+  <div class = 'bg'>
+    <div class = 'container'>
+      <div class ='hot-topic flex'>
+      
+        <div class='top_content'>
+          <img class='top_icon' src='assets/fish1.png'>
+          <h3>ようこそ　</br> Share House MGR!</h3> 
+        </div>
+
         <div class="layer top_image">
           <div class="layer-txt">
             <p>・より住みやすいシェアハウスへ<p>
@@ -34,50 +39,51 @@
             <p>・管理者に便利な機能満載<p>
           </div>
         </div>
+
+      </div>  
+
+      <h2 class = 'works_title'><span class = 'glyphicon glyphicon-heart'></span>Share MGR の機能紹介</h2>
+
+      <div class='work-description flex'>
+
+        <div class='margin_right25 works'>
+          <h2 class= 'to_center'>共有タスク</h2>
+          <img class='works_icon' src='assets/garbage.png'>
+          <div class='works_text'>
+            <p>ゴミ出し・掃除などのハウスの共有タスクに。</p>
+            <p>カレンダー機能搭載で楽々管理をお手伝い。</p>
+          </div>  
+        </div>
+
+        <div class='margin_right25 works'>
+          <h2 class= 'to_center'>家賃管理</h2>
+          <img class='works_icon' src='assets/banking.png'>
+          <div class='works_text'>
+            <p>家賃支払い忘れ防止に。</br>支払い後は管理者に自動でメール通知します。</p>
+            <p>クレジットカード決済にも対応！</p>
+          </div>  
+        </div>
+
+        <div class='margin_right25 works'>
+          <h2 class= 'to_center'>不用品処理</h2>
+          <img class='works_icon' src='assets/garbage2.png'>
+          <div class='works_text'>
+            <p>ハウスに付き物の不用品処理。。</p>
+            <p>アプリで住人に告知して楽々処分しよう！</p>
+          </div>  
+        </div>
+
+        <div  class='works'>
+          <h2 class= 'to_center'>情報共有</h2>
+          <img class='works_icon' src='assets/admin.png'>
+          <div class='works_text'>
+            <p>チャット機能で管理者にいつでも質問できます。</p>
+            <p>住人同士のチャット・掲示板機能も充実！</p>
+          </div>  
+        </div>
+
+      </div>  
     </div>  
-
-    <h2 class = 'works_title'><span class = 'glyphicon glyphicon-heart'></span>Share MGR の機能紹介</h2>
-
-    <div class='work-description flex'>
-
-      <div class='margin_right25 works'>
-        <h2 class= 'to_center'>共用タスク</h2>
-        <img class='works_icon' src='assets/garbage.png'>
-        <div class='works_text'>
-          <p>ゴミ出し・掃除などのハウスの共用タスクに。</p>
-          <p>カレンダー機能搭載で担当者管理をお手伝いします。</p>
-        </div>  
-      </div>
-
-      <div class='margin_right25 works'>
-        <h2 class= 'to_center'>家賃管理</h2>
-        <img class='works_icon' src='assets/banking.png'>
-        <div class='works_text'>
-          <p>家賃支払い忘れ防止に。</p>
-          <p>支払い後は管理者にメールで通知。</p>
-          <p>クレジットカード決済にも対応！</p>
-        </div>  
-      </div>
-
-      <div class='margin_right25 works'>
-        <h2 class= 'to_center'>不用品処理</h2>
-        <img class='works_icon' src='assets/garbage2.png'>
-        <div class='works_text'>
-          <p>ハウスに付き物の不用品処理。。</p>
-          <p>アプリで住人に告知して楽々処分しよう！</p>
-        </div>  
-      </div>
-
-      <div  class='works'>
-        <h2 class= 'to_center'>コミュニケーション</h2>
-        <img class='works_icon' src='assets/admin.png'>
-        <div class='works_text'>
-          <p>チャット機能で管理者にいつでも質問。</p>
-          <p>住人同士のチャット・掲示板機能も充実！</p>
-        </div>  
-      </div>
-
-    </div>  
-  </body>  
+  </div>  
 
 <% end %>

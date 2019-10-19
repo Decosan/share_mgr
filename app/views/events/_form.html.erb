@@ -1,56 +1,58 @@
-<%= form_with(model: event,local: true)do |f| %>
-<%= render 'layouts/error_messages', model: f.object %>
-  
-  <div class='form'>
-    <%= f.label :title,'タイトル' %>
-    <%= f.text_field :title, class:'form-control' %>
-  </div>
-
-  <div class='form'>
-    <%= f.label :content,'内容' %>
-    <%= f.text_field :content, class:'form-control' %>
-  </div>
-
-  <div class='margin_top'>
-    <div class="form inline">
-      <%= f.label :start_date %>
-      <%= f.date_select(
-          :start_date,
-          start_year: Time.now.year,
-          end_year: (Time.now.year + 2)) %>
+<div class = 'container'>
+  <%= form_with(model: event,local: true)do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    
+    <div class='form'>
+      <%= f.label :title,'タイトル' %>
+      <%= f.text_field :title, class:'form-control' %>
     </div>
-    <p class='inline'>
-    <strong>〜まで開催</strong>
-    </p>
-  </div>
 
-  <div class='margin_top'>
-    <%= f.label :label, "タグ選択:" %>
+    <div class='form'>
+      <%= f.label :content,'内容' %>
+      <%= f.text_field :content, class:'form-control' %>
+    </div>
+
+    <div class='margin_top'>
+      <div class="form inline">
+        <%= f.label :start_date %>
+        <%= f.date_select(
+            :start_date,
+            start_year: Time.now.year,
+            end_year: (Time.now.year + 2)) %>
+      </div>
+      <p class='inline'>
+      <strong>〜まで開催</strong>
+      </p>
+    </div>
+
+    <div class='margin_top'>
+      <%= f.label :label, "タグ選択:" %>
+      <div>
+        <% Label.all.each do |label| %>
+        <%= f.check_box :label_ids, { multiple: true, checked: @event.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
+        <label><%= label.title %></label>
+        <% end %>
+      </div>  
+    </div>
+
     <div>
-      <% Label.all.each do |label| %>
-      <%= f.check_box :label_ids, { multiple: true, checked: @event.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
-      <label><%= label.title %></label>
+      <% if @event.images.attached? %>
+        <p>削除するファイルをチェック</p>
+        <ul>
+          <% @event.images.each do |image| %>
+            <li>
+              <%= f.check_box :destroy_images, { multiple: true, checked: false, include_hidden: false }, image[:id] %>
+              <label><%= image.filename %></label>
+            </li>
+          <% end %> 
+        </ul>
       <% end %>
-    </div>  
-  </div>
+    </div>
+    
+    <%= f.file_field :images, multiple: true %>
+    
 
-  <div>
-    <% if @event.images.attached? %>
-      <p>削除するファイルをチェック</p>
-      <ul>
-        <% @event.images.each do |image| %>
-          <li>
-            <%= f.check_box :destroy_images, { multiple: true, checked: false, include_hidden: false }, image[:id] %>
-            <label><%= image.filename %></label>
-          </li>
-        <% end %> 
-      </ul>
-		<% end %>
-	</div>
-  
-  <%= f.file_field :images, multiple: true %>
-  
+    <%= f.submit '登録する',class:'btn btn-primary btn-block' %>
 
-  <%= f.submit '登録する',class:'btn btn-primary btn-block' %>
-
-<% end %>
+  <% end %>
+</div>  

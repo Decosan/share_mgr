@@ -1,37 +1,39 @@
-<body class = 'mickey'>
-  <div class = 'center_field'>
-    <h1>お支払い済み画面</h1>
-    <h4>入力後に管理者へご入金報告メールが送られます。</h4>
-    <%= form_with(model: @payment, local: true, url: confirm_payments_path)do |f| %>
+<div class = 'mickey'>
+  <div class = 'container'>
+    <div class = 'center_field'>
+      <h1>お支払い済み画面</h1>
+      <h4>入力後に管理者へご入金報告メールが送られます。</h4>
+      <%= form_with(model: @payment, local: true, url: confirm_payments_path)do |f| %>
 
-      <div class='form'>
-        <%= f.label :amount,'金額' %>
-        <%= f.select :amount, Payment.amounts.keys, {}, class: "select-default" %>
-      </div>
-
-      <div class="form">
-        <%= f.label :month, '入金日' %>
-        <%= f.date_select(
-            :month,
-            start_year: Time.now.year,
-            end_year: (Time.now.year + 2)) %>
-      </div>
-
-      <div class="form">
-      <%= f.label :payment_method,'支払い方法' %>
-      
-        <div class="radio-inline">
-          <%= f.radio_button :payment_method, :クレジット払い %>
-          <%= f.label :クレジット払い, class: "method_label" %>
+        <div class='form'>
+          <%= f.label :amount,'金額' %>
+          <%= f.select :amount, Payment.amounts.keys, {}, class: "select-default" %>
         </div>
-        <div class="radio-inline">
-          <%= f.radio_button :payment_method, :銀行振り込み %>
-          <%= f.label :銀行振り込み, class: "method_label" %>
+
+        <div class="form">
+          <%= f.label :month, '入金日' %>
+          <%= f.date_select(
+              :month,
+              start_year: Time.now.year,
+              end_year: (Time.now.year + 2)) %>
         </div>
-      </div>
 
-      <%= f.submit '作成する',class:'btn btn-info btn-block' %>
+        <div class="form">
+        <%= f.label :payment_method,'支払い方法' %>
+        
+          <div class="radio-inline">
+            <%= f.radio_button :payment_method, :クレジット払い %>
+            <%= f.label :クレジット払い, class: "method_label" %>
+          </div>
+          <div class="radio-inline">
+            <%= f.radio_button :payment_method, :銀行振り込み %>
+            <%= f.label :銀行振り込み, class: "method_label" %>
+          </div>
+        </div>
 
-    <% end %>
-  </div>  
-</body> 
+        <%= f.submit '作成する',class:'btn btn-info btn-block' %>
+
+      <% end %>
+    </div> 
+  </div>   
+</div> 

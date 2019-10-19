@@ -1,4 +1,4 @@
-<body class = 'event_index'>
+<div class = 'event_index'>
   <div class = 'container event'>
     <h1 class = 'text_center'><span class='glyphicon glyphicon-check'></span> イベント一覧
       <%= link_to 'マイイベント', events_path(my_event: "true"),class:'btn btn-info btn-lg' %>
@@ -91,4 +91,4 @@
     </ul>
     <%= paginate @events %>
   </div>  
-</body>
+</div>
