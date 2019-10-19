@@ -1,4 +1,4 @@
-<body class = 'setting login'>
+<div class = 'login'>
   <div class = 'container signup'>
     <h2>ログインページ</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -38,4 +38,4 @@
       <%= f.submit 'テスト管理者としてログイン', class: 'btn btn-danger btn-block margin_top' %>
     <% end %>
   </div>
-</body>   
+</div>   

@@ -1,53 +1,55 @@
-<h1 class='grid_header'>
-  <span class='glyphicon glyphicon-trash'> <%= @routine.title %></span>
-  - 内容：<%= @routine.condition %></span>
-  <span><%= link_to 'タスク一覧へ', routines_path,class:'btn btn-primary btn-lg' %></span>
-</h1>
+<div class = 'container'>
+  <h1 class='grid_header'>
+    <span class='glyphicon glyphicon-trash'> <%= @routine.title %></span>
+    - 内容：<%= @routine.condition %></span>
+    <span><%= link_to 'タスク一覧へ', routines_path,class:'btn btn-primary btn-lg' %></span>
+  </h1>
 
-<%= month_calendar events: @assignments.where(routine_id: @routine.id) do |date,assignments| %>
-  <%= date %>
-  <% assignments.each do |assign| %>
-    <div style='color: red;'>
-      <%= assign.user.name %> (<%= assign.user.personnel.room %>)
-    </div>
-  <% end %> 
-<% end %>
+  <%= month_calendar events: @assignments.where(routine_id: @routine.id) do |date,assignments| %>
+    <%= date %>
+    <% assignments.each do |assign| %>
+      <div style='color: red;'>
+        <%= assign.user.name %> (<%= assign.user.personnel.room %>)
+      </div>
+    <% end %> 
+  <% end %>
 
-<p class='margin'><a class="btn btn-info btn-block" href="/routines/<%= @routine.id %>/assignments/new" role="button">新規アサイン</a></p>
+  <p class='margin'><a class="btn btn-info btn-block" href="/routines/<%= @routine.id %>/assignments/new" role="button">新規アサイン</a></p>
 
-<ul class="media-list">
-  <% @assignments.where(routine_id: @routine.id).each do |assignment| %>
-    <% unless assignment.start_time < Date.today - 15 %>
-      <li class="media grid_media5">
-        <h4 class="media-left">
-          <span class='glyphicon glyphicon-refresh'></span>
-        </h4>
-        
-        <div class="media-body">
-          <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span> アサイン: <%= assignment.user.name %> (<%= assignment.user.personnel.room %>号室)
-            <% if assignment.reviews.any? %>
-              <a href = '/routines/<%= @routine.id %>/assignments/<%= assignment.id %>'><span class = 'badge'><%= assignment.reviews.count %>ケの評価 / 平均:<%= (assignment.reviews.pluck(:rate).sum / assignment.reviews.count).round(1) %> 点</span></a>
-            <% else %>
-              <span class = 'badge'>まだ評価はありません</span>  
-            <% end %>
+  <ul class="media-list">
+    <% @assignments.where(routine_id: @routine.id).each do |assignment| %>
+      <% unless assignment.start_time < Date.today - 15 %>
+        <li class="media grid_media5">
+          <h4 class="media-left">
+            <span class='glyphicon glyphicon-refresh'></span>
           </h4>
-          Date: <%= assignment.start_time %> 〜
-          <% if assignment.start_time + 6 < Date.today %>
-            <h4><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h4>
-          <% elsif assignment.start_time <= Date.today && assignment.start_time + 6 >= Date.today %>
-            <h4><span class="label label-success" style="margin-right: 200px;">担当中です</span></h4>
-          <% end %>  
-        </div>
-        <div class = 'responsive1'>
-          <a class="btn btn-success btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/reviews/new" role="button">評価する</a>
-        </div>
-        <div class = 'responsive1'>
-          <a class="btn btn-warning btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/edit" role="button">変更する</a>
-        </div>
-        <div class = 'responsive1'>
-          <a data-confirm="Are you sure?" class="btn btn-danger btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>" role="button" data-method="delete">取り消す</a>
-        </div>
-      </li>
+          
+          <div class="media-body">
+            <h4 class="media-heading"><span class='glyphicon glyphicon-hand-right'></span> アサイン: <%= assignment.user.name %> (<%= assignment.user.personnel.room %>号室)
+              <% if assignment.reviews.any? %>
+                <a href = '/routines/<%= @routine.id %>/assignments/<%= assignment.id %>'><span class = 'badge'><%= assignment.reviews.count %>ケの評価 / 平均:<%= (assignment.reviews.pluck(:rate).sum / assignment.reviews.count).round(1) %> 点</span></a>
+              <% else %>
+                <span class = 'badge'>まだ評価はありません</span>  
+              <% end %>
+            </h4>
+            Date: <%= assignment.start_time %> 〜
+            <% if assignment.start_time + 6 < Date.today %>
+              <h4><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h4>
+            <% elsif assignment.start_time <= Date.today && assignment.start_time + 6 >= Date.today %>
+              <h4><span class="label label-success" style="margin-right: 200px;">担当中です</span></h4>
+            <% end %>  
+          </div>
+          <div class = 'responsive1'>
+            <a class="btn btn-success btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/reviews/new" role="button">評価する</a>
+          </div>
+          <div class = 'responsive1'>
+            <a class="btn btn-warning btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>/edit" role="button">変更する</a>
+          </div>
+          <div class = 'responsive1'>
+            <a data-confirm="Are you sure?" class="btn btn-danger btn-md" href="/routines/<%= @routine.id %>/assignments/<%= assignment.id %>" role="button" data-method="delete">取り消す</a>
+          </div>
+        </li>
+      <% end %>  
     <% end %>  
-  <% end %>  
-</ul>
+  </ul>
+</div>  

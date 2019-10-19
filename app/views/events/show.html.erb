@@ -1,37 +1,39 @@
-<body  class = 'setting event'>
-  <div class="jumbotron">
-      <div class = 'flex'>
-        <p><a class="btn btn-primary btn-lg" href="/events" role="button">一覧へ戻る</a></p>
-        <ul class = 'category_list'>
-          <% @event.labels.each do |label| %>
-            <li class = 'margin_left  padding_top20'><span class = 'badge'><%= label.title %></span></li>
+<div  class = 'event'>
+  <div class ='container'>
+    <div class="jumbotron">
+        <div class = 'flex'>
+          <p><a class="btn btn-primary btn-lg" href="/events" role="button">一覧へ戻る</a></p>
+          <ul class = 'category_list'>
+            <% @event.labels.each do |label| %>
+              <li class = 'margin_left  padding_top20'><span class = 'badge'><%= label.title %></span></li>
+            <% end %>
+          <ul>  
+        </div>
+      <div>  
+        <p class = 'margin_top'>期間: 〜 <%= @event.start_date %> まで</p>
+        <h1><%= @event.title %></h1>
+        <h3>内容:</h3>
+        <p><%= @event.content %></p>
+        <% if @event.images.attached? %>
+          <% @event.images.each do |image| %>
+            <%= image_tag image %> <br>
           <% end %>
-        <ul>  
-      </div>
-    <div>  
-      <p class = 'margin_top'>期間: 〜 <%= @event.start_date %> まで</p>
-      <h1><%= @event.title %></h1>
-      <h3>内容:</h3>
-      <p><%= @event.content %></p>
-      <% if @event.images.attached? %>
-        <% @event.images.each do |image| %>
-          <%= image_tag image %> <br>
         <% end %>
-      <% end %>
-      
-      <p><span class='glyphicon glyphicon-plus'></span> コメント一覧</p>
+        
+        <p><span class='glyphicon glyphicon-plus'></span> コメント一覧</p>
 
-      <div id="comments_area">
-        <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+        <div id="comments_area">
+          <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+        </div>
+
+        <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
+
+        <%= link_to '戻る', events_path %>
+        <% if @event.user.id == current_user.id %>
+          | <%= link_to '編集', edit_event_path(@event) %>  |
+          <%= link_to '削除する', event_path(@event), method: :delete,data: {confirm: "削除しますか？"} %>
+        <% end %>  
       </div>
-
-      <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
-
-      <%= link_to '戻る', events_path %>
-      <% if @event.user.id == current_user.id %>
-        | <%= link_to '編集', edit_event_path(@event) %>  |
-        <%= link_to '削除する', event_path(@event), method: :delete,data: {confirm: "削除しますか？"} %>
-      <% end %>  
     </div>
-  </div>
+  </div>  
 </body>

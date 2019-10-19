@@ -1,29 +1,31 @@
-<body class = 'mickey'>
-  <div class = 'center_field center'>
-    <h3>以下の内容で管理者にメールを送信します</h3>
+<div class = 'mickey'>
+  <div class = 'container'>
+    <div class = 'center_field center'>
+      <h3>以下の内容で管理者にメールを送信します</h3>
 
-    <%= form_with(model: @payment, url: payments_path, local: true)do |f| %>
-      <%= f.hidden_field :month %>
-      <%= f.hidden_field :amount %>
-      <%= f.hidden_field :confirm %>
-      <%= f.hidden_field :payment_method %>
+      <%= form_with(model: @payment, url: payments_path, local: true)do |f| %>
+        <%= f.hidden_field :month %>
+        <%= f.hidden_field :amount %>
+        <%= f.hidden_field :confirm %>
+        <%= f.hidden_field :payment_method %>
 
-      <% unless @payment.month.month.to_i == 12 %>
-        <p><%= @payment.month.month.to_i + 1 %>月分家賃</p>
-      <% else %> 
-        <p>1月分家賃</p>
-      <% end %>   
-      <p>振り込み金額：　<%= @payment.amount %> 円</p>
-      <p>入金日：　<%= @payment.month %> (<%= @payment.payment_method %>)</p>
-      <div class = 'margin_top'>
-        <div class = 'inline'>
-          <%= f.submit "送信する",class: 'btn btn-primary btn-md' %> | 
-        </div>
-        <div class = 'inline'>  
-           <%= link_to '戻る', :back ,class: 'btn btn-danger btn-md' %>
+        <% unless @payment.month.month.to_i == 12 %>
+          <p><%= @payment.month.month.to_i + 1 %>月分家賃</p>
+        <% else %> 
+          <p>1月分家賃</p>
+        <% end %>   
+        <p>振り込み金額：　<%= @payment.amount %> 円</p>
+        <p>入金日：　<%= @payment.month %> (<%= @payment.payment_method %>)</p>
+        <div class = 'margin_top'>
+          <div class = 'inline'>
+            <%= f.submit "送信する",class: 'btn btn-primary btn-md' %> | 
+          </div>
+          <div class = 'inline'>  
+            <%= link_to '戻る', :back ,class: 'btn btn-danger btn-md' %>
+          </div>  
         </div>  
-      </div>  
-    <% end %>
-    
-  </div>  
-</body> 
+      <% end %>
+      
+    </div> 
+  </div> 
+</div> 
