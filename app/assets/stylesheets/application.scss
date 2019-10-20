@@ -32,7 +32,7 @@
  
  div {
   &.login {
-    background-image: url('ebo-carbon3.jpg');
+    background-image: image-url('ebo-carbon3.jpg');
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
@@ -47,13 +47,13 @@
   }
 
   &.toppage {
-    background-image: url('swim.jpg');
+    background-image: image-url('swim.jpg');
     height: 100vh;
     background-color: #464646;
   }
 
   &.user_index {
-    background-image: url('space.jpg');
+    background-image: image-url('space.jpg');
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
@@ -64,7 +64,7 @@
   }
 
   &.event_show {
-    background-image: url('mountain.jpg');
+    background-image: image-url('mountain.jpg');
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
@@ -73,14 +73,14 @@
   }
 
   &.event_index {
-    background-image: url('container.jpg');
+    background-image: image-url('container.jpg');
     background-color: #464646;
   }
 
   &.money {
     position: absolute;
     top: 53px;
-    background-image: url('cash.jpg');
+    background-image: image-url('cash.jpg');
     height: 100vh;
     width: 100%;
   }
@@ -88,23 +88,23 @@
   &.mickey {
     position: absolute;
     top: 53px;
-    background-image: url('mickey.jpg');
+    background-image: image-url('mickey.jpg');
     height: 100vh;
     width: 100%;
   }
 
   &.routine_index {
-    background-image: url('fuck.jpg');
+    background-image: image-url('fuck.jpg');
   }
 
   &.beer {
-    background-image: url('beer.jpg');
+    background-image: image-url('beer.jpg');
     height: 100vh;
     background-color: #464646;
   }
 
   &.dance {
-    background-image: url('dance.jpg');
+    background-image: image-url('dance.jpg');
     &.wide {
       background-color: #464646;
       height: 100vh;
@@ -112,7 +112,7 @@
   }
 
   &.zen {
-    background-image: url('zen.jpg');
+    background-image: image-url('zen.jpg');
     background-color: #464646;
   }
 }
@@ -537,7 +537,7 @@ h4.media-left {
 
 .top_image {
   width: 50%;
-  background: url('taco.jpg') no-repeat 0 0;
+  background: image-url('taco.jpg') no-repeat 0 0;
   border-radius: 12px;
   filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.6));
 }
@@ -604,11 +604,6 @@ h4.media-left {
     a {
       line-height: 150px;
     }
-
-    // .arrow_box {
-    //   width: auto;
-    //   text-align: initial;
-    // }
   }
 
   .grid_media2 {
