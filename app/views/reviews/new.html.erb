@@ -1,5 +1,5 @@
 <div class = 'zen'>
-  <div class = 'container event review bozu'>
+  <div class = 'container event review'>
     <h1><span class = 'glyphicon glyphicon-star-empty margin_bottom'></span> タスク評価ページ</h1>
     <%= form_with(model: @review, url: routine_assignment_reviews_path, local: true) do |f| %>
 
@@ -39,7 +39,7 @@
       <!-- 確認ボタン -->
       <div class="form-group row justify-content-end">
         <div class="col-md-9">
-          <%= f.submit '投稿する', class:"btn btn-success" %>
+          <%= f.submit '投稿する', class:"btn btn-success btn-lg margin_top" %>
         </div>
       </div>
 

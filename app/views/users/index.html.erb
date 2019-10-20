@@ -9,7 +9,7 @@
     <ul class="media-list margin_top">
       <% @users.each do |user| %>
         <% if user.id != current_user.id %>
-          <li class="media grid_media4">
+          <li class="media">
               <h4 class="media-left">
                 <% if user.avatar.attached? %>
                 <%= image_tag user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>

@@ -1,4 +1,4 @@
-<body class = 'center'>
+<div class = 'bigger_font'>
   <h1><span class = 'glyphicon glyphicon-credit-card'></span> クレジットカード登録画面</h1>
   <%= form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
     <label>Card No</label>
@@ -42,4 +42,4 @@
     <div id="card_token"></div>
     <%= submit_tag "登録する", id: "token_submit",class: 'btn btn-info btn-sm margin_top' %>
   <% end %>
-</body>  
+</div>  
