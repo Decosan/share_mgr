@@ -31,28 +31,11 @@
  }
  
  div {
-  // &.setting {
-  //   /* 画像を常に天地左右の中央に配置 */
-  //   background-position: center center;
-
-  //   /* 画像をタイル状に繰り返し表示しない */
-  //   background-repeat: no-repeat;
-
-  //   /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
-  //   background-attachment: fixed;
-
-  //   /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
-  //   background-size: cover;
-
-  //   /* 背景画像が読み込まれる前に表示される背景のカラー */
-  //   background-color: #464646;
-  // }
-
   &.login {
     background-image: url('ebo-carbon3.jpg');
-    // background-position: center center;
-    // background-repeat: no-repeat;
-    // background-attachment: fixed;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     background-color: #464646;
@@ -65,10 +48,6 @@
 
   &.toppage {
     background-image: url('swim.jpg');
-    // background-position: center center;
-    // background-repeat: no-repeat;
-    background-attachment: fixed;
-    // background-size: cover;
     height: 100vh;
     background-color: #464646;
   }
@@ -84,31 +63,34 @@
     text-shadow: 1px 1px 0px gray;
   }
 
-  &.event {
+  &.event_show {
     background-image: url('mountain.jpg');
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #464646;
-    height: 100vh;
   }
 
   &.event_index {
-    
     background-image: url('container.jpg');
-    height: 100vh;
     background-color: #464646;
   }
 
   &.money {
+    position: absolute;
+    top: 53px;
     background-image: url('cash.jpg');
     height: 100vh;
+    width: 100%;
   }
 
   &.mickey {
+    position: absolute;
+    top: 53px;
     background-image: url('mickey.jpg');
     height: 100vh;
+    width: 100%;
   }
 
   &.routine_index {
@@ -131,9 +113,7 @@
 
   &.zen {
     background-image: url('zen.jpg');
-    background-attachment: fixed;;
     background-color: #464646;
-    height: 100vh;
   }
 }
 
@@ -142,26 +122,33 @@
   color: #dcdddd;
 }
 
-.center_field {
-  margin: 0 auto;
-  height: 300px;
-  padding: 20px;
-  background: #fff;
-  border: solid 1px gray;
-  border-radius: 8px;
-  vertical-align: bottom;
-
-  &.center {
-    text-align: center;
-    font-size: 2rem;
-  }
-}
 
 .container {
+
+  &.center_field {
+    margin-top: 100px;
+    height: 300px;
+    padding: 20px;
+    background: #fff;
+    border: solid 1px gray;
+    border-radius: 8px;
+    vertical-align: bottom;
+
+    &.centering {
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+  
+  &.max {
+    min-height: 100vh;
+  }
+
   &.event {
     background: #fff;
     border: solid 1px gray;
     border-radius: 8px;
+    min-height: 100vh;
 
     &.routine {
       padding-top: 60px;
@@ -178,29 +165,34 @@
     width: 350px;
   }
 
+  &.event.mypage {
+    padding: 30px;
+  }
+
+  &.font {
+    text-align: center;
+    font-size: 3rem;
+  }
+
   &.event.review {
     background-color: #595857;
     color: #dcdddd;
     padding: 30px;
-
-    &.bozu {
-      height: 500px;
-    }
   }
 }
 
-.container {
-  &.font {
-    font-size: 2.5rem;
-  }
+.media-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 
-  &.event.mypage {
-    margin: 0 auto;
-    padding-top: 30px;
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-bottom: 30px;
-  }
+.bigger_font {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 .flex {
@@ -574,8 +566,10 @@ h4.media-left {
   margin-bottom: 50px;
   text-align: center;
   font-size: 5rem;
-  color: #fff;
-  text-shadow: 0px 2px 5px #666;
+  color: #FF7C00;
+  background: -webkit-linear-gradient(top, #FFB76B 0%, #FFA73D 50%, #FF7C00 51%, #FF7F04 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .works {

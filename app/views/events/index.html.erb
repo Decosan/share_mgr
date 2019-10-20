@@ -1,5 +1,6 @@
 <div class = 'event_index'>
   <div class = 'container event'>
+  <%= render 'layouts/flash_messages' %>
     <h1 class = 'text_center'><span class='glyphicon glyphicon-check'></span> イベント一覧
       <%= link_to 'マイイベント', events_path(my_event: "true"),class:'btn btn-info btn-lg' %>
       <%= link_to '終了期日で並び替え', events_path(start_date: "true"),class:'btn btn-primary btn-lg' %>

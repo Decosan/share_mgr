@@ -1,16 +1,15 @@
-<body class = 'center'>
-  <div class = 'container font'>
-    <label>Credit Card Information</label>
-    <br/>
-    カード番号　<%= "**** **** **** " + @default_card_information.last4 %>
-    <br/>
-    <% exp_month = @default_card_information.exp_month.to_s %>
-    <% exp_year = @default_card_information.exp_year.to_s.slice(2,3) %>
-    有効期限　<%= exp_month + " / " + exp_year %>
-    <%= form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
-      <input name="card_id" type="hidden"></input>
-      <button class='btn btn-danger btn-xs inline'>カードを削除</button> |
-      <%= link_to '支払い画面へ',new_card_payment_path,class:'btn btn-primary btn-xs' %> | <%= link_to '戻る', payments_user_path(current_user.id),class: 'btn btn-warning btn-xs' %>
-    <% end %>
-  </div>
-</body>   
+<div class = 'container font'>
+  <label>Credit Card Information</label>
+  <br/>
+  カード番号　<%= "**** **** **** " + @default_card_information.last4 %>
+  <br/>
+  <% exp_month = @default_card_information.exp_month.to_s %>
+  <% exp_year = @default_card_information.exp_year.to_s.slice(2,3) %>
+  有効期限　<%= exp_month + " / " + exp_year %>
+  <%= form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
+    <input name="card_id" type="hidden"></input>
+    <button class='btn btn-danger btn-xs inline'>カードを削除</button> |
+    <%= link_to '支払い画面へ',new_card_payment_path,class:'btn btn-primary btn-xs' %> | <%= link_to '戻る', payments_user_path(current_user.id),class: 'btn btn-warning btn-xs' %>
+  <% end %>
+</div>
+
