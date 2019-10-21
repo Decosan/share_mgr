@@ -1,5 +1,10 @@
 <div class = 'bg'>
   <div class = 'container' >
+  <% @assignment.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger">
+      <%= msg %>
+    </div>
+  <% end %>
     <h1>タスクアサイン</h1>
     <%= form_with(model: @assignment, url: routine_assignments_path, local: true)do |f| %>
 

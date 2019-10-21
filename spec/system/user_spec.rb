@@ -5,7 +5,7 @@ RSpec.describe "User", type: :system do
   describe 'User登録' do
     context '正常系' do
       fit 'サインアップ後は個人情報登録画面へ遷移し、登録後はUser詳細画面で個人情報が正しく表示されること' do
-        # TODO: ローカル変数ではなく let を使用してください
+        
         expect {
       visit new_user_registration_path
       fill_in "ユーザーID", with: "TEST"
@@ -70,6 +70,7 @@ RSpec.describe "User", type: :system do
         click_on '登録'
         click_link 'Dele'
         page.driver.browser.switch_to.alert.accept
+        sleep 1
         expect(User.count).to eq 0
       end
     end

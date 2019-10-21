@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Issue", type: :system do
+RSpec.describe "Issue", type: :system, focus: true do
   
   let(:user) { FactoryBot.create(:user) }
   let(:label1) { FactoryBot.create(:label) }

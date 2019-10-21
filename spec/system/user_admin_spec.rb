@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Admin", type: :system do
+RSpec.describe "Admin", type: :system, focus: true do
   
   let(:user) { FactoryBot.create(:user) }
   let(:personnel) { FactoryBot.create(:personnel, user_id: user.id) }
@@ -33,12 +33,15 @@ RSpec.describe "Admin", type: :system do
       fill_in "メールアドレス", with: user.email
       fill_in "パスワード", with: user.password
       click_on 'Log in'
-      click_on 'マイページ'
-      expect(page).to have_selector 'h2', text: '管理者：'
+      click_on 'トップページ'
+      click_on 'チャット・質問Box'
+      sleep 1
+      expect(page).to have_content '管理者ページへ'
     end
 
     fit '管理者ユーザーは管理ページで全テーブルのCRUD処理が可能なこと' do
       click_on '管理者ページへ'
+      sleep 1
       expect(page).to have_selector 'h1', text: 'サイト管理'
     end
 

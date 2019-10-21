@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Message", type: :system do
+RSpec.describe "Message", type: :system, focus: true do
   
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
@@ -24,7 +24,7 @@ RSpec.describe "Message", type: :system do
   context '正常系' do
 
     it 'チャットルームでメッセージを表示できること' do
-      click_link 'メッセージを送る'
+      click_link 'チャットルームへ'
       sleep 1
       fill_in 'message_body', with: 'ども(^o^)'
       click_on 'メッセージを送る'
@@ -34,7 +34,7 @@ RSpec.describe "Message", type: :system do
     end
 
     it '未読メッセージは未読と表示されること' do
-      click_link 'メッセージを送る'
+      click_link 'チャットルームへ'
       sleep 1
       fill_in 'message_body', with: 'ども(^o^)'
       click_on 'メッセージを送る'    
@@ -42,7 +42,7 @@ RSpec.describe "Message", type: :system do
     end
 
     it '送り先がメッセージを開くと、未読メッセージは消えること' do
-      click_link 'メッセージを送る'
+      click_link 'チャットルームへ'
       sleep 1
       fill_in 'message_body', with: 'ども(^o^)'
       click_on 'メッセージを送る'
@@ -55,7 +55,7 @@ RSpec.describe "Message", type: :system do
       click_on '登録'
       click_on 'トップページ'
       click_on 'チャット・質問Box'
-      click_link 'メッセージを送る'
+      click_link 'チャットルームへ'
       sleep 1
       fill_in 'message_body', with: 'Hello(^_^)/'
       click_on 'メッセージを送る'
@@ -65,7 +65,7 @@ RSpec.describe "Message", type: :system do
       click_on 'Log in'
       click_on 'トップページ'
       click_on 'チャット・質問Box'
-      click_link 'メッセージを送る'
+      click_link 'チャットルームへ'
       expect(page).not_to have_selector '.media-body', text: '未読'
     end 
   end

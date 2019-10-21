@@ -8,5 +8,11 @@ class Event < ApplicationRecord
 
   validates :title, presence: true, length: {maximum: 50}
   validates :content, presence: true, length: {maximum: 255}
+  validate :start_date_check
+
+  def start_date_check
+    errors.add(:start_date, "が正しくありません。") if
+    self.start_date < Date.today
+  end
   
 end

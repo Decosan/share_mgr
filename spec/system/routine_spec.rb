@@ -28,7 +28,7 @@ RSpec.describe "Routine", type: :system, focus: true do
   context '正常系' do
 
     it 'ルーティンタスクにユーザーをアサインすると詳細画面に表示されること' do
-      sleep 5
+      sleep 1
       expect(page).to have_content user.name
     end
 
