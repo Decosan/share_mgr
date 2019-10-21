@@ -1,4 +1,7 @@
 class Personnel < ApplicationRecord
+
+  validates :room, uniqueness: true
+  
   belongs_to :user
   enum room: {
     '101a': 0,
