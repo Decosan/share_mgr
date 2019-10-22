@@ -21,6 +21,6 @@ class CardPaymentsController < ApplicationController
   private
 
   def card_payment_params
-    params.require(:card_payment).permit(:month, :amount, :confirm, :user_id)
+    params.require(:card_payment).permit(:amount, :confirm, :user_id)
   end
 end
