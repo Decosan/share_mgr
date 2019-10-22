@@ -3,7 +3,7 @@
     <h2> 支払いを確定しますか？</h2>
     <div>
       <p class = 'inline'>
-        <% if @card_payment.month.present %>
+        <% unless @card_payment.month.nil? %>
           <%= @card_payment.month.strftime("%Y年%m月%d日") %>
         <% end %>
       </p>
