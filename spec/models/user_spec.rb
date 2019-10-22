@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "バリデーションの確認", type: :model do
+RSpec.describe "バリデーションの確認", type: :model, focus: ture do
   
   it 'nameが空欄の場合、User作成不可' do
     @user = User.new(name:'',email:'test@123.com',password:'123456')

@@ -1,7 +1,8 @@
 class Personnel < ApplicationRecord
 
   validates :room, uniqueness: true
-  
+  validate :start_end_check
+
   belongs_to :user
   enum room: {
     '101a': 0,
@@ -27,4 +28,9 @@ class Personnel < ApplicationRecord
     "男性": 0,
     "女性": 1,
   }
+
+  def start_end_check
+    errors.add(:out_plan_date, "の日付を正しく記入してください。") unless
+    self.in_date < self.out_plan_date
+  end
 end
