@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+
   def index
     @issue = Issue.new
     @issues = Issue.all.order('created_at DESC').page(params[:page])

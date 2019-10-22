@@ -63,9 +63,11 @@
             </h4>
                 <h4><%= issue.body %></h4>
           </div>
-          <div class = "far_right">
-            <%= link_to '削除', issue_path(issue.id),method: :delete, class:'btn btn-danger btn-xs',data: {confirm: "削除しますか？"} %>
-          </div>  
+            <% if issue.user_id == current_user.id %>
+              <div class = "far_right">
+                <%= link_to '削除', issue_path(issue.id),method: :delete, class:'btn btn-danger btn-xs',data: {confirm: "削除しますか？"} %>
+              </div>
+            <% end %>  
           <div class='keep_right'>
             <% if issue.photo.attached? %>
               <%= image_tag issue.photo.variant(resize: "500x400") %>
