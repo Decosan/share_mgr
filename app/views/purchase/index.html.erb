@@ -3,9 +3,9 @@
     <h2> 支払いを確定しますか？</h2>
     <div>
       <p class = 'inline'>
-        
-        <%= @card_payment.month.strftime("%Y年%m月%d日") %>
-         
+        <% if @card_payment.month.present %>
+          <%= @card_payment.month.strftime("%Y年%m月%d日") %>
+        <% end %>
       </p>
       <p class = 'inline'>  /  <%= @card_payment.amount %>円</p>
     </div>
