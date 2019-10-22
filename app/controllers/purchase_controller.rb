@@ -20,7 +20,7 @@ class PurchaseController < ApplicationController
 
   def pay
     card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     Payjp::Charge.create(
     :amount => current_user.card_payments.last.amount.gsub(/(\d{0,3}),(\d{3})/, '\1\2').to_i, #支払金額を入力（itemテーブル等に紐づけても良い）
     :customer => card.customer_id, #顧客ID
