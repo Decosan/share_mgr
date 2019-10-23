@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_043318) do
   end
 
   create_table "card_payments", force: :cascade do |t|
-    t.date "month", default: -> { "now()" }, null: false
+    t.datetime "month", default: -> { "now()" }, null: false
     t.integer "amount", default: 0, null: false
     t.integer "confirm", default: 0, null: false
     t.bigint "user_id"
