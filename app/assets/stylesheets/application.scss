@@ -276,10 +276,7 @@
 }
 
 .media-left {
-  max-width: 99px;
-  // min-height: 115px;
-  // vertical-align: bottom;
-  // text-align: center;
+  min-width: 99px;
 }
 
 #event_index_date {
@@ -729,7 +726,7 @@ select{
 }
 
 @media screen and (max-width: 511px) {
-  .media-left {
+  .display_none {
     display: none;
   }
   .responsive_popup {

@@ -47,7 +47,7 @@
     <ul class="media-list">
       <% @events.each do |event| %>
         <li class="media">
-          <h4 class="media-left">
+          <h4 class="media-left display_none">
           <% if event.user.avatar.attached? %>
             <%= image_tag event.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
           <% else %>
