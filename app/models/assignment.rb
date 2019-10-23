@@ -7,6 +7,6 @@ class Assignment < ApplicationRecord
 
   def start_time_check
     errors.add(:start_time, "の日付が正しくありません。") if
-    self.start_time < Date.today
+    self.start_time < Date.today - 6
   end
 end

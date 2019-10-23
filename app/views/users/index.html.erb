@@ -16,7 +16,7 @@
               <% else %>
                 <span class="label label-info">No Image</span>
               <% end %>
-              <%= user.name %>
+                <div class='margin_top'><%= user.name.truncate(9) %></div>
               </h4>
               <div class="media-body">
                 <h4 class="media-heading">Name:<%= user.name %> (<% unless user.personnel.blank? %><%= user.personnel.room %>号室<% else %>管理者<% end %>)

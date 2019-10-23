@@ -53,7 +53,7 @@
           <% else %>
             <span class="label label-info">No Image</span>  
           <% end %>
-            <div class='margin_top'><%= event.user.name %></div>
+            <div class='margin_top'><%= event.user.name.truncate(9) %></div>
           </h4>
           <div class="media-body">
             
