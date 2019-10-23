@@ -596,6 +596,16 @@
   min_width: 200px;
 }
 
+select{
+  color: black;
+  option{
+    color:#4f4f4f;
+    &:first-child{
+      display: none;
+    }
+  }
+}
+
 @media screen and (max-width: 991px) {
   .event_btn {
     width: 150px;

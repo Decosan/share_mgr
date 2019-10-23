@@ -32,7 +32,7 @@
                 <span class = 'badge'>まだ評価はありません</span>  
               <% end %>
             </h4>
-            Date: <%= assignment.start_time %> 〜
+            担当期間: <%= assignment.start_time %> 〜 <%= assignment.start_time + 6 %>
             <% if assignment.start_time + 6 < Date.today %>
               <h4><span class="label label-danger" style="margin-right: 200px;">終了しました</span></h4>
             <% elsif assignment.start_time <= Date.today && assignment.start_time + 6 >= Date.today %>

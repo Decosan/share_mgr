@@ -18,7 +18,7 @@ class EventsController < ApplicationController
       end
     else
       if params[:start_date] == "true"
-        @events = Event.order(start_date: :ASC).page(params[:page])
+        @events = Event.where("start_date >= ?", Date.today).order(start_date: :ASC).page(params[:page])
       elsif params[:my_event] == "true"
         @events = current_user.events.order(start_date: :ASC).page(params[:page])
       else

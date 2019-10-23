@@ -1,5 +1,6 @@
 <div class = 'issue_index'>
   <div class = 'container max'>
+    <%= render 'layouts/flash_messages' %>
     <h1><span class="glyphicon glyphicon-knight"></span> 掲示板</h1>
     <%= form_with(model: @issue,local: true)do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
@@ -46,12 +47,12 @@
       <% @issues.each do |issue| %>
         <li class="media">
           <h4 class="media-left">
-            <% if issue.user.photo.attached? %>
-              <%= image_tag issue.user.photo.variant(resize: "80x50"), style:'border-radius: 20%;' %>
+            <% if issue.user.avatar.attached? %>
+              <%= image_tag issue.user.avatar.variant(resize: "80x50"), style:'border-radius: 20%;' %>
             <% else %>
               <span class="label label-info">No Image</span>  
             <% end %>
-            <%= issue.user.name %>
+              <div class='margin_top'><%= issue.user.name.truncate(9) %></div>
           </h4>
           <div class="media-body border color">
             <h4 class="media-heading">
