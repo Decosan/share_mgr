@@ -19,6 +19,7 @@ class PaymentsController < ApplicationController
   end
 
   def confirm
+    @payments = Payment.all
     @payment = Payment.new(payment_params)
   end
 
@@ -33,6 +34,6 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:month, :amount, :confirm, :payment_method, :user_id)
+    params.require(:payment).permit(:payed_date, :amount, :confirm, :payment_method, :user_id)
   end
 end

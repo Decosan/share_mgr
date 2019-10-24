@@ -1,5 +1,6 @@
 <div class = 'dance'>
   <div class = 'container event mypage'>
+  <%= render 'layouts/flash_messages' %>
     <h1><span class="glyphicon glyphicon-user"></span> User Profile</h1>
     <div class='row'>
       <div class='col-sm-4'>
@@ -37,14 +38,14 @@
           <% @payments.each do |payment| %>
             <li class="media grid_media2">
               <h4 class="media-left">
-              <% unless payment.month.month.to_i == 12 %>
-                <%= payment.month.month.to_i + 1 %>月分
+              <% unless payment.payed_date.month.to_i == 12 %>
+                <%= payment.payed_date.month.to_i + 1 %>月分
               <% else %> 
                 1月分
               <% end %>   
               </h4>
               <div class="media-body">
-                <h4 class="media-heading"><%= payment.month %>支払い完了</h4>
+                <h4 class="media-heading"><%= payment.payed_date %>支払い完了</h4>
                 <strong>金額：<%= payment.amount %>円 | <%= payment.payment_method %></storng>
               </div>
               <div>

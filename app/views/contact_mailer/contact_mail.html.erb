@@ -1,5 +1,5 @@
-<% unless @payment.month.month.to_i == 12 %>
-  <h1><%= @payment.month.month.to_i + 1 %>月分の入金が完了しました！</h1>
+<% unless @payment.payed_date.month.to_i == 12 %>
+  <h1><%= @payment.payed_date.month.to_i + 1 %>月分の入金が完了しました！</h1>
 <% else %> 
   <h1>1月分の入金が完了しました！</h1>
 <% end %>  
@@ -10,4 +10,4 @@
 
 <h2><%= @payment.payment_method %><h2>
 <h4>金額: <%= @payment.amount %>円を</h4>
-<h4><%= @payment.month %>日に振り込みました。</h4>
+<h4><%= @payment.payed_date %>日に振り込みました。</h4>

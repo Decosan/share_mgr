@@ -1,20 +1,26 @@
 <div class = 'mickey'>
-  <div class = 'bigger_font'>
-    <h3>以下の内容で管理者にメールを送信します</h3>
-
+  <div class = 'container bigger_font'>
+    <h3>以下の内容を確定して管理者にメールを送信しますか？
+      <% if @payments.pluck(:payed_date).any? { |m| (@payment.payed_date.at_beginning_of_month..@payment.payed_date.at_end_of_month).include? m} %>
+        </br> ※ <%= @payment.payed_date.month.to_i %>月は、既に振り込み報告を行っています。
+        </br> 続けてよろしいですか？
+      <% end %>
+    </h3>
     <%= form_with(model: @payment, url: payments_path, local: true)do |f| %>
-      <%= f.hidden_field :month %>
+      <%= f.hidden_field :payed_date %>
       <%= f.hidden_field :amount %>
       <%= f.hidden_field :confirm %>
       <%= f.hidden_field :payment_method %>
 
-      <% unless @payment.month.month.to_i == 12 %>
-        <p><%= @payment.month.month.to_i + 1 %>月分家賃</p>
-      <% else %> 
-        <p>1月分家賃</p>
-      <% end %>   
-      <p>振り込み金額：　<%= @payment.amount %> 円</p>
-      <p>入金日：　<%= @payment.month %> (<%= @payment.payment_method %>)</p>
+      <div class="deco_font">
+        <% unless @payment.payed_date.month.to_i == 12 %>
+          <p><%= @payment.payed_date.month.to_i + 1 %>月分家賃</p>
+        <% else %> 
+          <p>1月分家賃</p>
+        <% end %>   
+        <p>振り込み金額：　<%= @payment.amount %> 円</p>
+        <p>入金日：　<%= @payment.payed_date %> (<%= @payment.payment_method %>)</p>
+      </div>  
       <div class = 'margin_top'>
         <div class = 'inline'>
           <%= f.submit "送信する",class: 'btn btn-primary btn-md' %> | 

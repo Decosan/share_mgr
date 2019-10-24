@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_043318) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.date "month"
+    t.date "payed_date"
     t.bigint "user_id"
     t.integer "amount", default: 0, null: false
     t.integer "confirm", default: 0, null: false

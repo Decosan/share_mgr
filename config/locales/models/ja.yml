@@ -7,6 +7,7 @@ ja:
       personnel: "個人情報"
       issue: "投稿"
       assignment: "アサイン"
+      payment: "支払い報告"
     attributes:
       event:
         title: "タイトル"
@@ -33,3 +34,5 @@ ja:
         body: "投稿内容"
       assignment:
         start_time: "タスク開始日"
+      payment:
+        payed_date: "支払い日時"

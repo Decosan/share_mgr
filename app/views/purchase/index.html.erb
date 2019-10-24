@@ -2,7 +2,14 @@
   <div class = 'container center_field centering'>
     <h2> 支払いを確定しますか？</h2>
     <div>
-      <h2><%= @card_payment.amount %> 円</h2>
+      <p class = 'inline'>
+      <% unless @card_payment.month.month.to_i == 12 %>
+        <%= @card_payment.month.month.to_i + 1 %>月分
+      <% else %> 
+        1月分
+      <% end %>
+      </p>
+      <p class = 'inline'> / <%= @card_payment.amount %> 円</p>
     </div>
     </br>
     <h3>支払い方法: クレジットカード</h3>

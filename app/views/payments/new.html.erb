@@ -1,19 +1,20 @@
 <div class = 'mickey'>
   <div class = 'container center_field'>
+  <%= render 'layouts/flash_messages' %>
     <div class = 'center_field'>
       <h1>お支払い済み画面</h1>
       <h4>入力後に管理者へご入金報告メールが送られます。</h4>
       <%= form_with(model: @payment, local: true, url: confirm_payments_path)do |f| %>
-
+        <%= render 'layouts/error_messages', model: f.object %>
         <div class='form'>
           <%= f.label :amount,'金額' %>
           <%= f.select :amount, Payment.amounts.keys, {}, class: "select-default" %>
         </div>
 
         <div class="form">
-          <%= f.label :month, '入金日' %>
+          <%= f.label :payed_date, '入金日' %>
           <%= f.date_select(
-              :month,
+              :payed_date,
               start_year: Time.now.year,
               end_year: (Time.now.year + 2)) %>
         </div>

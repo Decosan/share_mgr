@@ -1,5 +1,5 @@
-<% unless @payment.month.month.to_i == 12 %>
-  <h1><%= @payment.month.month.to_i + 1 %>月分の入金を以下の通り確認致しました。</h1>
+<% unless @payment.payed_date.month.to_i == 12 %>
+  <h1><%= @payment.payed_date.month.to_i + 1 %>月分の入金を以下の通り確認致しました。</h1>
 <% else %> 
   <h1>1月分の入金を以下の通り確認致しました。</h1>
 <% end %>  
@@ -9,5 +9,5 @@
 <p>(Email:<%= @payment.user.email %>)</p>
 
 
-<h4><%= @payment.month %>日のお振込　<%= @payment.amount %>円(<%= @payment.payment_method %>)を確認致しました。</h4>
+<h4><%= @payment.payed_date %>日のお振込　<%= @payment.amount %>円(<%= @payment.payment_method %>)を確認致しました。</h4>
 <h4>今後とも、よろしくお願い致します。</h4>
