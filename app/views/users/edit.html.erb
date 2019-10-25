@@ -1,6 +1,6 @@
 <h1>編集ページ</h1>
 <%= form_with(model: @user,local: true)do |f| %>
-  
+　<%= render 'layouts/flash_messages' %>
   <div class='form'>
     <%= f.label :name,'Name' %>
     <%= f.text_field :name, class:'form-control' %>

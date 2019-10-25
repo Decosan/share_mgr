@@ -1,10 +1,6 @@
 <div class = 'beer'>
   <div class = 'container event routine chat'>
-    <% if flash[:error].present? %>
-      <% flash[:error].each do |message| %>
-        <p><%= message %></p>
-      <% end %>
-    <% end %>    
+
     <div class = 'margin_bottom'>
       <h1 class= 'inline vertical_bottom'><span class="glyphicon glyphicon-user"></span> チャットルーム with <%= @conversation.recipient.name %></h1>
       <div class= 'inline margin_left'><%= link_to '一覧へ戻る', users_path, class:'btn btn-primary btn-lg' %></div>
@@ -63,7 +59,7 @@
 
     <%= form_with(model: [@conversation, @message]) do |f| %>
       <div class="field">
-        <%= f.text_area :body, class: "form-control", placeholder: 'メッセージを入力して下さい' %>
+        <%= f.text_area :body, class: "form-control", placeholder: 'メッセージを入力して下さい', required: true %>
       </div>
         <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
       <div>

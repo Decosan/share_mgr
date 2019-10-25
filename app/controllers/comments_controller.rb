@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to event_path(@event) }
       else
-        format.html { redirect_to event_path(@event), notice: 'コメント投稿できませんでした...' }
+        format.html { redirect_to event_path(@event), notice: 'コメントが空です(^o^)／' }
       end
     end 
   end

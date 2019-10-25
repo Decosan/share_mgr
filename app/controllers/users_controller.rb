@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     if current_user.admin.present?
       @payments = Payment.all.order('created_at DESC').page(params[:page])
     else
-      @payments = current_user.payments.order('created_at DESC').page(params[:page])
+      @payments = current_user.payments.order('payed_date DESC').page(params[:page])
     end
   end
 
