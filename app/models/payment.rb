@@ -22,7 +22,7 @@ class Payment < ApplicationRecord
   }
 
   def payed_date_check
-    errors.add(:payed_date, "は未来の日時は登録できません") unless
-    self.payed_date < Date.today
+    errors.add(:payed_date, "は未来の日時は登録できません") if
+    self.payed_date > Date.today
   end
 end
