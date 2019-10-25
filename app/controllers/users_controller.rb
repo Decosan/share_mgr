@@ -20,9 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user] == nil
-      redirect_back(fallback_location: root_path) 
-    elsif params[:user][:avatar]
+    if params[:user][:avatar]
       @user.update params.require(:user).permit(:avatar)
       flash[:success] ='プロファイル画像を編集しました'
       redirect_back(fallback_location: root_path)   

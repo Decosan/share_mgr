@@ -13,7 +13,7 @@
                 <%= image_tag @user.avatar.variant(combine_options:{resize:"200x200^",crop:"200x200+0+0",gravity: :center}).processed, class:'user_avatar' %>
               <% end %>
               <%= form_with model: @user, local: true  do |f| %>
-                <%= f.file_field :avatar %>
+                <%= f.file_field :avatar, required: true %>
                 <%= f.submit '画像を表示' %>
               <% end %>
             </div>
