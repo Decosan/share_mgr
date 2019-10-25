@@ -21,6 +21,9 @@ class PaymentsController < ApplicationController
   def confirm
     @payments = Payment.all
     @payment = Payment.new(payment_params)
+    if @payment.invalid?
+      render 'new'
+    end
   end
 
   def update
