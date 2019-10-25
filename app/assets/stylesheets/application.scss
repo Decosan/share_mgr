@@ -127,7 +127,7 @@
 
   &.center_field {
     margin-top: 100px;
-    height: 400px;
+    height: 410px;
     padding: 20px;
     background: #fff;
     border: solid 1px gray;
@@ -184,22 +184,24 @@
 .bigger_font {
   font-size: 2rem;
   font-weight: bold;
-  text-align: center;
-  h3 {
-    border: 1px solid gray;
-    background: #fff;
-    border-radius: 4px;
-    padding: 4px;
-    line-height: 1.5;
-    font-size: 3rem;
-    color: #800000;
-  }
-  .deco_font {
-    color: #FF8C00;
-    text-shadow: 
-    black 1px 1px 10px, black -1px 1px 10px,
-    black 1px -1px 10px, black -1px -1px 10px;
-  }
+  text-align: center; 
+}
+
+.confirm_text {
+  border: 1px solid gray;
+  background: #fff;
+  border-radius: 4px;
+  padding: 4px;
+  line-height: 1.5;
+  font-size: 3rem;
+  color: #800000;
+}
+
+.deco_font {
+  color: #FF8C00;
+  text-shadow: 
+  black 1px 1px 10px, black -1px 1px 10px,
+  black 1px -1px 10px, black -1px -1px 10px;
 }
 
 .flex {
@@ -362,7 +364,7 @@
 
 .grid_media2 {
   display: grid;
-  grid-template-columns: 80px 350px 150px;
+  grid-template-columns: 80px 300px 150px;
 }
 
 .grid_media3 {

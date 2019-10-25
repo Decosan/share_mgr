@@ -1,6 +1,6 @@
 <div class = 'mickey'>
   <div class = 'container bigger_font'>
-    <h3>以下の内容を確定して管理者にメールを送信しますか？
+    <h3 class = 'confirm_text'>以下の内容を確定して管理者にメールを送信しますか？
       <% if @payments.pluck(:payed_date).any? { |m| (@payment.payed_date.at_beginning_of_month..@payment.payed_date.at_end_of_month).include? m} %>
         </br> ※ <%= @payment.payed_date.month.to_i %>月は、既に振り込み報告を行っています。
         </br> 続けてよろしいですか？
