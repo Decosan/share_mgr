@@ -21,6 +21,7 @@ class PaymentsController < ApplicationController
   def confirm
     @payments = Payment.all
     @payment = Payment.new(payment_params)
+    @payment.user_id = current_user.id
     if @payment.invalid?
       render 'new'
     end
