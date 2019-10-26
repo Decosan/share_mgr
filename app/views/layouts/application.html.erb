@@ -29,6 +29,7 @@
             <% if user_signed_in? %>
               <li class='padding15 blue'>ようこそ、<%= current_user.name %>さん。</li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "ユーザー一覧", users_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "新規サインアップ", new_user_registration_path %></li>

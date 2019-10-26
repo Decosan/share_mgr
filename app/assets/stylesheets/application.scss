@@ -561,8 +561,13 @@
 }
 
 .layer-txt {
+  font-weight: bold;
   color: #fff;
-  text-shadow: 0 1px #bbb, 0 2px #aaa, 0 3px #999, 0 4px #888, 0 5px #777, 0 32px 24px rgba(0, 0, 0, 0.7);
+  text-shadow: 
+        black 1px 1px 0, black -1px -1px 0,/*右下、左上*/
+        black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
+        black 0px 1px 0, black  0-1px 0,/*右、左*/
+        black -1px 0 0, black 1px 0 0;/*上、下*/
 }
 
 .works_icon {

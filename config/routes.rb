@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'my_page', :to => 'users/registrations#my_page'
   end
 
-  root to: 'users#index'
+  root to: 'toppages#index'
   resources :toppages, only:[:index]
   
   resources :users do
