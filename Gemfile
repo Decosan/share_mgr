@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem "aws-sdk-s3", require: false
+
 gem 'devise'
 gem 'payjp'
 gem "jquery-rails"
